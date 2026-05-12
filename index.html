@@ -3,166 +3,672 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ROCK ROULETTE</title>
+<title>OFFBEAT</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;overflow:hidden}
-body{background:#000;color:#e8e8e8;font-family:-apple-system,'Helvetica Neue',sans-serif;user-select:none;position:relative}
-.stars{position:fixed;inset:0;z-index:0;background:radial-gradient(1px 1px at 20% 30%,#fff,transparent),radial-gradient(1px 1px at 60% 70%,#fff,transparent),radial-gradient(1px 1px at 80% 10%,#fff,transparent),radial-gradient(1px 1px at 30% 80%,#fff,transparent),radial-gradient(1px 1px at 90% 50%,#fff,transparent),radial-gradient(1px 1px at 10% 60%,rgba(255,255,255,0.5),transparent),radial-gradient(1px 1px at 50% 20%,rgba(255,255,255,0.6),transparent),radial-gradient(1px 1px at 70% 90%,rgba(255,255,255,0.4),transparent);opacity:0.6}
-.c{position:relative;z-index:2;min-height:100vh;padding:24px 18px;display:flex;flex-direction:column}
-.h{text-align:center;margin-bottom:8px}
-.tag{display:inline-block;font-size:9px;letter-spacing:6px;color:#888;margin-bottom:18px}
-.t{font-family:'Times New Roman',serif;font-size:clamp(40px,11vw,62px);line-height:0.95;letter-spacing:8px;font-weight:300;color:#fff;margin-bottom:6px}
-.t .em{display:block;font-size:0.5em;letter-spacing:14px;color:#aaa;margin-top:8px;font-weight:300}
-.sb{font-size:10px;letter-spacing:8px;color:#666;font-weight:300;margin-top:8px}
-.prism-wrapper{flex:1;display:flex;align-items:center;justify-content:center;position:relative;margin:20px 0;min-height:320px}
-.prism-stage{width:100%;max-width:380px;aspect-ratio:1;position:relative;display:flex;align-items:center;justify-content:center}
-.triangle{position:absolute;width:0;height:0;left:50%;top:30%;transform:translate(-50%,-50%);border-left:55px solid transparent;border-right:55px solid transparent;border-bottom:95px solid rgba(255,255,255,0.92);filter:drop-shadow(0 0 20px rgba(255,255,255,0.15));z-index:5}
-.beam-in{position:absolute;left:0;top:30%;height:2px;width:45%;background:linear-gradient(to right,transparent,#fff);transform:translateY(-1px);z-index:3;box-shadow:0 0 8px #fff}
-.spectrum{position:absolute;left:50%;top:30%;width:55%;height:140px;transform-origin:left center;z-index:2}
-.ray{position:absolute;left:0;top:50%;height:2px;width:100%;transform-origin:left center;border-radius:2px;opacity:0.85}
-.ray.r1{background:linear-gradient(to right,transparent,#ff2222);transform:translateY(-1px) rotate(-22deg);box-shadow:0 0 12px #ff2222}
-.ray.r2{background:linear-gradient(to right,transparent,#ff8800);transform:translateY(-1px) rotate(-13deg);box-shadow:0 0 12px #ff8800}
-.ray.r3{background:linear-gradient(to right,transparent,#ffdd00);transform:translateY(-1px) rotate(-4deg);box-shadow:0 0 12px #ffdd00}
-.ray.r4{background:linear-gradient(to right,transparent,#00dd44);transform:translateY(-1px) rotate(5deg);box-shadow:0 0 12px #00dd44}
-.ray.r5{background:linear-gradient(to right,transparent,#0088ff);transform:translateY(-1px) rotate(14deg);box-shadow:0 0 12px #0088ff}
-.ray.r6{background:linear-gradient(to right,transparent,#8833ff);transform:translateY(-1px) rotate(23deg);box-shadow:0 0 12px #8833ff}
-.song-card{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:92%;max-width:340px;text-align:center;z-index:8;padding:18px 12px;background:rgba(0,0,0,0.65);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,0.08)}
-.cover{width:120px;height:120px;margin:0 auto 14px;position:relative;display:flex;align-items:center;justify-content:center}
-.cover-art{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
-.song-title{font-size:clamp(18px,5.5vw,24px);font-weight:500;color:#fff;letter-spacing:1px;margin-bottom:6px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 4px}
-.song-artist{font-size:11px;letter-spacing:4px;color:#bbb;text-transform:uppercase}
-.song-year{font-size:9px;letter-spacing:3px;color:#666;margin-top:4px}
-.idle .song-title{color:#888;font-style:italic}
-.idle .cover-art{opacity:0.4}
-.counter{position:absolute;top:-2px;left:0;right:0;text-align:center;font-size:9px;letter-spacing:6px;color:#555;z-index:9}
-.cl{display:flex;flex-direction:column;gap:10px;margin-top:10px}
-.sp{width:100%;padding:20px;background:transparent;color:#fff;border:1px solid #fff;font-family:'Times New Roman',serif;font-size:22px;letter-spacing:10px;font-weight:300;transition:all 0.2s}
+html,body{min-height:100%}
+body{background:#000;color:#e8e8e8;font-family:-apple-system,'Helvetica Neue',sans-serif;user-select:none;position:relative;overflow-x:hidden}
+.stars{position:fixed;inset:0;z-index:0;background:radial-gradient(1px 1px at 15% 25%,#fff,transparent),radial-gradient(1px 1px at 65% 75%,#fff,transparent),radial-gradient(1px 1px at 85% 15%,#fff,transparent),radial-gradient(1px 1px at 35% 85%,rgba(255,255,255,.6),transparent),radial-gradient(1px 1px at 95% 55%,#fff,transparent),radial-gradient(1px 1px at 5% 65%,rgba(255,255,255,.4),transparent),radial-gradient(1px 1px at 45% 5%,rgba(255,255,255,.5),transparent),radial-gradient(1px 1px at 75% 95%,rgba(255,255,255,.3),transparent);opacity:.5}
+.c{position:relative;z-index:2;min-height:100vh;padding:18px 18px 24px;display:flex;flex-direction:column}
+.h{text-align:center;margin-bottom:6px;padding-top:6px}
+.tag{display:inline-block;font-size:9px;letter-spacing:8px;color:#666;margin-bottom:14px}
+.t{font-size:clamp(36px,10vw,52px);line-height:1;letter-spacing:14px;font-weight:200;color:#fff;margin-right:-14px}
+.sb{font-size:9px;letter-spacing:6px;color:#555;margin-top:10px}
+.modes{display:flex;justify-content:center;margin:14px 0 6px;border-top:1px solid #222;border-bottom:1px solid #222}
+.mb{flex:1;padding:11px 4px;background:transparent;color:#666;border:none;font-size:10px;letter-spacing:3px;border-right:1px solid #222}
+.mb:last-child{border-right:none}
+.mb.active{color:#fff;background:rgba(255,255,255,.03)}
+.stage-wrap{flex:1;display:flex;align-items:center;justify-content:center;position:relative;margin:6px 0;min-height:380px}
+.stage{width:100%;max-width:380px;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.prism-zone{position:relative;width:100%;height:140px;display:flex;align-items:center;justify-content:center}
+.triangle{position:absolute;width:0;height:0;left:50%;top:50%;transform:translate(-50%,-50%);border-left:42px solid transparent;border-right:42px solid transparent;border-bottom:72px solid rgba(255,255,255,.92);filter:drop-shadow(0 0 18px rgba(255,255,255,.18));z-index:5}
+.beam-in{position:absolute;left:0;top:50%;height:1.5px;width:42%;background:linear-gradient(to right,transparent,#fff);transform:translateY(-1px);z-index:3;box-shadow:0 0 6px #fff}
+.spectrum{position:absolute;left:50%;top:50%;width:50%;height:120px;z-index:2}
+.ray{position:absolute;left:0;top:50%;height:1.5px;width:100%;transform-origin:left center;opacity:.9}
+.ray.r1{background:linear-gradient(to right,transparent,#ff3344);transform:translateY(-1px) rotate(-22deg);box-shadow:0 0 10px #ff3344}
+.ray.r2{background:linear-gradient(to right,transparent,#ff8822);transform:translateY(-1px) rotate(-13deg);box-shadow:0 0 10px #ff8822}
+.ray.r3{background:linear-gradient(to right,transparent,#ffdd33);transform:translateY(-1px) rotate(-4deg);box-shadow:0 0 10px #ffdd33}
+.ray.r4{background:linear-gradient(to right,transparent,#22dd66);transform:translateY(-1px) rotate(5deg);box-shadow:0 0 10px #22dd66}
+.ray.r5{background:linear-gradient(to right,transparent,#33aaff);transform:translateY(-1px) rotate(14deg);box-shadow:0 0 10px #33aaff}
+.ray.r6{background:linear-gradient(to right,transparent,#aa44ff);transform:translateY(-1px) rotate(23deg);box-shadow:0 0 10px #aa44ff}
+.song-card{width:100%;text-align:center;padding:20px 16px 18px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.1);margin-top:8px}
+.cover{width:128px;height:128px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center}
+.cover svg{width:100%;height:100%}
+.song-title{font-size:clamp(17px,5vw,22px);font-weight:500;color:#fff;letter-spacing:1px;margin-bottom:6px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 4px}
+.song-artist{font-size:10px;letter-spacing:4px;color:#bbb;text-transform:uppercase}
+.song-year{font-size:8px;letter-spacing:3px;color:#666;margin-top:5px}
+.idle .song-title{color:#888;font-weight:300}
+.idle .cover{opacity:.5}
+.counter{position:absolute;top:-2px;right:4px;font-size:8px;letter-spacing:4px;color:#444;z-index:9}
+.filters{display:flex;gap:6px;overflow-x:auto;padding:10px 2px 4px;margin:0 -18px 6px;padding-left:18px;padding-right:18px;-webkit-overflow-scrolling:touch}
+.filters::-webkit-scrollbar{display:none}
+.fp{flex:0 0 auto;padding:6px 12px;background:transparent;color:#777;border:1px solid #333;font-size:10px;letter-spacing:2px;white-space:nowrap}
+.fp.active{color:#000;background:#fff;border-color:#fff}
+.cal-view{display:none;width:100%;text-align:center;padding:20px 8px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.1);margin-top:8px}
+.cal-view.show{display:block}
+.cal-date{font-size:11px;letter-spacing:6px;color:#888;margin-bottom:18px}
+.cal-day{font-size:72px;font-weight:200;color:#fff;line-height:1;letter-spacing:-2px}
+.cal-month{font-size:11px;letter-spacing:5px;color:#888;margin:6px 0 24px}
+.cal-quote{font-family:'Times New Roman',serif;font-size:17px;line-height:1.75;color:#fff;font-style:italic;padding:0 6px;margin-bottom:18px;min-height:60px}
+.cal-quote::before,.cal-quote::after{content:'"';color:#666;font-size:24px}
+.cal-from{font-size:10px;letter-spacing:3px;color:#aaa;margin-bottom:4px}
+.cal-from-artist{font-size:9px;letter-spacing:4px;color:#666;text-transform:uppercase}
+.cl{display:flex;flex-direction:column;gap:9px;margin-top:10px}
+.sp{width:100%;padding:18px;background:transparent;color:#fff;border:1px solid #fff;font-size:18px;letter-spacing:12px;font-weight:300;text-indent:12px}
 .sp:active{color:#000;background:#fff}
 .sp:disabled{color:#444;border-color:#333}
-.ar{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.ab{padding:13px 8px;background:transparent;color:#aaa;border:1px solid #444;font-size:11px;letter-spacing:4px;font-family:'Times New Roman',serif}
+.ar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.ab{padding:12px 4px;background:transparent;color:#aaa;border:1px solid #444;font-size:10px;letter-spacing:2px}
 .ab:active{background:#fff;color:#000;border-color:#fff}
 .ab:disabled{color:#333;border-color:#222}
-.lm{position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px)}
+.lm{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
 .lm.s{display:flex}
-.lc{width:100%;max-width:420px;background:#0a0a0a;border:1px solid rgba(255,255,255,0.2);padding:36px 24px 28px;position:relative;text-align:center}
-.lx{position:absolute;top:8px;right:14px;background:none;border:none;color:#fff;font-size:32px;font-weight:300;line-height:1}
-.lt{font-family:'Times New Roman',serif;font-size:26px;font-weight:400;color:#fff;margin-bottom:8px;letter-spacing:2px}
-.la{font-size:11px;letter-spacing:5px;color:#888;margin-bottom:24px;text-transform:uppercase}
-.lr{font-size:14px;line-height:2;white-space:pre-line;color:#aaa;letter-spacing:1px}
-.ft{text-align:center;margin-top:14px;font-size:9px;letter-spacing:8px;color:#333;font-weight:300}
-@keyframes glow{0%,100%{filter:drop-shadow(0 0 15px rgba(255,255,255,0.1))}50%{filter:drop-shadow(0 0 25px rgba(255,255,255,0.25))}}
+.lc{width:100%;max-width:420px;background:#0a0a0a;border:1px solid rgba(255,255,255,.2);padding:36px 22px 26px;position:relative;text-align:center}
+.lx{position:absolute;top:8px;right:14px;background:none;border:none;color:#fff;font-size:30px;font-weight:200;line-height:1}
+.lt{font-family:'Times New Roman',serif;font-size:24px;color:#fff;margin-bottom:6px}
+.la{font-size:10px;letter-spacing:5px;color:#888;margin-bottom:22px;text-transform:uppercase}
+.lr{font-size:13px;line-height:2;white-space:pre-line;color:#aaa;letter-spacing:1px}
+.sm{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:300;display:none;align-items:center;justify-content:center;padding:20px;flex-direction:column}
+.sm.s{display:flex}
+.sm canvas{max-width:100%;max-height:70vh;border:1px solid #333}
+.sm-hint{margin-top:14px;color:#888;font-size:11px;letter-spacing:2px;text-align:center;line-height:1.6}
+.sm-close{position:absolute;top:16px;right:16px;background:none;border:1px solid #444;color:#fff;width:36px;height:36px;font-size:22px}
+.ft{text-align:center;margin-top:14px;font-size:8px;letter-spacing:8px;color:#333}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 14px rgba(255,255,255,.12))}50%{filter:drop-shadow(0 0 22px rgba(255,255,255,.28))}}
 .triangle{animation:glow 4s ease-in-out infinite}
-@keyframes spectrum-pulse{0%,100%{opacity:0.85}50%{opacity:1}}
-.spinning .ray{animation:spectrum-pulse 0.15s infinite}
-.spinning .beam-in{animation:spectrum-pulse 0.15s infinite}
-@keyframes spin-cover{0%{transform:rotate(0deg) scale(0.9);opacity:0.3}100%{transform:rotate(360deg) scale(1);opacity:1}}
-.cover-art.reveal{animation:spin-cover 0.6s ease-out}
-@keyframes fade-in{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
-.song-card.reveal{animation:fade-in 0.5s ease-out}
+@keyframes sp-pulse{0%,100%{opacity:.9}50%{opacity:1}}
+.spinning .ray,.spinning .beam-in{animation:sp-pulse .15s infinite}
+@keyframes spin-cover{0%{transform:rotate(0) scale(.9);opacity:.3}100%{transform:rotate(360deg) scale(1);opacity:1}}
+.cover.reveal{animation:spin-cover .6s ease-out}
+@keyframes fade-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.song-card.reveal,.cal-view.reveal{animation:fade-in .5s ease-out}
 </style></head>
 <body>
 <div class="stars"></div>
 <div class="c">
-<header class="h"><span class="tag">SIDE A · 33⅓ RPM</span><h1 class="t">ROCK<span class="em">ROULETTE</span></h1><p class="sb" id="ts">— LOADING —</p></header>
-<div class="prism-wrapper"><div class="prism-stage" id="stage">
+<header class="h"><span class="tag">— 33⅓ RPM · SIDE B —</span><h1 class="t">OFFBEAT</h1><p class="sb">日 常 出 逃 · REST &amp; RESET</p></header>
+<div class="modes"><button class="mb active" data-mode="roulette">轮 盘</button><button class="mb" data-mode="calendar">每 日</button></div>
+
+<div class="filters" id="filters">
+<button class="fp active" data-pool="all">全部</button>
+<button class="fp" data-pool="rock_cn">中文摇滚</button>
+<button class="fp" data-pool="rock_west">西方摇滚</button>
+</div>
+
+<div class="stage-wrap"><div class="stage">
+
+<div id="rouletteView">
+<div class="prism-zone">
 <div class="counter" id="cn">000 / 000</div>
 <div class="beam-in"></div>
 <div class="spectrum"><div class="ray r1"></div><div class="ray r2"></div><div class="ray r3"></div><div class="ray r4"></div><div class="ray r5"></div><div class="ray r6"></div></div>
 <div class="triangle"></div>
+</div>
 <div class="song-card idle" id="card">
-<div class="cover"><div class="cover-art" id="coverArt"><svg viewBox="0 0 100 100" width="100" height="100"><circle cx="50" cy="50" r="40" fill="none" stroke="#fff" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="4" fill="#fff" opacity="0.4"/></svg></div></div>
+<div class="cover" id="cover"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="#fff" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="4" fill="#fff" opacity="0.4"/></svg></div>
 <div class="song-title" id="title">准备就绪</div>
 <div class="song-artist" id="artist">PRESS SPIN</div>
 <div class="song-year" id="year">&nbsp;</div>
-</div></div></div>
-<div class="cl"><button class="sp" id="sb">SPIN</button><div class="ar"><button class="ab" id="nb" disabled>网易云搜索</button><button class="ab" id="lb" disabled>查看歌曲</button></div></div>
-<footer class="ft">SPEAK TO ME · THE GREAT GIG IN THE SKY</footer>
 </div>
+</div>
+
+<div class="cal-view" id="calView">
+<div class="cal-date" id="calDate"></div>
+<div class="cal-day" id="calDay">--</div>
+<div class="cal-month" id="calMonth">---</div>
+<div class="cal-quote" id="calQuote">—</div>
+<div class="cal-from" id="calFrom">—</div>
+<div class="cal-from-artist" id="calFromArtist">—</div>
+</div>
+
+</div></div>
+
+<div class="cl">
+<button class="sp" id="sb">SPIN</button>
+<div class="ar">
+<button class="ab" id="nb" disabled>网易云</button>
+<button class="ab" id="lb" disabled>歌曲信息</button>
+<button class="ab" id="shb" disabled>生成卡片</button>
+</div>
+</div>
+
+<footer class="ft">SIDE B · 跳 出 日 常 看 日 常</footer>
+</div>
+
 <div class="lm" id="lm"><div class="lc"><button class="lx" id="lx">×</button><div class="lt" id="mt"></div><div class="la" id="ma"></div><div class="lr" id="mr"></div></div></div>
+<div class="sm" id="sm"><button class="sm-close" id="smClose">×</button><canvas id="shareCanvas" width="720" height="1080"></canvas><div class="sm-hint">长按图片保存 / 转发<br>OFFBEAT · 日常出逃</div></div>
+
 <script>
-const S=[["一无所有","崔健",1986],["假行僧","崔健",1989],["花房姑娘","崔健",1989],["新长征路上的摇滚","崔健",1989],["快让我在雪地上撒点野","崔健",1991],["红旗下的蛋","崔健",1994],["飞了","崔健",1991],["苦行僧","崔健",1991],["宽容","崔健",2005],["蓝色骨头","崔健",2005],["时代的晚上","崔健",1998],["无能的力量","崔健",1998],["孤独的人是可耻的","张楚",1994],["姐姐","张楚",1994],["蚂蚁蚂蚁","张楚",1994],["上苍保佑吃完了饭的人民","张楚",1994],["光明大道","张楚",1997],["钟鼓楼","何勇",1994],["垃圾场","何勇",1994],["姑娘漂亮","何勇",1994],["非洲梦","何勇",1994],["冬眠","窦唯",1994],["高级动物","窦唯",1994],["黑色梦中","窦唯",1994],["悲伤的梦","窦唯",1994],["山河水","窦唯",1998],["希望之光","窦唯",1994],["梦回唐朝","唐朝",1992],["国际歌","唐朝",1992],["九拍","唐朝",1992],["月梦","唐朝",1992],["太阳","唐朝",1992],["演义","唐朝",1999],["无地自容","黑豹",1992],["Don't Break My Heart","黑豹",1992],["脸谱","黑豹",1992],["怕你为自己流泪","黑豹",1992],["Take Care","黑豹",1992],["怒","超载",1996],["荒原困兽","超载",1996],["不要告别","超载",2000],["距离","零点乐队",1997],["永恒的起点","零点乐队",1997],["回心转意","零点乐队",1997],["烽火扬州路","轮回乐队",1995],["满江红","轮回乐队",1995],["凡人歌","面孔乐队",1993],["梦","面孔乐队",1993],["再见理想","Beyond",1988],["海阔天空","Beyond",1993],["光辉岁月","Beyond",1990],["真的爱你","Beyond",1989],["不再犹豫","Beyond",1991],["无悔这一生","Beyond",1989],["灰色轨迹","Beyond",1990],["情人","Beyond",1993],["Amani","Beyond",1991],["大地","Beyond",1988],["喜欢你","Beyond",1988],["谁伴我闯荡","Beyond",1991],["冷雨夜","Beyond",1988],["晚安北京","汪峰",1997],["小鸟","鲍家街43号",1997],["杜鹃","鲍家街43号",1997],["李建国","鲍家街43号",1997],["春天里","汪峰",2009],["怒放的生命","汪峰",2005],["飞得更高","汪峰",2005],["存在","汪峰",2011],["北京北京","汪峰",2007],["幸福像花儿一样","花儿乐队",1999],["结婚","花儿乐队",2003],["嘻唰唰","花儿乐队",2005],["我是你的罗密欧","花儿乐队",1998],["在路旁","麦田守望者",1997],["堵车","麦田守望者",1997],["我从来就不是你的什么人","麦田守望者",1999],["好极了","清醒乐队",1997],["永远是个秘密","地下婴儿",1999],["觉醒","地下婴儿",1999],["彼岸","许巍",1997],["两天","许巍",1997],["执着","许巍",1997],["雕刻时光","许巍",1997],["蓝莲花","许巍",2002],["曾经的你","许巍",2002],["故乡","许巍",2000],["完美生活","许巍",2002],["时光","许巍",2008],["礼物","许巍",2014],["像风一样自由","许巍",2002],["公路之歌","痛仰乐队",2008],["再见杰克","痛仰乐队",2008],["今天是个好日子","痛仰乐队",2014],["西湖","痛仰乐队",2014],["扎西德勒","痛仰乐队",2008],["安阳","痛仰乐队",2008],["哪里有压迫哪里就有反抗","痛仰乐队",1999],["我愿意","痛仰乐队",2014],["不要停止我的音乐","痛仰乐队",2014],["盛开","夜叉乐队",2005],["万物生","夜叉乐队",2008],["扭曲的机器","扭曲机器",2003],["重来","扭曲机器",2007],["明天会更好","扭曲机器",2003],["Don't Cry Baby","脑浊",2003],["北京浪","脑浊",2003],["杀死那个","反光镜",2007],["只有音乐才是我的解药","反光镜",2005],["Sentimental Cucumber Rag","Joyside",2005],["Boring City","Joyside",2005],["If There's a Hell There Must be a Heaven","Joyside",2006],["Mr. Lonely","Joyside",2005],["海誓山盟","瘦人",2003],["穿越火焰","铁玉兰",2007],["这是个问题","痛苦的信仰",2008],["迷失北京","痛苦的信仰",2005],["采花","二手玫瑰",2003],["允许部分艺术家先富起来","二手玫瑰",2009],["命运","二手玫瑰",2009],["伎俩","二手玫瑰",2003],["仙儿","二手玫瑰",2003],["娱乐江湖","二手玫瑰",2006],["情儿","二手玫瑰",2003],["杀死那个石家庄人","万能青年旅店",2010],["十万嬉皮","万能青年旅店",2010],["秦皇岛","万能青年旅店",2010],["在远方","万能青年旅店",2010],["揪心的玩笑与漫长的白日梦","万能青年旅店",2010],["不万能的喜剧","万能青年旅店",2010],["山雀","万能青年旅店",2020],["采石","万能青年旅店",2020],["郊眠寺","万能青年旅店",2020],["泥河","万能青年旅店",2020],["河北墨麒麟","万能青年旅店",2020],["果","海朋森",2017],["幸福的人","海朋森",2014],["成长之歌","海朋森",2017],["我从远方赶来 恰巧你们也在","海朋森",2017],["突然","海朋森",2017],["我们一起出去玩","木马乐队",2002],["舞步","木马乐队",2002],["纯洁","木马乐队",2002],["果冻帝国","木马乐队",2004],["Yellow Star","木马乐队",2014],["毛驴","木马乐队",2014],["美丽的南方","木马乐队",2008],["Bye Bye Disco","新裤子",2002],["我们的时代","新裤子",2008],["玻璃之情","新裤子",2008],["你要跳舞吗","新裤子",2016],["生活因你而火热","新裤子",2019],["没有理想的人不伤心","新裤子",2016],["弹着吉他的少年","新裤子",2016],["别再问我什么是迪斯科","新裤子",2002],["我爱你","新裤子",2008],["By the River","新裤子",2019],["最后的乐队","新裤子",2019],["Pigs in the River","重塑雕像的权利",2017],["8+2+8 II","重塑雕像的权利",2014],["At Mosp Here","重塑雕像的权利",2014],["Beijing Is Sinking","重塑雕像的权利",2007],["Hard to Reach","重塑雕像的权利",2009],["野火","重塑雕像的权利",2017],["Sound for Celebration","重塑雕像的权利",2009],["白日梦蓝","刺猬",2018],["火车驶向云外 梦安魂于九霄","刺猬",2018],["勐巴拉娜西","刺猬",2009],["24小时摇滚聚会","刺猬",2009],["光阴","刺猬",2018],["生之响往","刺猬",2018],["再见杰克","刺猬",2009],["梦幻丽莎发廊","五条人",2015],["热带雨林","五条人",2015],["县城记","五条人",2009],["曹操你别怕","五条人",2009],["广东姑娘","五条人",2015],["问题出现我再告诉大家","五条人",2018],["道山靓仔","五条人",2018],["晚上好 春天小姐","五条人",2015],["陈先生","五条人",2018],["莫欺少年穷","九连真人",2019],["凡人歌","九连真人",2019],["北风","九连真人",2019],["夜雾","九连真人",2020],["招娣","九连真人",2019],["下班啰","九连真人",2021],["雨夜曼彻斯特","盘尼西林",2019],["再谈记忆","盘尼西林",2019],["新世纪的故事","盘尼西林",2019],["Annabel","盘尼西林",2019],["I'll Be OK","Click#15",2019],["再不来玩儿就老了","Click#15",2019],["Lover Boy 88","Click#15",2019],["黄色海岸线","旅行团",2007],["永远都会在","旅行团",2014],["于是我不再唱歌","旅行团",2014],["Bye Bye","旅行团",2018],["无所事事的周末","达达乐队",2003],["南方","达达乐队",2003],["黄金时代","达达乐队",2003],["丑奴儿","沉舟乐队",2021],["没有人和我一样","沉舟乐队",2021],["舞台","沉舟乐队",2022],["我和我","沉舟乐队",2022],["他像我吗","犬儒乐队",2022],["Made in China","犬儒乐队",2022],["Buddy","犬儒乐队",2022],["Hometown","犬儒乐队",2022],["甜蜜的旅行","椅子乐团",2018],["Rollercoaster","椅子乐团",2018],["明仔载","椅子乐团",2018],["我用什么把你留住","福禄寿",2019],["玉珍","福禄寿",2019],["马戏团女孩","福禄寿",2020],["Drama Queen","白皮书",2019],["她和她和她","白皮书",2019],["我们没有在一起","超级斩",2019],["心宿","超级斩",2019],["亲爱的丽莎","八仙饭店",2019],["宇航员","八仙饭店",2019],["和煦","回春丹",2020],["鲜花","回春丹",2020],["初恋","回春丹",2020],["皆非","回春丹",2020],["迷幻列车","回春丹",2021],["我做的一切都是为了你高兴","落日飞车",2016],["My Jinji","落日飞车",2017],["Lady Princess Woman Mother","落日飞车",2020],["Burgundy Red","落日飞车",2017],["I Know You Know I Love You","落日飞车",2017],["勇敢的人","草东没有派对",2016],["山海","草东没有派对",2016],["大风吹","草东没有派对",2016],["丑奴儿","草东没有派对",2016],["情歌","草东没有派对",2016],["鬼","草东没有派对",2016],["我还年轻 我还年轻","老王乐队",2019],["稳稳的幸福","老王乐队",2019],["吹梦到西洲","老王乐队",2020],["Lonely God","惘闻",2008],["21天","惘闻",2012],["醉忘川","惘闻",2017],["海与你","惘闻",2017],["Welcome to Utopia","惘闻",2017],["破晓","Chinese Football",2015],["电气化","Chinese Football",2015],["突然好想你","五月天",2008],["倔强","五月天",2004],["盛夏光年","五月天",2006],["你不是真正的快乐","五月天",2008],["诺亚方舟","五月天",2011],["知足","五月天",2005],["拥抱","五月天",1999],["志明与春娇","五月天",1999],["温柔","五月天",2000],["干杯","五月天",2011],["OAOA","五月天",2014],["小情歌","苏打绿",2006],["无与伦比的美丽","苏打绿",2007],["你被写在我的歌里","苏打绿",2011],["他夏了夏天","苏打绿",2009],["频率","苏打绿",2005],["墓仔埔也敢去","伍佰",1996],["挪威的森林","伍佰",1996],["Last Dance","伍佰",1996],["你是我的花朵","伍佰",2005],["突然的自我","伍佰",2002],["白鸽","伍佰",2004],["煞到妳","伍佰",1996],["死了都要爱","信乐团",2002],["离歌","信乐团",2003],["海阔天空","信乐团",2003],["彩虹","动力火车",1998],["当","动力火车",1998],["无情的情书","动力火车",1997],["再见我的爱人","动力火车",1998],["爱我别走","张震岳",1997],["思念是一种病","张震岳",2007],["再见","张震岳",2003],["向阳花","谢天笑",2008],["约定的地方","谢天笑",2008],["笼中鸟儿","谢天笑",2007],["幻觉","谢天笑",2002],["雁栖湖","谢天笑",2014],["把夜晚染黑","谢天笑",2007],["梵高先生","李志",2006],["热河","李志",2007],["天空之城","李志",2009],["杭州","李志",2007],["和你在一起","李志",2010],["山阴路的夏天","李志",2013],["关于郑州的记忆","李志",2010],["董小姐","宋冬野",2013],["斑马 斑马","宋冬野",2013],["鸽子","宋冬野",2013],["南方姑娘","赵雷",2011],["成都","赵雷",2016],["理想","赵雷",2014],["我们的时光","赵雷",2011],["理想三旬","陈鸿宇",2015],["途中","陈鸿宇",2017],["早春的树","陈鸿宇",2017],["南山南","马頔",2014],["孤鸟的歌","马頔",2014],["小半","陈粒",2015],["易燃易爆炸","陈粒",2015],["走马","陈粒",2015],["祝星","陈粒",2017],["光","陈粒",2015],["云烟成雨","房东的猫",2017],["去年夏天","房东的猫",2017],["罗马假日","好妹妹乐队",2014],["你曾是少年","好妹妹乐队",2015],["一个人的北京","好妹妹乐队",2014],["硬汉","腰乐队",2008],["晚春","腰乐队",2003],["情人节","腰乐队",2005],["公路之歌","腰乐队",2008],["我们究竟应该面对谁去歌唱","腰乐队",2012],["黄河谣","野孩子",2003],["生活在地下","野孩子",2003],["兰州 兰州","低苦艾",2011],["火车快开","低苦艾",2011],["守望者","低苦艾",2011],["买房子","万晓利",2006],["陀螺","万晓利",2006],["鸟语","万晓利",2006],["狐狸","万晓利",2006],["钟摆","万晓利",2010],["九月","周云蓬",2010],["中国孩子","周云蓬",2007],["盲人影院","周云蓬",2007],["春风十里","鹿先森乐队",2016],["三妹","鹿先森乐队",2016],["勇敢的人","鹿先森乐队",2017],["夜空中最亮的星","逃跑计划",2011],["一万次悲伤","逃跑计划",2011],["Chocolate","逃跑计划",2011],["你的城市","声音玩具",2008],["爱是昂贵的","声音玩具",2017],["最美妙的旅行","声音玩具",2014],["明天的太阳","声音玩具",2017],["玫瑰","贰佰",2016],["狗","贰佰",2016],["下午三点的烟","贰佰",2017],["差不多先生","MC HotDog",2012],["我爱台妹","MC HotDog",2006],["鹿港小镇","罗大佑",1982],["童年","罗大佑",1981],["光阴的故事","罗大佑",1981],["皇后大道东","罗大佑",1991],["你的样子","罗大佑",1988],["向前走","林强",1990],["宝贝","张悬",2006],["玫瑰色的你","张悬",2012],["讨好","张悬",2012],["旅行的意义","陈绮贞",2004],["九份的咖啡店","陈绮贞",2002],["鱼","陈绮贞",2002],["其实你不懂我的心","童安格",1989],["朋友","周华健",1997],["让我欢喜让我忧","周华健",1991],["花心","周华健",1993],["无问","毛不易",2018],["消愁","毛不易",2017],["借","毛不易",2018],["我为你写下的","谢春花",2016],["借我","谢春花",2016],["算云烟","谢春花",2018],["悟空","戴荃",2014],["牛奶面包","Tizzy T",2019]];
-function hash(str){let h=0;for(let i=0;i<str.length;i++){h=((h<<5)-h)+str.charCodeAt(i);h|=0;}return Math.abs(h);}
-const COLORS=['#ff2222','#ff8800','#ffdd00','#00dd44','#0088ff','#8833ff','#ee44aa','#22ddcc'];
-function genCover(title,artist){
-const h1=hash(artist),h2=hash(title);
-const c1=COLORS[h1%COLORS.length],c2=COLORS[(h1+3)%COLORS.length];
-const variant=(h1+h2)%6;
-let inner='';
-if(variant===0){inner=`<polygon points="50,18 78,72 22,72" fill="none" stroke="${c1}" stroke-width="1.2"/><line x1="10" y1="50" x2="50" y2="50" stroke="#fff" stroke-width="0.8"/><line x1="60" y1="50" x2="90" y2="38" stroke="${c1}" stroke-width="0.8"/><line x1="60" y1="50" x2="92" y2="50" stroke="${c2}" stroke-width="0.8"/><line x1="60" y1="50" x2="90" y2="62" stroke="${COLORS[(h1+5)%8]}" stroke-width="0.8"/>`;}
-else if(variant===1){inner=`<circle cx="50" cy="50" r="38" fill="none" stroke="${c1}" stroke-width="0.6"/><circle cx="50" cy="50" r="30" fill="none" stroke="${c2}" stroke-width="0.6"/><circle cx="50" cy="50" r="22" fill="none" stroke="${c1}" stroke-width="0.6" opacity="0.7"/><circle cx="50" cy="50" r="14" fill="${c2}" opacity="0.3"/><circle cx="50" cy="50" r="3" fill="${c1}"/>`;}
-else if(variant===2){inner=`<circle cx="50" cy="50" r="32" fill="none" stroke="#fff" stroke-width="0.8" opacity="0.3"/><circle cx="50" cy="50" r="32" fill="${c1}" opacity="0.15"/><path d="M 50 18 A 32 32 0 0 1 50 82 A 22 32 0 0 0 50 18" fill="${c1}" opacity="0.6"/>`;}
-else if(variant===3){inner=`<line x1="20" y1="50" x2="80" y2="50" stroke="${c1}" stroke-width="0.5" opacity="0.6"/><line x1="50" y1="20" x2="50" y2="80" stroke="${c1}" stroke-width="0.5" opacity="0.6"/><line x1="28" y1="28" x2="72" y2="72" stroke="${c2}" stroke-width="0.5" opacity="0.4"/><line x1="28" y1="72" x2="72" y2="28" stroke="${c2}" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="6" fill="${c1}"/><circle cx="30" cy="30" r="1.5" fill="#fff"/><circle cx="70" cy="30" r="1.5" fill="#fff"/><circle cx="30" cy="70" r="1.5" fill="#fff"/><circle cx="70" cy="70" r="1.5" fill="#fff"/>`;}
-else if(variant===4){inner=`<path d="M 15 50 Q 25 ${30+h2%20}, 35 50 T 55 50 T 75 50 T 95 50" fill="none" stroke="${c1}" stroke-width="1"/><path d="M 15 60 Q 25 ${40+h2%15}, 35 60 T 55 60 T 75 60 T 95 60" fill="none" stroke="${c2}" stroke-width="0.8" opacity="0.7"/><path d="M 15 40 Q 25 ${20+h2%15}, 35 40 T 55 40 T 75 40 T 95 40" fill="none" stroke="${c2}" stroke-width="0.8" opacity="0.7"/>`;}
-else{inner=`<rect x="25" y="25" width="50" height="50" fill="none" stroke="${c1}" stroke-width="0.8" transform="rotate(${h2%45} 50 50)"/><rect x="32" y="32" width="36" height="36" fill="none" stroke="${c2}" stroke-width="0.8" transform="rotate(${-(h2%30)} 50 50)"/><circle cx="50" cy="50" r="6" fill="${c1}"/>`;}
-return `<svg viewBox="0 0 100 100" width="100" height="100"><rect width="100" height="100" fill="#000"/>${inner}</svg>`;
+const S=[
+["一无所有","崔健",1986,"rock_cn"],["假行僧","崔健",1989,"rock_cn"],["花房姑娘","崔健",1989,"rock_cn"],["新长征路上的摇滚","崔健",1989,"rock_cn"],["快让我在雪地上撒点野","崔健",1991,"rock_cn"],["红旗下的蛋","崔健",1994,"rock_cn"],["飞了","崔健",1991,"rock_cn"],["苦行僧","崔健",1991,"rock_cn"],["宽容","崔健",2005,"rock_cn"],["蓝色骨头","崔健",2005,"rock_cn"],["时代的晚上","崔健",1998,"rock_cn"],["无能的力量","崔健",1998,"rock_cn"],
+["孤独的人是可耻的","张楚",1994,"rock_cn"],["姐姐","张楚",1994,"rock_cn"],["蚂蚁蚂蚁","张楚",1994,"rock_cn"],["上苍保佑吃完了饭的人民","张楚",1994,"rock_cn"],["光明大道","张楚",1997,"rock_cn"],
+["钟鼓楼","何勇",1994,"rock_cn"],["垃圾场","何勇",1994,"rock_cn"],["姑娘漂亮","何勇",1994,"rock_cn"],["非洲梦","何勇",1994,"rock_cn"],
+["冬眠","窦唯",1994,"rock_cn"],["高级动物","窦唯",1994,"rock_cn"],["黑色梦中","窦唯",1994,"rock_cn"],["悲伤的梦","窦唯",1994,"rock_cn"],["山河水","窦唯",1998,"rock_cn"],
+["梦回唐朝","唐朝",1992,"rock_cn"],["国际歌","唐朝",1992,"rock_cn"],["九拍","唐朝",1992,"rock_cn"],["月梦","唐朝",1992,"rock_cn"],["太阳","唐朝",1992,"rock_cn"],
+["无地自容","黑豹",1992,"rock_cn"],["Don't Break My Heart","黑豹",1992,"rock_cn"],["脸谱","黑豹",1992,"rock_cn"],["怕你为自己流泪","黑豹",1992,"rock_cn"],
+["怒","超载",1996,"rock_cn"],["荒原困兽","超载",1996,"rock_cn"],["不要告别","超载",2000,"rock_cn"],
+["距离","零点乐队",1997,"rock_cn"],["永恒的起点","零点乐队",1997,"rock_cn"],["回心转意","零点乐队",1997,"rock_cn"],
+["烽火扬州路","轮回乐队",1995,"rock_cn"],["满江红","轮回乐队",1995,"rock_cn"],
+["凡人歌","面孔乐队",1993,"rock_cn"],["梦","面孔乐队",1993,"rock_cn"],
+["再见理想","Beyond",1988,"rock_cn"],["海阔天空","Beyond",1993,"rock_cn"],["光辉岁月","Beyond",1990,"rock_cn"],["真的爱你","Beyond",1989,"rock_cn"],["不再犹豫","Beyond",1991,"rock_cn"],["无悔这一生","Beyond",1989,"rock_cn"],["灰色轨迹","Beyond",1990,"rock_cn"],["情人","Beyond",1993,"rock_cn"],["Amani","Beyond",1991,"rock_cn"],["大地","Beyond",1988,"rock_cn"],["喜欢你","Beyond",1988,"rock_cn"],["谁伴我闯荡","Beyond",1991,"rock_cn"],["冷雨夜","Beyond",1988,"rock_cn"],
+["晚安北京","汪峰",1997,"rock_cn"],["春天里","汪峰",2009,"rock_cn"],["怒放的生命","汪峰",2005,"rock_cn"],["飞得更高","汪峰",2005,"rock_cn"],["存在","汪峰",2011,"rock_cn"],["北京北京","汪峰",2007,"rock_cn"],
+["小鸟","鲍家街43号",1997,"rock_cn"],["杜鹃","鲍家街43号",1997,"rock_cn"],["李建国","鲍家街43号",1997,"rock_cn"],
+["幸福像花儿一样","花儿乐队",1999,"rock_cn"],["结婚","花儿乐队",2003,"rock_cn"],["嘻唰唰","花儿乐队",2005,"rock_cn"],
+["在路旁","麦田守望者",1997,"rock_cn"],["堵车","麦田守望者",1997,"rock_cn"],
+["好极了","清醒乐队",1997,"rock_cn"],
+["永远是个秘密","地下婴儿",1999,"rock_cn"],["觉醒","地下婴儿",1999,"rock_cn"],
+["彼岸","许巍",1997,"rock_cn"],["两天","许巍",1997,"rock_cn"],["执着","许巍",1997,"rock_cn"],["雕刻时光","许巍",1997,"rock_cn"],["蓝莲花","许巍",2002,"rock_cn"],["曾经的你","许巍",2002,"rock_cn"],["故乡","许巍",2000,"rock_cn"],["完美生活","许巍",2002,"rock_cn"],["时光","许巍",2008,"rock_cn"],["礼物","许巍",2014,"rock_cn"],["像风一样自由","许巍",2002,"rock_cn"],
+["公路之歌","痛仰乐队",2008,"rock_cn"],["再见杰克","痛仰乐队",2008,"rock_cn"],["今天是个好日子","痛仰乐队",2014,"rock_cn"],["西湖","痛仰乐队",2014,"rock_cn"],["扎西德勒","痛仰乐队",2008,"rock_cn"],["安阳","痛仰乐队",2008,"rock_cn"],["哪里有压迫哪里就有反抗","痛仰乐队",1999,"rock_cn"],["我愿意","痛仰乐队",2014,"rock_cn"],
+["盛开","夜叉乐队",2005,"rock_cn"],["万物生","夜叉乐队",2008,"rock_cn"],
+["扭曲的机器","扭曲机器",2003,"rock_cn"],["重来","扭曲机器",2007,"rock_cn"],
+["北京浪","脑浊",2003,"rock_cn"],
+["只有音乐才是我的解药","反光镜",2005,"rock_cn"],
+["Sentimental Cucumber Rag","Joyside",2005,"rock_cn"],["Mr. Lonely","Joyside",2005,"rock_cn"],
+["这是个问题","痛苦的信仰",2008,"rock_cn"],["迷失北京","痛苦的信仰",2005,"rock_cn"],
+["采花","二手玫瑰",2003,"rock_cn"],["允许部分艺术家先富起来","二手玫瑰",2009,"rock_cn"],["命运","二手玫瑰",2009,"rock_cn"],["伎俩","二手玫瑰",2003,"rock_cn"],["仙儿","二手玫瑰",2003,"rock_cn"],
+["杀死那个石家庄人","万能青年旅店",2010,"rock_cn"],["十万嬉皮","万能青年旅店",2010,"rock_cn"],["秦皇岛","万能青年旅店",2010,"rock_cn"],["在远方","万能青年旅店",2010,"rock_cn"],["揪心的玩笑与漫长的白日梦","万能青年旅店",2010,"rock_cn"],["不万能的喜剧","万能青年旅店",2010,"rock_cn"],["山雀","万能青年旅店",2020,"rock_cn"],["采石","万能青年旅店",2020,"rock_cn"],["郊眠寺","万能青年旅店",2020,"rock_cn"],["泥河","万能青年旅店",2020,"rock_cn"],["河北墨麒麟","万能青年旅店",2020,"rock_cn"],
+["果","海朋森",2017,"rock_cn"],["幸福的人","海朋森",2014,"rock_cn"],["我从远方赶来 恰巧你们也在","海朋森",2017,"rock_cn"],
+["我们一起出去玩","木马乐队",2002,"rock_cn"],["舞步","木马乐队",2002,"rock_cn"],["纯洁","木马乐队",2002,"rock_cn"],["果冻帝国","木马乐队",2004,"rock_cn"],["Yellow Star","木马乐队",2014,"rock_cn"],["毛驴","木马乐队",2014,"rock_cn"],
+["Bye Bye Disco","新裤子",2002,"rock_cn"],["玻璃之情","新裤子",2008,"rock_cn"],["你要跳舞吗","新裤子",2016,"rock_cn"],["生活因你而火热","新裤子",2019,"rock_cn"],["没有理想的人不伤心","新裤子",2016,"rock_cn"],["弹着吉他的少年","新裤子",2016,"rock_cn"],["别再问我什么是迪斯科","新裤子",2002,"rock_cn"],
+["Pigs in the River","重塑雕像的权利",2017,"rock_cn"],["8+2+8 II","重塑雕像的权利",2014,"rock_cn"],["Beijing Is Sinking","重塑雕像的权利",2007,"rock_cn"],["野火","重塑雕像的权利",2017,"rock_cn"],
+["白日梦蓝","刺猬",2018,"rock_cn"],["火车驶向云外 梦安魂于九霄","刺猬",2018,"rock_cn"],["勐巴拉娜西","刺猬",2009,"rock_cn"],["24小时摇滚聚会","刺猬",2009,"rock_cn"],["光阴","刺猬",2018,"rock_cn"],["生之响往","刺猬",2018,"rock_cn"],
+["梦幻丽莎发廊","五条人",2015,"rock_cn"],["热带雨林","五条人",2015,"rock_cn"],["县城记","五条人",2009,"rock_cn"],["曹操你别怕","五条人",2009,"rock_cn"],["广东姑娘","五条人",2015,"rock_cn"],["问题出现我再告诉大家","五条人",2018,"rock_cn"],["道山靓仔","五条人",2018,"rock_cn"],
+["莫欺少年穷","九连真人",2019,"rock_cn"],["凡人歌","九连真人",2019,"rock_cn"],["北风","九连真人",2019,"rock_cn"],["夜雾","九连真人",2020,"rock_cn"],["招娣","九连真人",2019,"rock_cn"],
+["雨夜曼彻斯特","盘尼西林",2019,"rock_cn"],["再谈记忆","盘尼西林",2019,"rock_cn"],["新世纪的故事","盘尼西林",2019,"rock_cn"],
+["I'll Be OK","Click#15",2019,"rock_cn"],["再不来玩儿就老了","Click#15",2019,"rock_cn"],["Lover Boy 88","Click#15",2019,"rock_cn"],
+["黄色海岸线","旅行团",2007,"rock_cn"],["永远都会在","旅行团",2014,"rock_cn"],["于是我不再唱歌","旅行团",2014,"rock_cn"],
+["无所事事的周末","达达乐队",2003,"rock_cn"],["南方","达达乐队",2003,"rock_cn"],["黄金时代","达达乐队",2003,"rock_cn"],
+["丑奴儿","沉舟乐队",2021,"rock_cn"],["没有人和我一样","沉舟乐队",2021,"rock_cn"],["舞台","沉舟乐队",2022,"rock_cn"],
+["他像我吗","犬儒乐队",2022,"rock_cn"],["Made in China","犬儒乐队",2022,"rock_cn"],
+["甜蜜的旅行","椅子乐团",2018,"rock_cn"],
+["我用什么把你留住","福禄寿",2019,"rock_cn"],["玉珍","福禄寿",2019,"rock_cn"],
+["Drama Queen","白皮书",2019,"rock_cn"],["她和她和她","白皮书",2019,"rock_cn"],
+["和煦","回春丹",2020,"rock_cn"],["鲜花","回春丹",2020,"rock_cn"],["初恋","回春丹",2020,"rock_cn"],["皆非","回春丹",2020,"rock_cn"],
+["My Jinji","落日飞车",2017,"rock_cn"],["Burgundy Red","落日飞车",2017,"rock_cn"],["I Know You Know I Love You","落日飞车",2017,"rock_cn"],
+["勇敢的人","草东没有派对",2016,"rock_cn"],["山海","草东没有派对",2016,"rock_cn"],["大风吹","草东没有派对",2016,"rock_cn"],["情歌","草东没有派对",2016,"rock_cn"],["鬼","草东没有派对",2016,"rock_cn"],
+["我还年轻 我还年轻","老王乐队",2019,"rock_cn"],
+["Lonely God","惘闻",2008,"rock_cn"],["21天","惘闻",2012,"rock_cn"],["醉忘川","惘闻",2017,"rock_cn"],["海与你","惘闻",2017,"rock_cn"],
+["突然好想你","五月天",2008,"rock_cn"],["倔强","五月天",2004,"rock_cn"],["盛夏光年","五月天",2006,"rock_cn"],["你不是真正的快乐","五月天",2008,"rock_cn"],["诺亚方舟","五月天",2011,"rock_cn"],["知足","五月天",2005,"rock_cn"],["拥抱","五月天",1999,"rock_cn"],["志明与春娇","五月天",1999,"rock_cn"],
+["小情歌","苏打绿",2006,"rock_cn"],["无与伦比的美丽","苏打绿",2007,"rock_cn"],
+["挪威的森林","伍佰",1996,"rock_cn"],["Last Dance","伍佰",1996,"rock_cn"],["你是我的花朵","伍佰",2005,"rock_cn"],["突然的自我","伍佰",2002,"rock_cn"],["白鸽","伍佰",2004,"rock_cn"],
+["死了都要爱","信乐团",2002,"rock_cn"],["离歌","信乐团",2003,"rock_cn"],
+["爱我别走","张震岳",1997,"rock_cn"],["思念是一种病","张震岳",2007,"rock_cn"],["再见","张震岳",2003,"rock_cn"],
+["向阳花","谢天笑",2008,"rock_cn"],["约定的地方","谢天笑",2008,"rock_cn"],["雁栖湖","谢天笑",2014,"rock_cn"],
+["梵高先生","李志",2006,"rock_cn"],["热河","李志",2007,"rock_cn"],["天空之城","李志",2009,"rock_cn"],["和你在一起","李志",2010,"rock_cn"],["山阴路的夏天","李志",2013,"rock_cn"],
+["董小姐","宋冬野",2013,"rock_cn"],["斑马 斑马","宋冬野",2013,"rock_cn"],["鸽子","宋冬野",2013,"rock_cn"],
+["南方姑娘","赵雷",2011,"rock_cn"],["成都","赵雷",2016,"rock_cn"],["理想","赵雷",2014,"rock_cn"],
+["理想三旬","陈鸿宇",2015,"rock_cn"],
+["南山南","马頔",2014,"rock_cn"],
+["小半","陈粒",2015,"rock_cn"],["易燃易爆炸","陈粒",2015,"rock_cn"],["走马","陈粒",2015,"rock_cn"],
+["云烟成雨","房东的猫",2017,"rock_cn"],
+["罗马假日","好妹妹乐队",2014,"rock_cn"],["你曾是少年","好妹妹乐队",2015,"rock_cn"],
+["硬汉","腰乐队",2008,"rock_cn"],["晚春","腰乐队",2003,"rock_cn"],
+["黄河谣","野孩子",2003,"rock_cn"],
+["兰州 兰州","低苦艾",2011,"rock_cn"],
+["陀螺","万晓利",2006,"rock_cn"],["狐狸","万晓利",2006,"rock_cn"],
+["九月","周云蓬",2010,"rock_cn"],
+["春风十里","鹿先森乐队",2016,"rock_cn"],
+["夜空中最亮的星","逃跑计划",2011,"rock_cn"],["一万次悲伤","逃跑计划",2011,"rock_cn"],
+["你的城市","声音玩具",2008,"rock_cn"],
+["玫瑰","贰佰",2016,"rock_cn"],
+["鹿港小镇","罗大佑",1982,"rock_cn"],["童年","罗大佑",1981,"rock_cn"],["光阴的故事","罗大佑",1981,"rock_cn"],["皇后大道东","罗大佑",1991,"rock_cn"],["你的样子","罗大佑",1988,"rock_cn"],
+["宝贝","张悬",2006,"rock_cn"],["玫瑰色的你","张悬",2012,"rock_cn"],
+["旅行的意义","陈绮贞",2004,"rock_cn"],
+["悟空","戴荃",2014,"rock_cn"],
+["Bohemian Rhapsody","Queen",1975,"rock_west"],["We Will Rock You","Queen",1977,"rock_west"],["Don't Stop Me Now","Queen",1978,"rock_west"],["Under Pressure","Queen & Bowie",1981,"rock_west"],["Somebody to Love","Queen",1976,"rock_west"],["Radio Ga Ga","Queen",1984,"rock_west"],["We Are the Champions","Queen",1977,"rock_west"],
+["Stairway to Heaven","Led Zeppelin",1971,"rock_west"],["Whole Lotta Love","Led Zeppelin",1969,"rock_west"],["Kashmir","Led Zeppelin",1975,"rock_west"],["Black Dog","Led Zeppelin",1971,"rock_west"],["Immigrant Song","Led Zeppelin",1970,"rock_west"],
+["Hotel California","Eagles",1976,"rock_west"],["Take It Easy","Eagles",1972,"rock_west"],["Desperado","Eagles",1973,"rock_west"],
+["Time","Pink Floyd",1973,"rock_west"],["Money","Pink Floyd",1973,"rock_west"],["Wish You Were Here","Pink Floyd",1975,"rock_west"],["Comfortably Numb","Pink Floyd",1979,"rock_west"],["Another Brick in the Wall","Pink Floyd",1979,"rock_west"],["The Great Gig in the Sky","Pink Floyd",1973,"rock_west"],["Shine On You Crazy Diamond","Pink Floyd",1975,"rock_west"],["Breathe","Pink Floyd",1973,"rock_west"],
+["Smells Like Teen Spirit","Nirvana",1991,"rock_west"],["Come As You Are","Nirvana",1991,"rock_west"],["Lithium","Nirvana",1991,"rock_west"],["Heart-Shaped Box","Nirvana",1993,"rock_west"],["Where Did You Sleep Last Night","Nirvana",1994,"rock_west"],
+["Sweet Child O' Mine","Guns N' Roses",1987,"rock_west"],["November Rain","Guns N' Roses",1991,"rock_west"],["Welcome to the Jungle","Guns N' Roses",1987,"rock_west"],["Paradise City","Guns N' Roses",1987,"rock_west"],
+["Enter Sandman","Metallica",1991,"rock_west"],["Nothing Else Matters","Metallica",1991,"rock_west"],["Master of Puppets","Metallica",1986,"rock_west"],["One","Metallica",1988,"rock_west"],
+["Like a Rolling Stone","Bob Dylan",1965,"rock_west"],["Blowin' in the Wind","Bob Dylan",1963,"rock_west"],["The Times They Are a-Changin'","Bob Dylan",1964,"rock_west"],["Knockin' on Heaven's Door","Bob Dylan",1973,"rock_west"],
+["Imagine","John Lennon",1971,"rock_west"],
+["Hey Jude","The Beatles",1968,"rock_west"],["Let It Be","The Beatles",1970,"rock_west"],["Yesterday","The Beatles",1965,"rock_west"],["Come Together","The Beatles",1969,"rock_west"],["Here Comes the Sun","The Beatles",1969,"rock_west"],["A Day in the Life","The Beatles",1967,"rock_west"],["Strawberry Fields Forever","The Beatles",1967,"rock_west"],["While My Guitar Gently Weeps","The Beatles",1968,"rock_west"],
+["Satisfaction","The Rolling Stones",1965,"rock_west"],["Paint It Black","The Rolling Stones",1966,"rock_west"],["Gimme Shelter","The Rolling Stones",1969,"rock_west"],["Sympathy for the Devil","The Rolling Stones",1968,"rock_west"],
+["Heroes","David Bowie",1977,"rock_west"],["Space Oddity","David Bowie",1969,"rock_west"],["Life on Mars?","David Bowie",1971,"rock_west"],["Starman","David Bowie",1972,"rock_west"],["Ziggy Stardust","David Bowie",1972,"rock_west"],
+["Purple Haze","Jimi Hendrix",1967,"rock_west"],["Hey Joe","Jimi Hendrix",1966,"rock_west"],["Voodoo Child","Jimi Hendrix",1968,"rock_west"],["Little Wing","Jimi Hendrix",1967,"rock_west"],
+["Riders on the Storm","The Doors",1971,"rock_west"],["Light My Fire","The Doors",1967,"rock_west"],["The End","The Doors",1967,"rock_west"],["Break On Through","The Doors",1967,"rock_west"],
+["Wonderwall","Oasis",1995,"rock_west"],["Don't Look Back in Anger","Oasis",1995,"rock_west"],["Champagne Supernova","Oasis",1995,"rock_west"],["Live Forever","Oasis",1994,"rock_west"],
+["Creep","Radiohead",1992,"rock_west"],["Karma Police","Radiohead",1997,"rock_west"],["No Surprises","Radiohead",1997,"rock_west"],["Paranoid Android","Radiohead",1997,"rock_west"],["High and Dry","Radiohead",1995,"rock_west"],["Fake Plastic Trees","Radiohead",1995,"rock_west"],
+["Don't Stop Believin'","Journey",1981,"rock_west"],
+["Born to Run","Bruce Springsteen",1975,"rock_west"],["Dancing in the Dark","Bruce Springsteen",1984,"rock_west"],
+["With or Without You","U2",1987,"rock_west"],["One","U2",1991,"rock_west"],["Sunday Bloody Sunday","U2",1983,"rock_west"],["Where the Streets Have No Name","U2",1987,"rock_west"],["Beautiful Day","U2",2000,"rock_west"],
+["Losing My Religion","R.E.M.",1991,"rock_west"],["Everybody Hurts","R.E.M.",1992,"rock_west"],
+["Mr. Brightside","The Killers",2003,"rock_west"],
+["Seven Nation Army","The White Stripes",2003,"rock_west"],
+["I Bet You Look Good on the Dancefloor","Arctic Monkeys",2005,"rock_west"],["Do I Wanna Know?","Arctic Monkeys",2013,"rock_west"],["505","Arctic Monkeys",2007,"rock_west"],
+["Boulevard of Broken Dreams","Green Day",2004,"rock_west"],["American Idiot","Green Day",2004,"rock_west"],["Wake Me Up When September Ends","Green Day",2004,"rock_west"],["Good Riddance","Green Day",1997,"rock_west"],["Basket Case","Green Day",1994,"rock_west"],
+["Numb","Linkin Park",2003,"rock_west"],["In the End","Linkin Park",2001,"rock_west"],["Crawling","Linkin Park",2001,"rock_west"],["What I've Done","Linkin Park",2007,"rock_west"],["One Step Closer","Linkin Park",2000,"rock_west"],
+["Livin' on a Prayer","Bon Jovi",1986,"rock_west"],["It's My Life","Bon Jovi",2000,"rock_west"],["Always","Bon Jovi",1994,"rock_west"],
+["Highway to Hell","AC/DC",1979,"rock_west"],["Thunderstruck","AC/DC",1990,"rock_west"],["Back in Black","AC/DC",1980,"rock_west"],
+["Welcome to the Black Parade","My Chemical Romance",2006,"rock_west"],
+["Misery Business","Paramore",2007,"rock_west"],
+["Smoke on the Water","Deep Purple",1973,"rock_west"],
+["Sultans of Swing","Dire Straits",1978,"rock_west"],
+["Africa","Toto",1982,"rock_west"],
+["Final Countdown","Europe",1986,"rock_west"],
+["More Than a Feeling","Boston",1976,"rock_west"],
+["California Dreamin'","The Mamas & the Papas",1965,"rock_west"],
+["House of the Rising Sun","The Animals",1964,"rock_west"],
+["Born to Be Wild","Steppenwolf",1968,"rock_west"],
+["Yellow","Coldplay",2000,"rock_west"],["The Scientist","Coldplay",2002,"rock_west"],["Fix You","Coldplay",2005,"rock_west"],["Viva la Vida","Coldplay",2008,"rock_west"],["Clocks","Coldplay",2002,"rock_west"],["Paradise","Coldplay",2011,"rock_west"],
+["Bittersweet Symphony","The Verve",1997,"rock_west"]
+];
+
+const Q=[
+["如此生活三十年 直到大厦崩塌","杀死那个石家庄人","万能青年旅店"],
+["是谁来自山川湖海 却囿于昼夜厨房与爱","十万嬉皮","万能青年旅店"],
+["一代人终将老去 但总有人正年轻","火车驶向云外 梦安魂于九霄","刺猬"],
+["没有什么能够阻挡 你对自由的向往","蓝莲花","许巍"],
+["我曾经问个不休 你何时跟我走","一无所有","崔健"],
+["我要从南走到北 我还要从白走到黑","假行僧","崔健"],
+["还记得许多年前的春天 那时的我还没剪去长发","春天里","汪峰"],
+["今天我寒夜里看雪飘过 怀着冷却了的心窝飘远方","海阔天空","Beyond"],
+["噢…姐姐 我想回家","姐姐","张楚"],
+["孤独的人是可耻的","孤独的人是可耻的","张楚"],
+["人潮人海中 有你有我","无地自容","黑豹"],
+["菊花古剑和酒 被咖啡泡入喧嚣的亭院","梦回唐朝","唐朝"],
+["一直往南方开","公路之歌","痛仰乐队"],
+["夜空中最亮的星 能否听清那仰望的人心底的孤独和叹息","夜空中最亮的星","逃跑计划"],
+["和我在成都的街头走一走","成都","赵雷"],
+["生活不止眼前的苟且 还有诗和远方","生活不止眼前的苟且","许巍"],
+["如果有一天我老无所依 请把我留在那时光里","春天里","汪峰"],
+["梵高先生 请别割掉你的耳朵","梵高先生","李志"],
+["董小姐 你从没忘记你的微笑","董小姐","宋冬野"],
+["阿民 阿民 你莫要走","莫欺少年穷","九连真人"],
+["把所有的眼泪 留给最爱的人","礼物","痛仰乐队"],
+["你要跳舞吗 在这夜空里飘荡","你要跳舞吗","新裤子"],
+["我们生活的世界 就像一个垃圾场","垃圾场","何勇"],
+["我的家就在二环路的里边","钟鼓楼","何勇"],
+["再见杰克 再见我的青春","再见杰克","痛仰乐队"],
+["晚安 北京 晚安 所有未眠的人们","晚安北京","汪峰"],
+["我喜欢热河路 因为有人她和我吹牛逼","热河","李志"],
+["不管你拥有什么 我们生来就是孤独","梵高先生","李志"],
+["就老去吧 孤独别醒来","理想三旬","陈鸿宇"],
+["你渴望的离开 只是无处可待","理想三旬","陈鸿宇"],
+["雨夜的伦敦 潮湿的街道","雨夜曼彻斯特","盘尼西林"],
+["在那个潮湿的夜晚 我们都还年轻","雨夜曼彻斯特","盘尼西林"],
+["允许部分艺术家先富起来","允许部分艺术家先富起来","二手玫瑰"],
+["妹妹你大胆地往前走","采花","二手玫瑰"],
+["生活因你而火热","生活因你而火热","新裤子"],
+["没有理想的人不伤心","没有理想的人不伤心","新裤子"],
+["和煦的风吹过我的脸","和煦","回春丹"],
+["扎西德勒","扎西德勒","痛仰乐队"],
+["怒放的生命","怒放的生命","汪峰"],
+["飞得更高","飞得更高","汪峰"],
+["存在","存在","汪峰"],
+["北京 北京","北京北京","汪峰"],
+["你曾是少年","你曾是少年","好妹妹乐队"],
+["罗马假日","罗马假日","好妹妹乐队"],
+["云烟成雨","云烟成雨","房东的猫"],
+["走马观花 醉里看人间","走马","陈粒"],
+["易燃易爆炸","易燃易爆炸","陈粒"],
+["小半","小半","陈粒"],
+["突然好想你 你会在哪里","突然好想你","五月天"],
+["倔强","倔强","五月天"],
+["盛夏光年","盛夏光年","五月天"],
+["你不是真正的快乐","你不是真正的快乐","五月天"],
+["拥抱","拥抱","五月天"],
+["志明与春娇","志明与春娇","五月天"],
+["小情歌","小情歌","苏打绿"],
+["无与伦比的美丽","无与伦比的美丽","苏打绿"],
+["挪威的森林","挪威的森林","伍佰"],
+["突然的自我","突然的自我","伍佰"],
+["白鸽","白鸽","伍佰"],
+["死了都要爱","死了都要爱","信乐团"],
+["离歌","离歌","信乐团"],
+["爱我别走","爱我别走","张震岳"],
+["思念是一种病","思念是一种病","张震岳"],
+["再见","再见","张震岳"],
+["把所有的欢笑 留给最爱的人","礼物","痛仰乐队"],
+["晚安 我的城市 晚安 我的爱人","晚安","鹿先森乐队"],
+["春风十里 不如你","春风十里","鹿先森乐队"],
+["把无聊的日子 烧得滚烫","你要跳舞吗","新裤子"],
+["燃烧一切的悲伤","你要跳舞吗","新裤子"],
+["我多么希望我能够 看见你","玻璃之情","新裤子"],
+["寂寞的人在歌唱","玻璃之情","新裤子"],
+["孤独的人在跳舞","玻璃之情","新裤子"],
+["梦回唐朝 开元盛世令人神往","梦回唐朝","唐朝"],
+["我们的青春就是这样盛开","盛开","夜叉乐队"],
+["我用什么把你留住","我用什么把你留住","福禄寿"],
+["山川湖海 厨房与爱","十万嬉皮","万能青年旅店"],
+["我是一个理想主义者","悟","重塑雕像的权利"],
+["这是一个荒诞的时代 也是一个真实的梦","Pigs in the River","重塑雕像的权利"],
+["Mr. Lonely 一个人喝酒","Mr. Lonely","Joyside"],
+["旅行的意义","旅行的意义","陈绮贞"],
+["宝贝","宝贝","张悬"],
+["玫瑰色的你","玫瑰色的你","张悬"],
+["童年","童年","罗大佑"],
+["光阴的故事","光阴的故事","罗大佑"],
+["鹿港小镇","鹿港小镇","罗大佑"],
+["你的样子","你的样子","罗大佑"],
+["皇后大道东","皇后大道东","罗大佑"],
+["梦想与生活的距离 是一杯酒的距离","硬汉","腰乐队"],
+["晚春","晚春","腰乐队"],
+["黄河谣","黄河谣","野孩子"],
+["兰州 兰州","兰州 兰州","低苦艾"],
+["陀螺 转个不停","陀螺","万晓利"],
+["狐狸","狐狸","万晓利"],
+["九月 在路上","九月","周云蓬"],
+["玫瑰 玫瑰","玫瑰","贰佰"],
+["悟空","悟空","戴荃"],
+["热河路上 我喜欢","热河","李志"],
+["天空之城","天空之城","李志"],
+["和你在一起","和你在一起","李志"],
+["山阴路的夏天","山阴路的夏天","李志"],
+["斑马 斑马","斑马 斑马","宋冬野"],
+["鸽子","鸽子","宋冬野"],
+["南方姑娘","南方姑娘","赵雷"],
+["理想 一旦你拥有别的什么 你便不再纯粹","理想","赵雷"],
+["南山南","南山南","马頔"],
+["我们一起出去玩","我们一起出去玩","木马乐队"],
+["纯洁","纯洁","木马乐队"],
+["Yellow Star","Yellow Star","木马乐队"],
+["丑奴儿","丑奴儿","沉舟乐队"],
+["没有人和我一样","没有人和我一样","沉舟乐队"],
+["他像我吗","他像我吗","犬儒乐队"],
+["甜蜜的旅行","甜蜜的旅行","椅子乐团"],
+["黄色海岸线","黄色海岸线","旅行团"],
+["永远都会在","永远都会在","旅行团"],
+["I'll Be OK","I'll Be OK","Click#15"],
+["再不来玩儿就老了","再不来玩儿就老了","Click#15"],
+["Lover Boy 88","Lover Boy 88","Click#15"],
+["梦幻丽莎发廊","梦幻丽莎发廊","五条人"],
+["热带雨林","热带雨林","五条人"],
+["县城记","县城记","五条人"],
+["道山靓仔","道山靓仔","五条人"],
+["北风","北风","九连真人"],
+["夜雾","夜雾","九连真人"],
+["招娣","招娣","九连真人"],
+["勐巴拉娜西","勐巴拉娜西","刺猬"],
+["光阴 飞逝","光阴","刺猬"],
+["生之响往","生之响往","刺猬"],
+["Imagine all the people living life in peace","Imagine","John Lennon"],
+["Hey Jude, don't make it bad","Hey Jude","The Beatles"],
+["Let it be, let it be","Let It Be","The Beatles"],
+["Yesterday all my troubles seemed so far away","Yesterday","The Beatles"],
+["Come together right now over me","Come Together","The Beatles"],
+["Here comes the sun, doo doo doo doo","Here Comes the Sun","The Beatles"],
+["Hello darkness, my old friend","The Sound of Silence","Simon & Garfunkel"],
+["The times they are a-changin'","The Times They Are a-Changin'","Bob Dylan"],
+["How does it feel to be on your own","Like a Rolling Stone","Bob Dylan"],
+["Knock knock knockin' on heaven's door","Knockin' on Heaven's Door","Bob Dylan"],
+["The answer is blowin' in the wind","Blowin' in the Wind","Bob Dylan"],
+["Stairway to heaven","Stairway to Heaven","Led Zeppelin"],
+["Whole lotta love","Whole Lotta Love","Led Zeppelin"],
+["Hotel California","Hotel California","Eagles"],
+["Take it easy","Take It Easy","Eagles"],
+["Time, time, time","Time","Pink Floyd"],
+["Money, it's a gas","Money","Pink Floyd"],
+["So you think you can tell heaven from hell","Wish You Were Here","Pink Floyd"],
+["We don't need no education","Another Brick in the Wall","Pink Floyd"],
+["Is there anybody out there","Comfortably Numb","Pink Floyd"],
+["Shine on you crazy diamond","Shine On You Crazy Diamond","Pink Floyd"],
+["Breathe in the air","Breathe","Pink Floyd"],
+["I'm just a poor boy, nobody loves me","Bohemian Rhapsody","Queen"],
+["We are the champions, my friends","We Are the Champions","Queen"],
+["We will, we will rock you","We Will Rock You","Queen"],
+["Don't stop me now","Don't Stop Me Now","Queen"],
+["Under pressure","Under Pressure","Queen & Bowie"],
+["Somebody to love","Somebody to Love","Queen"],
+["Smells like teen spirit","Smells Like Teen Spirit","Nirvana"],
+["Come as you are","Come As You Are","Nirvana"],
+["Sweet child of mine","Sweet Child O' Mine","Guns N' Roses"],
+["When the cold November rain","November Rain","Guns N' Roses"],
+["Welcome to the jungle","Welcome to the Jungle","Guns N' Roses"],
+["Enter sandman","Enter Sandman","Metallica"],
+["Nothing else matters","Nothing Else Matters","Metallica"],
+["Master of puppets","Master of Puppets","Metallica"],
+["Heroes, just for one day","Heroes","David Bowie"],
+["Ground control to Major Tom","Space Oddity","David Bowie"],
+["Is there life on Mars","Life on Mars?","David Bowie"],
+["There's a starman waiting in the sky","Starman","David Bowie"],
+["Purple haze all in my brain","Purple Haze","Jimi Hendrix"],
+["Riders on the storm","Riders on the Storm","The Doors"],
+["Come on baby, light my fire","Light My Fire","The Doors"],
+["This is the end, beautiful friend","The End","The Doors"],
+["Today is gonna be the day","Wonderwall","Oasis"],
+["Don't look back in anger","Don't Look Back in Anger","Oasis"],
+["Champagne supernova in the sky","Champagne Supernova","Oasis"],
+["Maybe I don't really wanna know","Live Forever","Oasis"],
+["I wish I was special","Creep","Radiohead"],
+["This is what you get","Karma Police","Radiohead"],
+["No alarms and no surprises","No Surprises","Radiohead"],
+["Rain down on me","Paranoid Android","Radiohead"],
+["High and dry","High and Dry","Radiohead"],
+["Just a small town girl","Don't Stop Believin'","Journey"],
+["Tramps like us, baby we were born to run","Born to Run","Bruce Springsteen"],
+["You can't start a fire without a spark","Dancing in the Dark","Bruce Springsteen"],
+["With or without you","With or Without You","U2"],
+["One love, one life","One","U2"],
+["Sunday bloody Sunday","Sunday Bloody Sunday","U2"],
+["Where the streets have no name","Where the Streets Have No Name","U2"],
+["It's a beautiful day","Beautiful Day","U2"],
+["That's me in the corner","Losing My Religion","R.E.M."],
+["Everybody hurts sometimes","Everybody Hurts","R.E.M."],
+["Coming out of my cage","Mr. Brightside","The Killers"],
+["I'm gonna fight 'em off","Seven Nation Army","The White Stripes"],
+["Stop the clocks","Do I Wanna Know?","Arctic Monkeys"],
+["I walk a lonely road","Boulevard of Broken Dreams","Green Day"],
+["Don't wanna be an American idiot","American Idiot","Green Day"],
+["Wake me up when September ends","Wake Me Up When September Ends","Green Day"],
+["I've become so numb","Numb","Linkin Park"],
+["In the end, it doesn't even matter","In the End","Linkin Park"],
+["Crawling in my skin","Crawling","Linkin Park"],
+["Take my hand, we'll make it I swear","Livin' on a Prayer","Bon Jovi"],
+["It's my life, it's now or never","It's My Life","Bon Jovi"],
+["I'm on the highway to hell","Highway to Hell","AC/DC"],
+["Thunderstruck","Thunderstruck","AC/DC"],
+["Back in black","Back in Black","AC/DC"],
+["When I was a young boy","Welcome to the Black Parade","My Chemical Romance"],
+["Smoke on the water","Smoke on the Water","Deep Purple"],
+["Sultans of swing","Sultans of Swing","Dire Straits"],
+["I bless the rains down in Africa","Africa","Toto"],
+["It's the final countdown","Final Countdown","Europe"],
+["More than a feeling","More Than a Feeling","Boston"],
+["California dreamin'","California Dreamin'","The Mamas & the Papas"],
+["There is a house in New Orleans","House of the Rising Sun","The Animals"],
+["Born to be wild","Born to Be Wild","Steppenwolf"],
+["Look at the stars, look how they shine for you","Yellow","Coldplay"],
+["Nobody said it was easy","The Scientist","Coldplay"],
+["Lights will guide you home","Fix You","Coldplay"],
+["I used to rule the world","Viva la Vida","Coldplay"],
+["You and me are floating on a tidal wave","A Sky Full of Stars","Coldplay"],
+["Bittersweet symphony","Bittersweet Symphony","The Verve"]
+];
+
+let pool='all',curPoolSongs=S,cur=null,sp=false,mode='roulette';
+function applyPool(){curPoolSongs=pool==='all'?S:S.filter(s=>s[3]===pool);if(curPoolSongs.length===0)curPoolSongs=S;}
+function hash(s){let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return Math.abs(h);}
+const COLORS=['#ff3344','#ff8822','#ffdd33','#22dd66','#33aaff','#aa44ff','#ee44aa','#22ddcc'];
+function genCover(t,a){
+const h1=hash(a),h2=hash(t),c1=COLORS[h1%8],c2=COLORS[(h1+3)%8],v=(h1+h2)%6;
+let i='';
+if(v===0)i=`<polygon points="50,18 78,72 22,72" fill="none" stroke="${c1}" stroke-width="1.2"/><line x1="10" y1="50" x2="50" y2="50" stroke="#fff" stroke-width="0.8"/><line x1="60" y1="50" x2="90" y2="38" stroke="${c1}" stroke-width="0.8"/><line x1="60" y1="50" x2="92" y2="50" stroke="${c2}" stroke-width="0.8"/><line x1="60" y1="50" x2="90" y2="62" stroke="${COLORS[(h1+5)%8]}" stroke-width="0.8"/>`;
+else if(v===1)i=`<circle cx="50" cy="50" r="38" fill="none" stroke="${c1}" stroke-width="0.6"/><circle cx="50" cy="50" r="30" fill="none" stroke="${c2}" stroke-width="0.6"/><circle cx="50" cy="50" r="22" fill="none" stroke="${c1}" stroke-width="0.6" opacity="0.7"/><circle cx="50" cy="50" r="14" fill="${c2}" opacity="0.3"/><circle cx="50" cy="50" r="3" fill="${c1}"/>`;
+else if(v===2)i=`<circle cx="50" cy="50" r="32" fill="none" stroke="#fff" stroke-width="0.8" opacity="0.3"/><circle cx="50" cy="50" r="32" fill="${c1}" opacity="0.15"/><path d="M 50 18 A 32 32 0 0 1 50 82 A 22 32 0 0 0 50 18" fill="${c1}" opacity="0.6"/>`;
+else if(v===3)i=`<line x1="20" y1="50" x2="80" y2="50" stroke="${c1}" stroke-width="0.5" opacity="0.6"/><line x1="50" y1="20" x2="50" y2="80" stroke="${c1}" stroke-width="0.5" opacity="0.6"/><line x1="28" y1="28" x2="72" y2="72" stroke="${c2}" stroke-width="0.5" opacity="0.4"/><line x1="28" y1="72" x2="72" y2="28" stroke="${c2}" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="6" fill="${c1}"/><circle cx="30" cy="30" r="1.5" fill="#fff"/><circle cx="70" cy="30" r="1.5" fill="#fff"/><circle cx="30" cy="70" r="1.5" fill="#fff"/><circle cx="70" cy="70" r="1.5" fill="#fff"/>`;
+else if(v===4)i=`<path d="M 15 50 Q 25 ${30+h2%20}, 35 50 T 55 50 T 75 50 T 95 50" fill="none" stroke="${c1}" stroke-width="1"/><path d="M 15 60 Q 25 ${40+h2%15}, 35 60 T 55 60 T 75 60 T 95 60" fill="none" stroke="${c2}" stroke-width="0.8" opacity="0.7"/><path d="M 15 40 Q 25 ${20+h2%15}, 35 40 T 55 40 T 75 40 T 95 40" fill="none" stroke="${c2}" stroke-width="0.8" opacity="0.7"/>`;
+else i=`<rect x="25" y="25" width="50" height="50" fill="none" stroke="${c1}" stroke-width="0.8" transform="rotate(${h2%45} 50 50)"/><rect x="32" y="32" width="36" height="36" fill="none" stroke="${c2}" stroke-width="0.8" transform="rotate(${-(h2%30)} 50 50)"/><circle cx="50" cy="50" r="6" fill="${c1}"/>`;
+return `<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#000"/>${i}</svg>`;
 }
-const stage=document.getElementById('stage'),sb=document.getElementById('sb'),nb=document.getElementById('nb'),lb=document.getElementById('lb'),cn=document.getElementById('cn'),lm=document.getElementById('lm'),lx=document.getElementById('lx'),mt=document.getElementById('mt'),ma=document.getElementById('ma'),mr=document.getElementById('mr'),ts=document.getElementById('ts'),card=document.getElementById('card'),coverArt=document.getElementById('coverArt'),title=document.getElementById('title'),artist=document.getElementById('artist'),year=document.getElementById('year');
-let cur=null,sp=false;
-ts.textContent='— '+S.length+' TRACKS · 1981·2025 —';
-cn.textContent='000 / '+String(S.length).padStart(3,'0');
+
+const $=id=>document.getElementById(id);
+const cn=$('cn'),sb=$('sb'),nb=$('nb'),lb=$('lb'),shb=$('shb'),lm=$('lm'),lx=$('lx'),mt=$('mt'),ma=$('ma'),mr=$('mr'),card=$('card'),cover=$('cover'),title=$('title'),artist=$('artist'),year=$('year'),rv=$('rouletteView'),cv=$('calView'),sm=$('sm'),smClose=$('smClose'),shareCanvas=$('shareCanvas');
+
+applyPool();
+cn.textContent='000 / '+String(curPoolSongs.length).padStart(3,'0');
+
 function showSong(s){
-coverArt.innerHTML=genCover(s[0],s[1]);
-title.textContent=s[0];
-artist.textContent=s[1];
-year.textContent=s[2];
-card.classList.remove('idle');
-card.classList.remove('reveal');
-coverArt.classList.remove('reveal');
+cover.innerHTML=genCover(s[0],s[1]);
+title.textContent=s[0];artist.textContent=s[1];year.textContent=s[2];
+card.classList.remove('idle');card.classList.remove('reveal');cover.classList.remove('reveal');
 void card.offsetWidth;
-card.classList.add('reveal');
-coverArt.classList.add('reveal');
+card.classList.add('reveal');cover.classList.add('reveal');
 }
+
 function spin(){
 if(sp)return;
-sp=true;
-sb.disabled=true;nb.disabled=true;lb.disabled=true;
-stage.classList.add('spinning');
-const fi=Math.floor(Math.random()*S.length);
-cur=S[fi];
+sp=true;sb.disabled=true;nb.disabled=true;lb.disabled=true;shb.disabled=true;
+document.querySelector('.prism-zone').classList.add('spinning');
+const fi=Math.floor(Math.random()*curPoolSongs.length);
+cur=curPoolSongs[fi];
 let elapsed=0;
-const flickTimer=setInterval(()=>{
+const t1=setInterval(()=>{
 elapsed+=80;
-const ri=Math.floor(Math.random()*S.length);
-const rs=S[ri];
-coverArt.innerHTML=genCover(rs[0],rs[1]);
-title.textContent=rs[0];
-artist.textContent=rs[1];
-year.textContent=rs[2];
+const ri=Math.floor(Math.random()*curPoolSongs.length),rs=curPoolSongs[ri];
+cover.innerHTML=genCover(rs[0],rs[1]);
+title.textContent=rs[0];artist.textContent=rs[1];year.textContent=rs[2];
 card.classList.remove('idle');
-cn.textContent=String(ri+1).padStart(3,'0')+' / '+String(S.length).padStart(3,'0');
-if(elapsed>=3200){
-clearInterval(flickTimer);
-cn.textContent=String(fi+1).padStart(3,'0')+' / '+String(S.length).padStart(3,'0');
+cn.textContent=String(ri+1).padStart(3,'0')+' / '+String(curPoolSongs.length).padStart(3,'0');
+if(elapsed>=3000){
+clearInterval(t1);
+cn.textContent=String(fi+1).padStart(3,'0')+' / '+String(curPoolSongs.length).padStart(3,'0');
 let slow=0;
-const slowTimer=setInterval(()=>{
+const t2=setInterval(()=>{
 slow++;
 if(slow<=4){
-const ri2=Math.floor(Math.random()*S.length);
-const rs2=S[ri2];
-coverArt.innerHTML=genCover(rs2[0],rs2[1]);
-title.textContent=rs2[0];
-artist.textContent=rs2[1];
-year.textContent=rs2[2];
+const ri2=Math.floor(Math.random()*curPoolSongs.length),rs2=curPoolSongs[ri2];
+cover.innerHTML=genCover(rs2[0],rs2[1]);
+title.textContent=rs2[0];artist.textContent=rs2[1];year.textContent=rs2[2];
 }else{
-clearInterval(slowTimer);
+clearInterval(t2);
 showSong(cur);
-sp=false;
-sb.disabled=false;
-sb.textContent='SPIN AGAIN';
-nb.disabled=false;
-lb.disabled=false;
-stage.classList.remove('spinning');
+sp=false;sb.disabled=false;sb.textContent='SPIN AGAIN';
+nb.disabled=false;lb.disabled=false;shb.disabled=false;
+document.querySelector('.prism-zone').classList.remove('spinning');
 if(navigator.vibrate)navigator.vibrate([20,40,80]);
 }
 },180+slow*80);
 }
 },80);
 }
-sb.addEventListener('click',spin);
+
+document.querySelectorAll('.mb').forEach(b=>b.addEventListener('click',()=>{
+document.querySelectorAll('.mb').forEach(x=>x.classList.remove('active'));
+b.classList.add('active');
+mode=b.dataset.mode;
+if(mode==='roulette'){rv.style.display='block';cv.classList.remove('show');sb.textContent=cur?'SPIN AGAIN':'SPIN';sb.disabled=false;document.querySelector('.filters').style.display='flex';}
+else{rv.style.display='none';cv.classList.add('show');cv.classList.add('reveal');sb.textContent='REFRESH';sb.disabled=false;document.querySelector('.filters').style.display='none';loadCalendar();}
+}));
+
+document.querySelectorAll('.fp').forEach(b=>b.addEventListener('click',()=>{
+document.querySelectorAll('.fp').forEach(x=>x.classList.remove('active'));
+b.classList.add('active');
+pool=b.dataset.pool;
+applyPool();
+cn.textContent='000 / '+String(curPoolSongs.length).padStart(3,'0');
+}));
+
+function loadCalendar(){
+const d=new Date();
+const days=['SUN','MON','TUE','WED','THU','FRI','SAT'];
+const months=['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+$('calDate').textContent=days[d.getDay()]+' · '+d.getFullYear();
+$('calDay').textContent=String(d.getDate()).padStart(2,'0');
+$('calMonth').textContent=months[d.getMonth()];
+const start=new Date(d.getFullYear(),0,0);
+const diff=d-start;
+const doy=Math.floor(diff/(1000*60*60*24));
+const q=Q[doy%Q.length];
+$('calQuote').textContent=q[0];
+$('calFrom').textContent='《'+q[1]+'》';
+$('calFromArtist').textContent=q[2];
+cur=[q[1],q[2],d.getFullYear(),'rock_cn'];
+nb.disabled=false;lb.disabled=false;shb.disabled=false;
+}
+
+sb.addEventListener('click',()=>{
+if(mode==='roulette')spin();
+else loadCalendar();
+});
+
 nb.addEventListener('click',()=>{if(!cur)return;window.open('https://music.163.com/#/search/m/?s='+encodeURIComponent(cur[0]+' '+cur[1])+'&type=1','_blank');});
-lb.addEventListener('click',()=>{if(!cur)return;mt.textContent=cur[0];ma.textContent=cur[1]+' · '+cur[2];mr.textContent='点击"网易云搜索"\n听完整版本\n\n或在你常用的音乐 App 里\n搜索:\n\n《'+cur[0]+'》— '+cur[1];lm.classList.add('s');});
+lb.addEventListener('click',()=>{if(!cur)return;mt.textContent=cur[0];ma.textContent=cur[1]+' · '+cur[2];mr.textContent='《'+cur[0]+'》 — '+cur[1]+'\n\n点击"网易云"听完整版本';lm.classList.add('s');});
 lx.addEventListener('click',()=>lm.classList.remove('s'));
 lm.addEventListener('click',e=>{if(e.target===lm)lm.classList.remove('s');});
+
+shb.addEventListener('click',()=>{
+if(!cur)return;
+const ctx=shareCanvas.getContext('2d');
+const W=720,H=1080;
+ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
+for(let i=0;i<80;i++){ctx.fillStyle='rgba(255,255,255,'+(Math.random()*0.6+0.2)+')';ctx.fillRect(Math.random()*W,Math.random()*H,1.5,1.5);}
+ctx.fillStyle='#666';ctx.font='300 18px -apple-system,sans-serif';ctx.textAlign='center';
+ctx.fillText('— 33⅓ RPM · SIDE B —',W/2,80);
+ctx.fillStyle='#fff';ctx.font='200 70px -apple-system,sans-serif';
+ctx.fillText('OFFBEAT',W/2,160);
+ctx.fillStyle='#555';ctx.font='300 16px -apple-system,sans-serif';
+ctx.fillText('日 常 出 逃 · REST & RESET',W/2,200);
+const px=W/2,py=380;
+ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.shadowBlur=10;ctx.shadowColor='#fff';
+ctx.beginPath();ctx.moveTo(px-200,py);ctx.lineTo(px-50,py);ctx.stroke();ctx.shadowBlur=0;
+ctx.strokeStyle='rgba(255,255,255,0.9)';ctx.fillStyle='rgba(255,255,255,0.05)';ctx.lineWidth=2;
+ctx.beginPath();ctx.moveTo(px,py-60);ctx.lineTo(px+50,py+40);ctx.lineTo(px-50,py+40);ctx.closePath();ctx.fill();ctx.stroke();
+const rayColors=['#ff3344','#ff8822','#ffdd33','#22dd66','#33aaff','#aa44ff'];
+const rayAngles=[-22,-13,-4,5,14,23];
+ctx.lineWidth=2.5;
+rayColors.forEach((c,idx)=>{
+ctx.strokeStyle=c;ctx.shadowBlur=12;ctx.shadowColor=c;
+const a=rayAngles[idx]*Math.PI/180;
+ctx.beginPath();ctx.moveTo(px+30,py);
+ctx.lineTo(px+30+220*Math.cos(a),py+220*Math.sin(a));ctx.stroke();
+});
+ctx.shadowBlur=0;
+const coverSize=200,cx=W/2-coverSize/2,cy=640;
+ctx.fillStyle='#000';ctx.fillRect(cx,cy,coverSize,coverSize);
+ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.lineWidth=1;ctx.strokeRect(cx,cy,coverSize,coverSize);
+const h1=hash(cur[1]),h2=hash(cur[0]),c1=COLORS[h1%8],c2=COLORS[(h1+3)%8],v=(h1+h2)%6;
+ctx.save();ctx.translate(cx,cy);ctx.scale(coverSize/100,coverSize/100);
+if(v===0){
+ctx.strokeStyle=c1;ctx.lineWidth=1.2;
+ctx.beginPath();ctx.moveTo(50,18);ctx.lineTo(78,72);ctx.lineTo(22,72);ctx.closePath();ctx.stroke();
+ctx.strokeStyle='#fff';ctx.beginPath();ctx.moveTo(10,50);ctx.lineTo(50,50);ctx.stroke();
+ctx.strokeStyle=c1;ctx.beginPath();ctx.moveTo(60,50);ctx.lineTo(90,38);ctx.stroke();
+ctx.strokeStyle=c2;ctx.beginPath();ctx.moveTo(60,50);ctx.lineTo(92,50);ctx.stroke();
+}else if(v===1){
+ctx.strokeStyle=c1;ctx.lineWidth=0.6;
+[38,30,22].forEach(r=>{ctx.beginPath();ctx.arc(50,50,r,0,Math.PI*2);ctx.stroke();});
+ctx.fillStyle=c1;ctx.beginPath();ctx.arc(50,50,3,0,Math.PI*2);ctx.fill();
+}else if(v===2){
+ctx.strokeStyle='#fff';ctx.globalAlpha=0.3;ctx.lineWidth=0.8;
+ctx.beginPath();ctx.arc(50,50,32,0,Math.PI*2);ctx.stroke();
+ctx.globalAlpha=0.6;ctx.fillStyle=c1;
+ctx.beginPath();ctx.arc(50,50,30,-Math.PI/2,Math.PI/2);ctx.fill();
+ctx.globalAlpha=1;
+}else if(v===3){
+ctx.strokeStyle=c1;ctx.lineWidth=0.5;ctx.globalAlpha=0.6;
+ctx.beginPath();ctx.moveTo(20,50);ctx.lineTo(80,50);ctx.stroke();
+ctx.beginPath();ctx.moveTo(50,20);ctx.lineTo(50,80);ctx.stroke();
+ctx.strokeStyle=c2;ctx.globalAlpha=0.4;
+ctx.beginPath();ctx.moveTo(28,28);ctx.lineTo(72,72);ctx.stroke();
+ctx.beginPath();ctx.moveTo(28,72);ctx.lineTo(72,28);ctx.stroke();
+ctx.fillStyle=c1;ctx.globalAlpha=1;
+ctx.beginPath();ctx.arc(50,50,6,0,Math.PI*2);ctx.fill();
+}else if(v===4){
+ctx.strokeStyle=c1;ctx.lineWidth=1;
+ctx.beginPath();ctx.moveTo(15,50);
+for(let x=15;x<=95;x+=10)ctx.quadraticCurveTo(x+5,30+h2%20,x+10,50);
+ctx.stroke();
+}else{
+ctx.strokeStyle=c1;ctx.lineWidth=0.8;
+ctx.save();ctx.translate(50,50);ctx.rotate((h2%45)*Math.PI/180);
+ctx.strokeRect(-25,-25,50,50);ctx.restore();
+ctx.fillStyle=c1;ctx.beginPath();ctx.arc(50,50,6,0,Math.PI*2);ctx.fill();
+}
+ctx.restore();
+ctx.fillStyle='#fff';ctx.font='500 42px -apple-system,sans-serif';ctx.textAlign='center';
+let titleText=cur[0];if(titleText.length>16)titleText=titleText.slice(0,15)+'…';
+ctx.fillText(titleText,W/2,910);
+ctx.fillStyle='#bbb';ctx.font='300 22px -apple-system,sans-serif';
+ctx.fillText('— '+cur[1]+' · '+cur[2]+' —',W/2,950);
+ctx.fillStyle='#444';ctx.font='300 16px -apple-system,sans-serif';
+ctx.fillText('OFFBEAT · 日常出逃公众号',W/2,1020);
+ctx.fillStyle='#333';ctx.font='300 12px -apple-system,sans-serif';
+ctx.fillText('SIDE B · 跳出日常看日常',W/2,1050);
+sm.classList.add('s');
+});
+smClose.addEventListener('click',()=>sm.classList.remove('s'));
+sm.addEventListener('click',e=>{if(e.target===sm)sm.classList.remove('s');});
 </script></body></html>
