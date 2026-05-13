@@ -7,38 +7,33 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400;500;600&family=Noto+Sans+SC:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{min-height:100%}
 body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans-serif;user-select:none;position:relative;overflow-x:hidden;font-weight:300}
 
-/* ============ 基础容器 ============ */
 .c{position:relative;z-index:2;min-height:100vh;padding:24px 18px 30px;display:flex;flex-direction:column;max-width:480px;margin:0 auto;width:100%}
 
-/* ============ Header ============ */
 .h{text-align:center;margin-bottom:6px;padding-top:6px}
 .tag{display:inline-block;font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:6px;color:#666;margin-bottom:18px}
 .t{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,12vw,68px);line-height:.95;letter-spacing:7px;color:#fff;margin-right:-7px;font-weight:400}
 .sb{font-family:'Noto Sans SC',sans-serif;font-size:10px;letter-spacing:5px;color:#666;margin-top:12px;font-weight:300}
 .sb .em{color:#888;font-family:'Bebas Neue',sans-serif;letter-spacing:4px;font-size:11px}
 
-/* ============ Modes ============ */
 .modes{display:flex;justify-content:center;margin:18px 0 0;border-top:1px solid #222;border-bottom:1px solid #222}
 .mb{flex:1;padding:13px 4px;background:transparent;color:#666;border:none;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:5px;border-right:1px solid #222;cursor:pointer}
 .mb:last-child{border-right:none}
 .mb.active{color:#fff;background:rgba(255,255,255,.04)}
 
-/* ============ Filters ============ */
 .filters{display:flex;gap:7px;overflow-x:auto;padding:14px 0 4px;-webkit-overflow-scrolling:touch}
 .filters::-webkit-scrollbar{display:none}
 .fp{flex:0 0 auto;padding:6px 14px;background:transparent;color:#888;border:1px solid #333;font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:1px;white-space:nowrap;font-weight:300;cursor:pointer}
 .fp.active{color:#000;background:#fff;border-color:#fff;font-weight:400}
 
-/* ============ Prism Brand ============ */
 .prism-wrap{display:flex;justify-content:center;margin:24px 0 6px;position:relative}
 .prism-svg{width:100%;max-width:340px;height:110px}
 
-/* ============ Stage ============ */
 .stage-wrap{flex:1;display:flex;align-items:center;justify-content:center;position:relative;margin:6px 0;min-height:340px}
 
 .song-card{width:100%;border:1px solid #2a2a2a;padding:24px 18px 22px;text-align:center;background:rgba(0,0,0,.5)}
@@ -51,7 +46,6 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 .idle .song-title{color:#888;font-weight:300}
 .idle .cover{opacity:.5}
 
-/* ============ Calendar ============ */
 .cal-view{display:none;width:100%;border:1px solid #2a2a2a;padding:28px 22px 26px;background:rgba(0,0,0,.5);position:relative}
 .cal-view.show{display:block}
 .cal-date{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:6px;color:#888;margin-bottom:14px;text-align:center}
@@ -64,7 +58,6 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 .cal-from{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:#bbb;margin-bottom:4px;text-align:center;padding-top:6px}
 .cal-from-cn{font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:2px;color:#888;font-weight:300;text-align:center}
 
-/* ============ Buttons ============ */
 .cl{display:flex;flex-direction:column;gap:9px;margin-top:16px}
 .sp{width:100%;padding:20px;background:transparent;color:#fff;border:1px solid #fff;font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:14px;text-indent:14px;cursor:pointer;transition:all .15s}
 .sp:active{color:#000;background:#fff}
@@ -74,7 +67,6 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 .ab:active{background:#fff;color:#000;border-color:#fff}
 .ab:disabled{color:#333;border-color:#222}
 
-/* ============ Modal ============ */
 .lm{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px)}
 .lm.s{display:flex}
 .lc{width:100%;max-width:420px;background:#0a0a0a;border:1px solid #333;padding:36px 22px 26px;position:relative;text-align:center}
@@ -83,7 +75,6 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 .la{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:5px;color:#888;margin-bottom:22px}
 .lr{font-size:13px;line-height:2;white-space:pre-line;color:#aaa;letter-spacing:1px}
 
-/* ============ Share Card ============ */
 .sm{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:300;display:none;align-items:center;justify-content:center;padding:20px;flex-direction:column}
 .sm.s{display:flex}
 .sm canvas{max-width:100%;max-height:72vh;border:1px solid #333}
@@ -92,7 +83,6 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 
 .ft{text-align:center;margin-top:18px;font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:6px;color:#444}
 
-/* ============ Animations ============ */
 @keyframes pulse{0%,100%{opacity:.92}50%{opacity:1}}
 .spinning .ray,.spinning .beam{animation:pulse .15s infinite}
 @keyframes spin-cover{0%{transform:rotate(0) scale(.9);opacity:.3}100%{transform:rotate(360deg) scale(1);opacity:1}}
@@ -100,7 +90,6 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 @keyframes fade-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .song-card.reveal,.cal-view.reveal{animation:fade-in .5s ease-out}
 
-/* ============ 小手机适配 (<360px) ============ */
 @media (max-width:359px){
 .c{padding:18px 14px 24px}
 .t{font-size:42px;letter-spacing:5px;margin-right:-5px}
@@ -109,7 +98,6 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 .ab{padding:11px 2px;font-size:11px;letter-spacing:1.5px}
 }
 
-/* ============ 平板适配 (768-1023px) ============ */
 @media (min-width:768px) and (max-width:1023px){
 .c{max-width:560px;padding-top:50px}
 .prism-svg{max-width:400px;height:130px}
@@ -117,7 +105,6 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 .cover{width:172px;height:172px}
 }
 
-/* ============ 桌面端横向双栏 (≥1024px) ============ */
 @media (min-width:1024px){
 body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 .c{max-width:1100px;flex-direction:row;gap:60px;align-items:stretch;padding:40px}
@@ -138,20 +125,10 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 .cal-day{font-size:140px}
 .ft{text-align:left;padding-top:24px}
 }
-
-@media (min-width:1024px){
-.desktop-only{display:block}
-.mobile-only{display:none}
-}
-@media (max-width:1023px){
-.desktop-only{display:none}
-.mobile-only{display:block}
-}
 </style></head>
 <body>
 <div class="c">
 
-<!-- 移动端: 全部线性堆叠 / 桌面端: 左右分栏 -->
 <div class="left-panel">
 
 <header class="h">
@@ -161,7 +138,7 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 </header>
 
 <div class="modes">
-<button class="mb active" data-mode="roulette">轮 盘</button>
+<button class="mb active" data-mode="roulette">R O L L</button>
 <button class="mb" data-mode="calendar">每 日</button>
 </div>
 
@@ -202,7 +179,7 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 </svg>
 </div>
 
-</div><!-- /left-panel -->
+</div>
 
 <div class="right-panel">
 
@@ -241,14 +218,16 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 
 <footer class="ft">SIDE B · 跳 出 日 常 看 日 常</footer>
 
-</div><!-- /right-panel -->
+</div>
 
-</div><!-- /c -->
+</div>
 
 <div class="lm" id="lm"><div class="lc"><button class="lx" id="lx">×</button><div class="lt" id="mt"></div><div class="la" id="ma"></div><div class="lr" id="mr"></div></div></div>
-<div class="sm" id="sm"><button class="sm-close" id="smClose">×</button><canvas id="shareCanvas" width="720" height="1080"></canvas><div class="sm-hint">长按图片保存 / 转发<br>OFFBEAT · 日 常 出 逃</div></div>
+<div class="sm" id="sm"><button class="sm-close" id="smClose">×</button><canvas id="shareCanvas" width="720" height="1080"></canvas><div class="sm-hint">长按图片保存 / 转发 · 扫码进入 OFFBEAT</div></div>
+<div id="qrHolder" style="display:none"></div>
 
 <script>
+const SITE_URL='https://annayoung99.github.io/rock/';
 const S=[
 ["一无所有","崔健",1986,"rock_cn"],["假行僧","崔健",1989,"rock_cn"],["花房姑娘","崔健",1989,"rock_cn"],["新长征路上的摇滚","崔健",1989,"rock_cn"],["快让我在雪地上撒点野","崔健",1991,"rock_cn"],["红旗下的蛋","崔健",1994,"rock_cn"],["飞了","崔健",1991,"rock_cn"],["苦行僧","崔健",1991,"rock_cn"],["宽容","崔健",2005,"rock_cn"],["蓝色骨头","崔健",2005,"rock_cn"],["时代的晚上","崔健",1998,"rock_cn"],["无能的力量","崔健",1998,"rock_cn"],
 ["孤独的人是可耻的","张楚",1994,"rock_cn"],["姐姐","张楚",1994,"rock_cn"],["蚂蚁蚂蚁","张楚",1994,"rock_cn"],["上苍保佑吃完了饭的人民","张楚",1994,"rock_cn"],["光明大道","张楚",1997,"rock_cn"],
@@ -301,7 +280,7 @@ const S=[
 ["突然好想你","五月天",2008,"rock_cn"],["倔强","五月天",2004,"rock_cn"],["盛夏光年","五月天",2006,"rock_cn"],["你不是真正的快乐","五月天",2008,"rock_cn"],["诺亚方舟","五月天",2011,"rock_cn"],["知足","五月天",2005,"rock_cn"],["拥抱","五月天",1999,"rock_cn"],["志明与春娇","五月天",1999,"rock_cn"],
 ["小情歌","苏打绿",2006,"rock_cn"],["无与伦比的美丽","苏打绿",2007,"rock_cn"],
 ["挪威的森林","伍佰",1996,"rock_cn"],["Last Dance","伍佰",1996,"rock_cn"],["你是我的花朵","伍佰",2005,"rock_cn"],["突然的自我","伍佰",2002,"rock_cn"],["白鸽","伍佰",2004,"rock_cn"],
-["死了都要爱","信乐团",2002,"rock_cn"],["离歌","信乐团",2003,"rock_cn"],
+["死了都要爱","信乐团",2002,"rock_cn"],["离歌","离歌","信乐团",2003,"rock_cn"],
 ["爱我别走","张震岳",1997,"rock_cn"],["思念是一种病","张震岳",2007,"rock_cn"],["再见","张震岳",2003,"rock_cn"],
 ["向阳花","谢天笑",2008,"rock_cn"],["约定的地方","谢天笑",2008,"rock_cn"],["雁栖湖","谢天笑",2014,"rock_cn"],
 ["梵高先生","李志",2006,"rock_cn"],["热河","李志",2007,"rock_cn"],["天空之城","李志",2009,"rock_cn"],["和你在一起","李志",2010,"rock_cn"],["山阴路的夏天","李志",2013,"rock_cn"],
@@ -611,6 +590,28 @@ const sb=$('sb'),nb=$('nb'),lb=$('lb'),shb=$('shb'),lm=$('lm'),lx=$('lx'),mt=$('
 
 applyPool();
 
+// 预生成二维码
+let qrCanvas=null;
+function initQR(){
+const holder=document.getElementById('qrHolder');
+holder.innerHTML='';
+new QRCode(holder,{text:SITE_URL,width:140,height:140,colorDark:'#000',colorLight:'#fff',correctLevel:QRCode.CorrectLevel.M});
+setTimeout(()=>{
+const img=holder.querySelector('img')||holder.querySelector('canvas');
+if(img){
+qrCanvas=document.createElement('canvas');
+qrCanvas.width=140;qrCanvas.height=140;
+const c=qrCanvas.getContext('2d');
+if(img.tagName==='IMG'){
+const realImg=new Image();
+realImg.onload=()=>c.drawImage(realImg,0,0,140,140);
+realImg.src=img.src;
+}else{c.drawImage(img,0,0,140,140);}
+}
+},200);
+}
+initQR();
+
 function showSong(s){
 cover.innerHTML=gen(s[0],s[1]);
 title.textContent=s[0];
@@ -682,7 +683,6 @@ const doy=Math.floor((d-start)/(1000*60*60*24));
 const q=Q[doy%Q.length];
 const cq=$('calQuote');
 cq.textContent=q[0];
-// 中文歌词改用宋体斜体,英文用 Caveat 手写体
 if(isLatin(q[0])){cq.classList.remove('cn');}else{cq.classList.add('cn');}
 $('calFrom').textContent=q[2].toUpperCase();
 $('calFromCN').textContent='《'+q[1]+'》 — '+q[2];
@@ -696,7 +696,6 @@ lb.addEventListener('click',()=>{if(!cur)return;mt.textContent=cur[0];ma.textCon
 lx.addEventListener('click',()=>lm.classList.remove('s'));
 lm.addEventListener('click',e=>{if(e.target===lm)lm.classList.remove('s');});
 
-// ============= 分享卡片(自适应歌名长度) =============
 function fitText(ctx,text,maxWidth,baseFontSize,fontFamily,minFontSize){
 let fontSize=baseFontSize;
 while(fontSize>=minFontSize){
@@ -708,7 +707,6 @@ return minFontSize;
 }
 
 function wrapText(ctx,text,maxWidth){
-// 中文按字符分,英文按空格分
 const isCN=/[\u4e00-\u9fa5]/.test(text);
 const lines=[];
 if(isCN){
@@ -738,7 +736,6 @@ const ctx=shareCanvas.getContext('2d');
 const W=720,H=1080;
 ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
 
-// 顶部
 ctx.fillStyle='#666';ctx.font='300 16px sans-serif';ctx.textAlign='center';
 ctx.fillText('— 33 1/3 RPM · SIDE B —',W/2,70);
 ctx.fillStyle='#fff';ctx.font='400 72px "Bebas Neue", Impact, sans-serif';
@@ -746,7 +743,6 @@ ctx.fillText('O F F B E A T',W/2,150);
 ctx.fillStyle='#666';ctx.font='300 14px sans-serif';
 ctx.fillText('日 常 出 逃  ·  REST & RESET',W/2,180);
 
-// 棱镜
 const px=W/2,py=320;
 ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.shadowBlur=8;ctx.shadowColor='#fff';
 ctx.beginPath();ctx.moveTo(px-200,py);ctx.lineTo(px-45,py);ctx.stroke();ctx.shadowBlur=0;
@@ -758,7 +754,6 @@ ctx.fillStyle='#0f0f0f';ctx.strokeStyle='#fff';ctx.lineWidth=2.5;
 ctx.beginPath();ctx.moveTo(px,py-50);ctx.lineTo(px+30,py+30);ctx.lineTo(px-30,py+30);ctx.closePath();
 ctx.fill();ctx.stroke();
 
-// 封面
 const cs=200,cx=W/2-cs/2,cy=460;
 ctx.fillStyle='#000';ctx.fillRect(cx,cy,cs,cs);
 ctx.strokeStyle='rgba(255,255,255,0.2)';ctx.lineWidth=1;ctx.strokeRect(cx,cy,cs,cs);
@@ -772,28 +767,23 @@ else if(v===4){ctx.strokeStyle=c1;ctx.lineWidth=0.8;ctx.beginPath();ctx.moveTo(1
 else{ctx.strokeStyle=c1;ctx.lineWidth=0.8;ctx.save();ctx.translate(50,50);ctx.rotate((h2%45)*Math.PI/180);ctx.strokeRect(-22,-22,44,44);ctx.restore();ctx.fillStyle=c1;ctx.beginPath();ctx.arc(50,50,5,0,Math.PI*2);ctx.fill();}
 ctx.restore();
 
-// 歌名 - 自适应字号和换行
 const maxTitleWidth=W-80;
 ctx.fillStyle='#fff';ctx.textAlign='center';
-// 先尝试一行最大字号 44,如果超宽就缩小,如果还超就换行
 let titleFontSize=fitText(ctx,cur[0],maxTitleWidth,44,'"Noto Sans SC", sans-serif',24);
 ctx.font=`500 ${titleFontSize}px "Noto Sans SC", sans-serif`;
 let titleLines=[cur[0]];
 if(ctx.measureText(cur[0]).width>maxTitleWidth){
-// 字号已最小,需要换行
 titleFontSize=Math.max(titleFontSize,28);
 ctx.font=`500 ${titleFontSize}px "Noto Sans SC", sans-serif`;
 titleLines=wrapText(ctx,cur[0],maxTitleWidth);
 if(titleLines.length>2)titleLines=[titleLines[0],titleLines[1]+'…'];
 }
-// 绘制歌名
 const lineHeight=titleFontSize*1.2;
-const titleBlockY=730-(titleLines.length-1)*lineHeight/2;
+const titleBlockY=720-(titleLines.length-1)*lineHeight/2;
 titleLines.forEach((line,idx)=>{
 ctx.fillText(line,W/2,titleBlockY+idx*lineHeight);
 });
 
-// 歌手 + 年份
 const afterTitleY=titleBlockY+(titleLines.length-1)*lineHeight+40;
 ctx.fillStyle='#bbb';ctx.font='400 20px "Bebas Neue", Impact, sans-serif';
 ctx.fillText(cur[1].toUpperCase()+'  ·  '+cur[2],W/2,afterTitleY);
@@ -802,11 +792,31 @@ ctx.fillStyle='#888';ctx.font='300 16px "Noto Sans SC", sans-serif';
 ctx.fillText(cur[1],W/2,afterTitleY+30);
 }
 
-// 底部
-ctx.fillStyle='#444';ctx.font='300 14px "Noto Sans SC", sans-serif';
-ctx.fillText('OFFBEAT  ·  日 常 出 逃',W/2,1010);
-ctx.fillStyle='#333';ctx.font='300 11px "Noto Sans SC", sans-serif';
-ctx.fillText('SIDE B  ·  跳 出 日 常 看 日 常',W/2,1040);
+// 二维码 - 右下角
+const qrSize=120;
+const qrX=W-qrSize-40;
+const qrY=H-qrSize-50;
+ctx.fillStyle='#fff';
+ctx.fillRect(qrX-6,qrY-6,qrSize+12,qrSize+12);
+if(qrCanvas){
+ctx.drawImage(qrCanvas,qrX,qrY,qrSize,qrSize);
+}else{
+ctx.fillStyle='#000';ctx.font='10px sans-serif';
+ctx.fillText('QR',qrX+qrSize/2,qrY+qrSize/2);
+}
+// 二维码下方文字
+ctx.fillStyle='#666';ctx.font='300 11px "Noto Sans SC", sans-serif';ctx.textAlign='center';
+ctx.fillText('扫码 ROLL 一首',qrX+qrSize/2,qrY+qrSize+22);
+
+// 左下角品牌
+ctx.textAlign='left';
+ctx.fillStyle='#888';ctx.font='400 18px "Bebas Neue", Impact, sans-serif';
+ctx.fillText('OFFBEAT',40,H-90);
+ctx.fillStyle='#555';ctx.font='300 12px "Noto Sans SC", sans-serif';
+ctx.fillText('日 常 出 逃',40,H-68);
+ctx.fillStyle='#444';ctx.font='300 10px "Noto Sans SC", sans-serif';
+ctx.fillText('SIDE B · 跳出日常看日常',40,H-50);
+
 sm.classList.add('s');
 });
 smClose.addEventListener('click',()=>sm.classList.remove('s'));
