@@ -4,90 +4,108 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>OFFBEAT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+SC:wght@200;300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{min-height:100%}
-body{background:#000;color:#e8e8e8;font-family:-apple-system,'Helvetica Neue',sans-serif;user-select:none;position:relative;overflow-x:hidden}
-.stars{position:fixed;inset:0;z-index:0;background:radial-gradient(1px 1px at 15% 25%,#fff,transparent),radial-gradient(1px 1px at 65% 75%,#fff,transparent),radial-gradient(1px 1px at 85% 15%,#fff,transparent),radial-gradient(1px 1px at 35% 85%,rgba(255,255,255,.6),transparent),radial-gradient(1px 1px at 95% 55%,#fff,transparent),radial-gradient(1px 1px at 5% 65%,rgba(255,255,255,.4),transparent),radial-gradient(1px 1px at 45% 5%,rgba(255,255,255,.5),transparent),radial-gradient(1px 1px at 75% 95%,rgba(255,255,255,.3),transparent);opacity:.5}
-.c{position:relative;z-index:2;min-height:100vh;padding:18px 18px 24px;display:flex;flex-direction:column}
+body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans-serif;user-select:none;position:relative;overflow-x:hidden;font-weight:300}
+
+.c{position:relative;z-index:2;min-height:100vh;padding:24px 18px 30px;display:flex;flex-direction:column;max-width:480px;margin:0 auto}
+
 .h{text-align:center;margin-bottom:6px;padding-top:6px}
-.tag{display:inline-block;font-size:9px;letter-spacing:8px;color:#666;margin-bottom:14px}
-.t{font-size:clamp(36px,10vw,52px);line-height:1;letter-spacing:14px;font-weight:200;color:#fff;margin-right:-14px}
-.sb{font-size:9px;letter-spacing:6px;color:#555;margin-top:10px}
-.modes{display:flex;justify-content:center;margin:14px 0 6px;border-top:1px solid #222;border-bottom:1px solid #222}
-.mb{flex:1;padding:11px 4px;background:transparent;color:#666;border:none;font-size:10px;letter-spacing:3px;border-right:1px solid #222}
+.tag{display:inline-block;font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:6px;color:#666;margin-bottom:18px}
+.t{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,13vw,72px);line-height:.95;letter-spacing:7px;color:#fff;margin-right:-7px;font-weight:400}
+.sb{font-family:'Noto Sans SC',sans-serif;font-size:10px;letter-spacing:5px;color:#666;margin-top:12px;font-weight:300}
+.sb .em{color:#888;font-family:'Bebas Neue',sans-serif;letter-spacing:4px;font-size:11px}
+
+.modes{display:flex;justify-content:center;margin:18px 0 0;border-top:1px solid #222;border-bottom:1px solid #222}
+.mb{flex:1;padding:13px 4px;background:transparent;color:#666;border:none;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:5px;border-right:1px solid #222;cursor:pointer}
 .mb:last-child{border-right:none}
-.mb.active{color:#fff;background:rgba(255,255,255,.03)}
-.stage-wrap{flex:1;display:flex;align-items:center;justify-content:center;position:relative;margin:6px 0;min-height:380px}
-.stage{width:100%;max-width:380px;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column}
-.prism-zone{position:relative;width:100%;height:140px;display:flex;align-items:center;justify-content:center}
-.triangle{position:absolute;width:0;height:0;left:50%;top:50%;transform:translate(-50%,-50%);border-left:42px solid transparent;border-right:42px solid transparent;border-bottom:72px solid rgba(255,255,255,.92);filter:drop-shadow(0 0 18px rgba(255,255,255,.18));z-index:5}
-.beam-in{position:absolute;left:0;top:50%;height:1.5px;width:42%;background:linear-gradient(to right,transparent,#fff);transform:translateY(-1px);z-index:3;box-shadow:0 0 6px #fff}
-.spectrum{position:absolute;left:50%;top:50%;width:50%;height:120px;z-index:2}
-.ray{position:absolute;left:0;top:50%;height:1.5px;width:100%;transform-origin:left center;opacity:.9}
-.ray.r1{background:linear-gradient(to right,transparent,#ff3344);transform:translateY(-1px) rotate(-22deg);box-shadow:0 0 10px #ff3344}
-.ray.r2{background:linear-gradient(to right,transparent,#ff8822);transform:translateY(-1px) rotate(-13deg);box-shadow:0 0 10px #ff8822}
-.ray.r3{background:linear-gradient(to right,transparent,#ffdd33);transform:translateY(-1px) rotate(-4deg);box-shadow:0 0 10px #ffdd33}
-.ray.r4{background:linear-gradient(to right,transparent,#22dd66);transform:translateY(-1px) rotate(5deg);box-shadow:0 0 10px #22dd66}
-.ray.r5{background:linear-gradient(to right,transparent,#33aaff);transform:translateY(-1px) rotate(14deg);box-shadow:0 0 10px #33aaff}
-.ray.r6{background:linear-gradient(to right,transparent,#aa44ff);transform:translateY(-1px) rotate(23deg);box-shadow:0 0 10px #aa44ff}
-.song-card{width:100%;text-align:center;padding:20px 16px 18px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.1);margin-top:8px}
-.cover{width:128px;height:128px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center}
+.mb.active{color:#fff;background:rgba(255,255,255,.04)}
+
+.filters{display:flex;gap:7px;overflow-x:auto;padding:14px 0 4px;-webkit-overflow-scrolling:touch}
+.filters::-webkit-scrollbar{display:none}
+.fp{flex:0 0 auto;padding:6px 14px;background:transparent;color:#888;border:1px solid #333;font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:1px;white-space:nowrap;font-weight:300;cursor:pointer}
+.fp.active{color:#000;background:#fff;border-color:#fff;font-weight:400}
+
+.prism-wrap{display:flex;justify-content:center;margin:24px 0 6px;position:relative}
+.prism-svg{width:100%;max-width:340px;height:110px}
+
+.stage-wrap{flex:1;display:flex;align-items:center;justify-content:center;position:relative;margin:6px 0;min-height:340px}
+.song-card{width:100%;border:1px solid #2a2a2a;padding:24px 18px 22px;text-align:center;background:rgba(0,0,0,.5)}
+.cover{width:148px;height:148px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center}
 .cover svg{width:100%;height:100%}
-.song-title{font-size:clamp(17px,5vw,22px);font-weight:500;color:#fff;letter-spacing:1px;margin-bottom:6px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 4px}
-.song-artist{font-size:10px;letter-spacing:4px;color:#bbb;text-transform:uppercase}
-.song-year{font-size:8px;letter-spacing:3px;color:#666;margin-top:5px}
+.song-title{font-family:'Noto Sans SC',sans-serif;font-weight:500;font-size:clamp(20px,5.5vw,26px);color:#fff;letter-spacing:1.5px;margin-bottom:8px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 4px}
+.song-artist{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:#bbb;text-transform:uppercase}
+.song-cn-artist{font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:2px;color:#888;font-weight:300;margin-top:3px}
+.song-year{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:3px;color:#666;margin-top:6px}
 .idle .song-title{color:#888;font-weight:300}
 .idle .cover{opacity:.5}
-.counter{position:absolute;top:-2px;right:4px;font-size:8px;letter-spacing:4px;color:#444;z-index:9}
-.filters{display:flex;gap:6px;overflow-x:auto;padding:10px 2px 4px;margin:0 -18px 6px;padding-left:18px;padding-right:18px;-webkit-overflow-scrolling:touch}
-.filters::-webkit-scrollbar{display:none}
-.fp{flex:0 0 auto;padding:6px 12px;background:transparent;color:#777;border:1px solid #333;font-size:10px;letter-spacing:2px;white-space:nowrap}
-.fp.active{color:#000;background:#fff;border-color:#fff}
-.cal-view{display:none;width:100%;text-align:center;padding:20px 8px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.1);margin-top:8px}
+
+.cal-view{display:none;width:100%;border:1px solid #2a2a2a;padding:28px 18px 24px;text-align:center;background:rgba(0,0,0,.5)}
 .cal-view.show{display:block}
-.cal-date{font-size:11px;letter-spacing:6px;color:#888;margin-bottom:18px}
-.cal-day{font-size:72px;font-weight:200;color:#fff;line-height:1;letter-spacing:-2px}
-.cal-month{font-size:11px;letter-spacing:5px;color:#888;margin:6px 0 24px}
-.cal-quote{font-family:'Times New Roman',serif;font-size:17px;line-height:1.75;color:#fff;font-style:italic;padding:0 6px;margin-bottom:18px;min-height:60px}
-.cal-quote::before,.cal-quote::after{content:'"';color:#666;font-size:24px}
-.cal-from{font-size:10px;letter-spacing:3px;color:#aaa;margin-bottom:4px}
-.cal-from-artist{font-size:9px;letter-spacing:4px;color:#666;text-transform:uppercase}
-.cl{display:flex;flex-direction:column;gap:9px;margin-top:10px}
-.sp{width:100%;padding:18px;background:transparent;color:#fff;border:1px solid #fff;font-size:18px;letter-spacing:12px;font-weight:300;text-indent:12px}
+.cal-date{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:6px;color:#888;margin-bottom:14px}
+.cal-day{font-family:'Bebas Neue',sans-serif;font-size:96px;color:#fff;line-height:.9;letter-spacing:-2px}
+.cal-month{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:6px;color:#888;margin:8px 0 28px}
+.cal-quote{font-family:'Noto Sans SC',sans-serif;font-size:17px;line-height:1.8;color:#fff;font-weight:400;letter-spacing:1px;padding:0 6px;margin-bottom:24px;min-height:60px;position:relative}
+.cal-quote::before{content:'"';color:#dc2626;font-size:36px;font-family:Georgia,serif;position:absolute;left:-8px;top:-12px;line-height:1}
+.cal-quote::after{content:'"';color:#dc2626;font-size:36px;font-family:Georgia,serif;margin-left:4px;line-height:1}
+.cal-from{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:#bbb;margin-bottom:4px}
+.cal-from-cn{font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:2px;color:#888;font-weight:300}
+
+.cl{display:flex;flex-direction:column;gap:9px;margin-top:16px}
+.sp{width:100%;padding:20px;background:transparent;color:#fff;border:1px solid #fff;font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:14px;text-indent:14px;cursor:pointer;transition:all .15s}
 .sp:active{color:#000;background:#fff}
 .sp:disabled{color:#444;border-color:#333}
 .ar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.ab{padding:12px 4px;background:transparent;color:#aaa;border:1px solid #444;font-size:10px;letter-spacing:2px}
+.ab{padding:13px 4px;background:transparent;color:#aaa;border:1px solid #3a3a3a;font-family:'Noto Sans SC',sans-serif;font-size:12px;letter-spacing:2px;cursor:pointer;font-weight:300}
 .ab:active{background:#fff;color:#000;border-color:#fff}
 .ab:disabled{color:#333;border-color:#222}
-.lm{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+
+.lm{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px)}
 .lm.s{display:flex}
-.lc{width:100%;max-width:420px;background:#0a0a0a;border:1px solid rgba(255,255,255,.2);padding:36px 22px 26px;position:relative;text-align:center}
-.lx{position:absolute;top:8px;right:14px;background:none;border:none;color:#fff;font-size:30px;font-weight:200;line-height:1}
-.lt{font-family:'Times New Roman',serif;font-size:24px;color:#fff;margin-bottom:6px}
-.la{font-size:10px;letter-spacing:5px;color:#888;margin-bottom:22px;text-transform:uppercase}
+.lc{width:100%;max-width:420px;background:#0a0a0a;border:1px solid #333;padding:36px 22px 26px;position:relative;text-align:center}
+.lx{position:absolute;top:8px;right:14px;background:none;border:none;color:#fff;font-size:30px;line-height:1;cursor:pointer}
+.lt{font-family:'Noto Sans SC',sans-serif;font-size:22px;font-weight:500;color:#fff;margin-bottom:6px}
+.la{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:5px;color:#888;margin-bottom:22px}
 .lr{font-size:13px;line-height:2;white-space:pre-line;color:#aaa;letter-spacing:1px}
+
 .sm{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:300;display:none;align-items:center;justify-content:center;padding:20px;flex-direction:column}
 .sm.s{display:flex}
-.sm canvas{max-width:100%;max-height:70vh;border:1px solid #333}
-.sm-hint{margin-top:14px;color:#888;font-size:11px;letter-spacing:2px;text-align:center;line-height:1.6}
-.sm-close{position:absolute;top:16px;right:16px;background:none;border:1px solid #444;color:#fff;width:36px;height:36px;font-size:22px}
-.ft{text-align:center;margin-top:14px;font-size:8px;letter-spacing:8px;color:#333}
-@keyframes glow{0%,100%{filter:drop-shadow(0 0 14px rgba(255,255,255,.12))}50%{filter:drop-shadow(0 0 22px rgba(255,255,255,.28))}}
-.triangle{animation:glow 4s ease-in-out infinite}
-@keyframes sp-pulse{0%,100%{opacity:.9}50%{opacity:1}}
-.spinning .ray,.spinning .beam-in{animation:sp-pulse .15s infinite}
+.sm canvas{max-width:100%;max-height:72vh;border:1px solid #333}
+.sm-hint{margin-top:14px;color:#888;font-family:'Noto Sans SC',sans-serif;font-size:12px;letter-spacing:2px;text-align:center;line-height:1.8;font-weight:300}
+.sm-close{position:absolute;top:16px;right:16px;background:none;border:1px solid #444;color:#fff;width:36px;height:36px;font-size:22px;cursor:pointer}
+
+.ft{text-align:center;margin-top:18px;font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:6px;color:#444}
+
+@keyframes pulse{0%,100%{opacity:.92}50%{opacity:1}}
+.spinning .ray,.spinning .beam{animation:pulse .15s infinite}
 @keyframes spin-cover{0%{transform:rotate(0) scale(.9);opacity:.3}100%{transform:rotate(360deg) scale(1);opacity:1}}
 .cover.reveal{animation:spin-cover .6s ease-out}
 @keyframes fade-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .song-card.reveal,.cal-view.reveal{animation:fade-in .5s ease-out}
+
+@media (min-width:768px){
+.c{max-width:520px;padding-top:60px}
+.prism-svg{max-width:380px;height:130px}
+.t{font-size:88px;letter-spacing:10px;margin-right:-10px}
+}
 </style></head>
 <body>
-<div class="stars"></div>
 <div class="c">
-<header class="h"><span class="tag">— 33⅓ RPM · SIDE B —</span><h1 class="t">OFFBEAT</h1><p class="sb">日 常 出 逃 · REST &amp; RESET</p></header>
-<div class="modes"><button class="mb active" data-mode="roulette">轮 盘</button><button class="mb" data-mode="calendar">每 日</button></div>
+
+<header class="h">
+<span class="tag">— 33 1/3 RPM · SIDE B —</span>
+<h1 class="t">OFFBEAT</h1>
+<p class="sb">日 常 出 逃 &nbsp;·&nbsp; <span class="em">REST &amp; RESET</span></p>
+</header>
+
+<div class="modes">
+<button class="mb active" data-mode="roulette">轮 盘</button>
+<button class="mb" data-mode="calendar">每 日</button>
+</div>
 
 <div class="filters" id="filters">
 <button class="fp active" data-pool="all">全部</button>
@@ -95,33 +113,58 @@ body{background:#000;color:#e8e8e8;font-family:-apple-system,'Helvetica Neue',sa
 <button class="fp" data-pool="rock_west">西方摇滚</button>
 </div>
 
-<div class="stage-wrap"><div class="stage">
-
-<div id="rouletteView">
-<div class="prism-zone">
-<div class="counter" id="cn">000 / 000</div>
-<div class="beam-in"></div>
-<div class="spectrum"><div class="ray r1"></div><div class="ray r2"></div><div class="ray r3"></div><div class="ray r4"></div><div class="ray r5"></div><div class="ray r6"></div></div>
-<div class="triangle"></div>
+<div class="prism-wrap">
+<svg class="prism-svg" viewBox="0 0 340 110" preserveAspectRatio="xMidYMid meet">
+<defs>
+<linearGradient id="beamG" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+<stop offset="100%" stop-color="#fff" stop-opacity="1"/>
+</linearGradient>
+<linearGradient id="rainbow" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" stop-color="#ff3344"/>
+<stop offset="18%" stop-color="#ff8822"/>
+<stop offset="36%" stop-color="#ffdd33"/>
+<stop offset="56%" stop-color="#22dd66"/>
+<stop offset="76%" stop-color="#33aaff"/>
+<stop offset="100%" stop-color="#aa44ff"/>
+</linearGradient>
+<filter id="softblur" x="-20%" y="-20%" width="140%" height="140%">
+<feGaussianBlur stdDeviation="0.8"/>
+</filter>
+</defs>
+<g class="beam">
+<line x1="0" y1="55" x2="148" y2="55" stroke="url(#beamG)" stroke-width="2.5" filter="url(#softblur)"/>
+<line x1="0" y1="55" x2="148" y2="55" stroke="#fff" stroke-width="1.2"/>
+</g>
+<g class="ray" filter="url(#softblur)">
+<path d="M 164,55 L 340,5 L 340,90 Z" fill="url(#rainbow)" opacity="0.95"/>
+</g>
+<polygon points="170,18 200,82 140,82" fill="#0f0f0f" stroke="#fff" stroke-width="1.8"/>
+<line x1="148" y1="55" x2="172" y2="55" stroke="#fff" stroke-width="0.6" opacity="0.5"/>
+</svg>
 </div>
+
+<div class="stage-wrap">
+<div id="rouletteView" style="width:100%">
 <div class="song-card idle" id="card">
-<div class="cover" id="cover"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="#fff" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="4" fill="#fff" opacity="0.4"/></svg></div>
+<div class="cover" id="cover">
+<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#000"/><circle cx="50" cy="50" r="40" fill="none" stroke="#fff" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="4" fill="#fff" opacity="0.4"/></svg>
+</div>
 <div class="song-title" id="title">准备就绪</div>
 <div class="song-artist" id="artist">PRESS SPIN</div>
+<div class="song-cn-artist" id="artistCN">&nbsp;</div>
 <div class="song-year" id="year">&nbsp;</div>
 </div>
 </div>
-
 <div class="cal-view" id="calView">
 <div class="cal-date" id="calDate"></div>
 <div class="cal-day" id="calDay">--</div>
 <div class="cal-month" id="calMonth">---</div>
 <div class="cal-quote" id="calQuote">—</div>
 <div class="cal-from" id="calFrom">—</div>
-<div class="cal-from-artist" id="calFromArtist">—</div>
+<div class="cal-from-cn" id="calFromCN">—</div>
 </div>
-
-</div></div>
+</div>
 
 <div class="cl">
 <button class="sp" id="sb">SPIN</button>
@@ -136,7 +179,7 @@ body{background:#000;color:#e8e8e8;font-family:-apple-system,'Helvetica Neue',sa
 </div>
 
 <div class="lm" id="lm"><div class="lc"><button class="lx" id="lx">×</button><div class="lt" id="mt"></div><div class="la" id="ma"></div><div class="lr" id="mr"></div></div></div>
-<div class="sm" id="sm"><button class="sm-close" id="smClose">×</button><canvas id="shareCanvas" width="720" height="1080"></canvas><div class="sm-hint">长按图片保存 / 转发<br>OFFBEAT · 日常出逃</div></div>
+<div class="sm" id="sm"><button class="sm-close" id="smClose">×</button><canvas id="shareCanvas" width="720" height="1080"></canvas><div class="sm-hint">长按图片保存 / 转发<br>OFFBEAT · 日 常 出 逃</div></div>
 
 <script>
 const S=[
@@ -219,7 +262,7 @@ const S=[
 ["Stairway to Heaven","Led Zeppelin",1971,"rock_west"],["Whole Lotta Love","Led Zeppelin",1969,"rock_west"],["Kashmir","Led Zeppelin",1975,"rock_west"],["Black Dog","Led Zeppelin",1971,"rock_west"],["Immigrant Song","Led Zeppelin",1970,"rock_west"],
 ["Hotel California","Eagles",1976,"rock_west"],["Take It Easy","Eagles",1972,"rock_west"],["Desperado","Eagles",1973,"rock_west"],
 ["Time","Pink Floyd",1973,"rock_west"],["Money","Pink Floyd",1973,"rock_west"],["Wish You Were Here","Pink Floyd",1975,"rock_west"],["Comfortably Numb","Pink Floyd",1979,"rock_west"],["Another Brick in the Wall","Pink Floyd",1979,"rock_west"],["The Great Gig in the Sky","Pink Floyd",1973,"rock_west"],["Shine On You Crazy Diamond","Pink Floyd",1975,"rock_west"],["Breathe","Pink Floyd",1973,"rock_west"],
-["Smells Like Teen Spirit","Nirvana",1991,"rock_west"],["Come As You Are","Nirvana",1991,"rock_west"],["Lithium","Nirvana",1991,"rock_west"],["Heart-Shaped Box","Nirvana",1993,"rock_west"],["Where Did You Sleep Last Night","Nirvana",1994,"rock_west"],
+["Smells Like Teen Spirit","Nirvana",1991,"rock_west"],["Come As You Are","Nirvana",1991,"rock_west"],["Lithium","Nirvana",1991,"rock_west"],["Heart-Shaped Box","Nirvana",1993,"rock_west"],
 ["Sweet Child O' Mine","Guns N' Roses",1987,"rock_west"],["November Rain","Guns N' Roses",1991,"rock_west"],["Welcome to the Jungle","Guns N' Roses",1987,"rock_west"],["Paradise City","Guns N' Roses",1987,"rock_west"],
 ["Enter Sandman","Metallica",1991,"rock_west"],["Nothing Else Matters","Metallica",1991,"rock_west"],["Master of Puppets","Metallica",1986,"rock_west"],["One","Metallica",1988,"rock_west"],
 ["Like a Rolling Stone","Bob Dylan",1965,"rock_west"],["Blowin' in the Wind","Bob Dylan",1963,"rock_west"],["The Times They Are a-Changin'","Bob Dylan",1964,"rock_west"],["Knockin' on Heaven's Door","Bob Dylan",1973,"rock_west"],
@@ -481,28 +524,32 @@ const Q=[
 let pool='all',curPoolSongs=S,cur=null,sp=false,mode='roulette';
 function applyPool(){curPoolSongs=pool==='all'?S:S.filter(s=>s[3]===pool);if(curPoolSongs.length===0)curPoolSongs=S;}
 function hash(s){let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return Math.abs(h);}
-const COLORS=['#ff3344','#ff8822','#ffdd33','#22dd66','#33aaff','#aa44ff','#ee44aa','#22ddcc'];
-function genCover(t,a){
-const h1=hash(a),h2=hash(t),c1=COLORS[h1%8],c2=COLORS[(h1+3)%8],v=(h1+h2)%6;
+const COL=['#ff3344','#ff8822','#ffdd33','#22dd66','#33aaff','#aa44ff'];
+
+function gen(t,a){
+const h1=hash(a),h2=hash(t),c1=COL[h1%6],c2=COL[(h1+3)%6],v=(h1+h2)%6;
 let i='';
-if(v===0)i=`<polygon points="50,18 78,72 22,72" fill="none" stroke="${c1}" stroke-width="1.2"/><line x1="10" y1="50" x2="50" y2="50" stroke="#fff" stroke-width="0.8"/><line x1="60" y1="50" x2="90" y2="38" stroke="${c1}" stroke-width="0.8"/><line x1="60" y1="50" x2="92" y2="50" stroke="${c2}" stroke-width="0.8"/><line x1="60" y1="50" x2="90" y2="62" stroke="${COLORS[(h1+5)%8]}" stroke-width="0.8"/>`;
-else if(v===1)i=`<circle cx="50" cy="50" r="38" fill="none" stroke="${c1}" stroke-width="0.6"/><circle cx="50" cy="50" r="30" fill="none" stroke="${c2}" stroke-width="0.6"/><circle cx="50" cy="50" r="22" fill="none" stroke="${c1}" stroke-width="0.6" opacity="0.7"/><circle cx="50" cy="50" r="14" fill="${c2}" opacity="0.3"/><circle cx="50" cy="50" r="3" fill="${c1}"/>`;
-else if(v===2)i=`<circle cx="50" cy="50" r="32" fill="none" stroke="#fff" stroke-width="0.8" opacity="0.3"/><circle cx="50" cy="50" r="32" fill="${c1}" opacity="0.15"/><path d="M 50 18 A 32 32 0 0 1 50 82 A 22 32 0 0 0 50 18" fill="${c1}" opacity="0.6"/>`;
-else if(v===3)i=`<line x1="20" y1="50" x2="80" y2="50" stroke="${c1}" stroke-width="0.5" opacity="0.6"/><line x1="50" y1="20" x2="50" y2="80" stroke="${c1}" stroke-width="0.5" opacity="0.6"/><line x1="28" y1="28" x2="72" y2="72" stroke="${c2}" stroke-width="0.5" opacity="0.4"/><line x1="28" y1="72" x2="72" y2="28" stroke="${c2}" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="6" fill="${c1}"/><circle cx="30" cy="30" r="1.5" fill="#fff"/><circle cx="70" cy="30" r="1.5" fill="#fff"/><circle cx="30" cy="70" r="1.5" fill="#fff"/><circle cx="70" cy="70" r="1.5" fill="#fff"/>`;
-else if(v===4)i=`<path d="M 15 50 Q 25 ${30+h2%20}, 35 50 T 55 50 T 75 50 T 95 50" fill="none" stroke="${c1}" stroke-width="1"/><path d="M 15 60 Q 25 ${40+h2%15}, 35 60 T 55 60 T 75 60 T 95 60" fill="none" stroke="${c2}" stroke-width="0.8" opacity="0.7"/><path d="M 15 40 Q 25 ${20+h2%15}, 35 40 T 55 40 T 75 40 T 95 40" fill="none" stroke="${c2}" stroke-width="0.8" opacity="0.7"/>`;
-else i=`<rect x="25" y="25" width="50" height="50" fill="none" stroke="${c1}" stroke-width="0.8" transform="rotate(${h2%45} 50 50)"/><rect x="32" y="32" width="36" height="36" fill="none" stroke="${c2}" stroke-width="0.8" transform="rotate(${-(h2%30)} 50 50)"/><circle cx="50" cy="50" r="6" fill="${c1}"/>`;
-return `<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#000"/>${i}</svg>`;
+if(v===0)i=`<polygon points="50,20 76,72 24,72" fill="none" stroke="${c1}" stroke-width="1"/><line x1="12" y1="50" x2="50" y2="50" stroke="#fff" stroke-width="0.8"/><line x1="60" y1="50" x2="90" y2="38" stroke="${c1}" stroke-width="0.8"/><line x1="60" y1="50" x2="92" y2="50" stroke="${c2}" stroke-width="0.8"/><line x1="60" y1="50" x2="90" y2="62" stroke="${COL[(h1+5)%6]}" stroke-width="0.8"/>`;
+else if(v===1){let r='';for(let k=0;k<5;k++){r+=`<circle cx="50" cy="50" r="${38-k*7}" fill="none" stroke="${c1}" stroke-width="0.5" opacity="${0.9-k*0.12}"/>`;}r+=`<circle cx="50" cy="50" r="3" fill="${c2}"/>`;i=r;}
+else if(v===2)i=`<circle cx="50" cy="50" r="32" fill="none" stroke="#fff" stroke-width="0.6" opacity="0.4"/><path d="M 50 18 A 32 32 0 0 1 50 82 A ${20+h2%12} 32 0 0 0 50 18" fill="${c1}" opacity="0.7"/>`;
+else if(v===3)i=`<line x1="18" y1="50" x2="82" y2="50" stroke="${c1}" stroke-width="0.5" opacity="0.6"/><line x1="50" y1="18" x2="50" y2="82" stroke="${c1}" stroke-width="0.5" opacity="0.6"/><line x1="28" y1="28" x2="72" y2="72" stroke="${c2}" stroke-width="0.5" opacity="0.4"/><line x1="28" y1="72" x2="72" y2="28" stroke="${c2}" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="5" fill="${c1}"/><circle cx="30" cy="30" r="1.2" fill="#fff"/><circle cx="70" cy="30" r="1.2" fill="#fff"/><circle cx="30" cy="70" r="1.2" fill="#fff"/><circle cx="70" cy="70" r="1.2" fill="#fff"/>`;
+else if(v===4){let p1='M 15 50',p2='M 15 60',p3='M 15 40';for(let x=15;x<=95;x+=5){let y1=50+8*Math.sin((x+h2%20)/6);let y2=60+5*Math.sin((x+h2%15)/5+1);let y3=40+5*Math.sin((x+h2%15)/5+2);p1+=` L ${x} ${y1}`;p2+=` L ${x} ${y2}`;p3+=` L ${x} ${y3}`;}i=`<path d="${p1}" fill="none" stroke="${c1}" stroke-width="0.8"/><path d="${p2}" fill="none" stroke="${c2}" stroke-width="0.6" opacity="0.7"/><path d="${p3}" fill="none" stroke="${c2}" stroke-width="0.6" opacity="0.7"/>`;}
+else i=`<rect x="28" y="28" width="44" height="44" fill="none" stroke="${c1}" stroke-width="0.8" transform="rotate(${h2%45} 50 50)"/><rect x="34" y="34" width="32" height="32" fill="none" stroke="${c2}" stroke-width="0.8" transform="rotate(${-(h2%30)} 50 50)"/><circle cx="50" cy="50" r="5" fill="${c1}"/>`;
+return `<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#000"/>${i}<rect x="0" y="0" width="100" height="100" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/></svg>`;
 }
 
 const $=id=>document.getElementById(id);
-const cn=$('cn'),sb=$('sb'),nb=$('nb'),lb=$('lb'),shb=$('shb'),lm=$('lm'),lx=$('lx'),mt=$('mt'),ma=$('ma'),mr=$('mr'),card=$('card'),cover=$('cover'),title=$('title'),artist=$('artist'),year=$('year'),rv=$('rouletteView'),cv=$('calView'),sm=$('sm'),smClose=$('smClose'),shareCanvas=$('shareCanvas');
+const cn=$('cn'),sb=$('sb'),nb=$('nb'),lb=$('lb'),shb=$('shb'),lm=$('lm'),lx=$('lx'),mt=$('mt'),ma=$('ma'),mr=$('mr'),card=$('card'),cover=$('cover'),title=$('title'),artist=$('artist'),artistCN=$('artistCN'),year=$('year'),rv=$('rouletteView'),cv=$('calView'),sm=$('sm'),smClose=$('smClose'),shareCanvas=$('shareCanvas');
 
 applyPool();
-cn.textContent='000 / '+String(curPoolSongs.length).padStart(3,'0');
 
 function showSong(s){
-cover.innerHTML=genCover(s[0],s[1]);
-title.textContent=s[0];artist.textContent=s[1];year.textContent=s[2];
+cover.innerHTML=gen(s[0],s[1]);
+title.textContent=s[0];
+const hasEN=/^[\x00-\x7F\s'.,&!?-]+$/.test(s[1]);
+artist.textContent=hasEN?s[1].toUpperCase():s[1].toUpperCase();
+artistCN.textContent=hasEN?'':s[1];
+year.textContent=s[2];
 card.classList.remove('idle');card.classList.remove('reveal');cover.classList.remove('reveal');
 void card.offsetWidth;
 card.classList.add('reveal');cover.classList.add('reveal');
@@ -511,33 +558,29 @@ card.classList.add('reveal');cover.classList.add('reveal');
 function spin(){
 if(sp)return;
 sp=true;sb.disabled=true;nb.disabled=true;lb.disabled=true;shb.disabled=true;
-document.querySelector('.prism-zone').classList.add('spinning');
 const fi=Math.floor(Math.random()*curPoolSongs.length);
 cur=curPoolSongs[fi];
 let elapsed=0;
 const t1=setInterval(()=>{
 elapsed+=80;
 const ri=Math.floor(Math.random()*curPoolSongs.length),rs=curPoolSongs[ri];
-cover.innerHTML=genCover(rs[0],rs[1]);
-title.textContent=rs[0];artist.textContent=rs[1];year.textContent=rs[2];
+cover.innerHTML=gen(rs[0],rs[1]);
+title.textContent=rs[0];artist.textContent=rs[1].toUpperCase();artistCN.textContent=rs[1];year.textContent=rs[2];
 card.classList.remove('idle');
-cn.textContent=String(ri+1).padStart(3,'0')+' / '+String(curPoolSongs.length).padStart(3,'0');
 if(elapsed>=3000){
 clearInterval(t1);
-cn.textContent=String(fi+1).padStart(3,'0')+' / '+String(curPoolSongs.length).padStart(3,'0');
 let slow=0;
 const t2=setInterval(()=>{
 slow++;
 if(slow<=4){
 const ri2=Math.floor(Math.random()*curPoolSongs.length),rs2=curPoolSongs[ri2];
-cover.innerHTML=genCover(rs2[0],rs2[1]);
-title.textContent=rs2[0];artist.textContent=rs2[1];year.textContent=rs2[2];
+cover.innerHTML=gen(rs2[0],rs2[1]);
+title.textContent=rs2[0];artist.textContent=rs2[1].toUpperCase();artistCN.textContent=rs2[1];year.textContent=rs2[2];
 }else{
 clearInterval(t2);
 showSong(cur);
 sp=false;sb.disabled=false;sb.textContent='SPIN AGAIN';
 nb.disabled=false;lb.disabled=false;shb.disabled=false;
-document.querySelector('.prism-zone').classList.remove('spinning');
 if(navigator.vibrate)navigator.vibrate([20,40,80]);
 }
 },180+slow*80);
@@ -558,31 +601,26 @@ document.querySelectorAll('.fp').forEach(x=>x.classList.remove('active'));
 b.classList.add('active');
 pool=b.dataset.pool;
 applyPool();
-cn.textContent='000 / '+String(curPoolSongs.length).padStart(3,'0');
 }));
 
 function loadCalendar(){
 const d=new Date();
 const days=['SUN','MON','TUE','WED','THU','FRI','SAT'];
 const months=['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
-$('calDate').textContent=days[d.getDay()]+' · '+d.getFullYear();
+$('calDate').textContent=days[d.getDay()]+'  ·  '+d.getFullYear();
 $('calDay').textContent=String(d.getDate()).padStart(2,'0');
 $('calMonth').textContent=months[d.getMonth()];
 const start=new Date(d.getFullYear(),0,0);
-const diff=d-start;
-const doy=Math.floor(diff/(1000*60*60*24));
+const doy=Math.floor((d-start)/(1000*60*60*24));
 const q=Q[doy%Q.length];
 $('calQuote').textContent=q[0];
-$('calFrom').textContent='《'+q[1]+'》';
-$('calFromArtist').textContent=q[2];
+$('calFrom').textContent=q[2].toUpperCase();
+$('calFromCN').textContent='《'+q[1]+'》 — '+q[2];
 cur=[q[1],q[2],d.getFullYear(),'rock_cn'];
 nb.disabled=false;lb.disabled=false;shb.disabled=false;
 }
 
-sb.addEventListener('click',()=>{
-if(mode==='roulette')spin();
-else loadCalendar();
-});
+sb.addEventListener('click',()=>{if(mode==='roulette')spin();else loadCalendar();});
 
 nb.addEventListener('click',()=>{if(!cur)return;window.open('https://music.163.com/#/search/m/?s='+encodeURIComponent(cur[0]+' '+cur[1])+'&type=1','_blank');});
 lb.addEventListener('click',()=>{if(!cur)return;mt.textContent=cur[0];ma.textContent=cur[1]+' · '+cur[2];mr.textContent='《'+cur[0]+'》 — '+cur[1]+'\n\n点击"网易云"听完整版本';lm.classList.add('s');});
@@ -594,79 +632,45 @@ if(!cur)return;
 const ctx=shareCanvas.getContext('2d');
 const W=720,H=1080;
 ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
-for(let i=0;i<80;i++){ctx.fillStyle='rgba(255,255,255,'+(Math.random()*0.6+0.2)+')';ctx.fillRect(Math.random()*W,Math.random()*H,1.5,1.5);}
-ctx.fillStyle='#666';ctx.font='300 18px -apple-system,sans-serif';ctx.textAlign='center';
-ctx.fillText('— 33⅓ RPM · SIDE B —',W/2,80);
-ctx.fillStyle='#fff';ctx.font='200 70px -apple-system,sans-serif';
-ctx.fillText('OFFBEAT',W/2,160);
-ctx.fillStyle='#555';ctx.font='300 16px -apple-system,sans-serif';
-ctx.fillText('日 常 出 逃 · REST & RESET',W/2,200);
-const px=W/2,py=380;
-ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.shadowBlur=10;ctx.shadowColor='#fff';
-ctx.beginPath();ctx.moveTo(px-200,py);ctx.lineTo(px-50,py);ctx.stroke();ctx.shadowBlur=0;
-ctx.strokeStyle='rgba(255,255,255,0.9)';ctx.fillStyle='rgba(255,255,255,0.05)';ctx.lineWidth=2;
-ctx.beginPath();ctx.moveTo(px,py-60);ctx.lineTo(px+50,py+40);ctx.lineTo(px-50,py+40);ctx.closePath();ctx.fill();ctx.stroke();
-const rayColors=['#ff3344','#ff8822','#ffdd33','#22dd66','#33aaff','#aa44ff'];
-const rayAngles=[-22,-13,-4,5,14,23];
-ctx.lineWidth=2.5;
-rayColors.forEach((c,idx)=>{
-ctx.strokeStyle=c;ctx.shadowBlur=12;ctx.shadowColor=c;
-const a=rayAngles[idx]*Math.PI/180;
-ctx.beginPath();ctx.moveTo(px+30,py);
-ctx.lineTo(px+30+220*Math.cos(a),py+220*Math.sin(a));ctx.stroke();
-});
-ctx.shadowBlur=0;
-const coverSize=200,cx=W/2-coverSize/2,cy=640;
-ctx.fillStyle='#000';ctx.fillRect(cx,cy,coverSize,coverSize);
-ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.lineWidth=1;ctx.strokeRect(cx,cy,coverSize,coverSize);
-const h1=hash(cur[1]),h2=hash(cur[0]),c1=COLORS[h1%8],c2=COLORS[(h1+3)%8],v=(h1+h2)%6;
-ctx.save();ctx.translate(cx,cy);ctx.scale(coverSize/100,coverSize/100);
-if(v===0){
-ctx.strokeStyle=c1;ctx.lineWidth=1.2;
-ctx.beginPath();ctx.moveTo(50,18);ctx.lineTo(78,72);ctx.lineTo(22,72);ctx.closePath();ctx.stroke();
-ctx.strokeStyle='#fff';ctx.beginPath();ctx.moveTo(10,50);ctx.lineTo(50,50);ctx.stroke();
-ctx.strokeStyle=c1;ctx.beginPath();ctx.moveTo(60,50);ctx.lineTo(90,38);ctx.stroke();
-ctx.strokeStyle=c2;ctx.beginPath();ctx.moveTo(60,50);ctx.lineTo(92,50);ctx.stroke();
-}else if(v===1){
-ctx.strokeStyle=c1;ctx.lineWidth=0.6;
-[38,30,22].forEach(r=>{ctx.beginPath();ctx.arc(50,50,r,0,Math.PI*2);ctx.stroke();});
-ctx.fillStyle=c1;ctx.beginPath();ctx.arc(50,50,3,0,Math.PI*2);ctx.fill();
-}else if(v===2){
-ctx.strokeStyle='#fff';ctx.globalAlpha=0.3;ctx.lineWidth=0.8;
-ctx.beginPath();ctx.arc(50,50,32,0,Math.PI*2);ctx.stroke();
-ctx.globalAlpha=0.6;ctx.fillStyle=c1;
-ctx.beginPath();ctx.arc(50,50,30,-Math.PI/2,Math.PI/2);ctx.fill();
-ctx.globalAlpha=1;
-}else if(v===3){
-ctx.strokeStyle=c1;ctx.lineWidth=0.5;ctx.globalAlpha=0.6;
-ctx.beginPath();ctx.moveTo(20,50);ctx.lineTo(80,50);ctx.stroke();
-ctx.beginPath();ctx.moveTo(50,20);ctx.lineTo(50,80);ctx.stroke();
-ctx.strokeStyle=c2;ctx.globalAlpha=0.4;
-ctx.beginPath();ctx.moveTo(28,28);ctx.lineTo(72,72);ctx.stroke();
-ctx.beginPath();ctx.moveTo(28,72);ctx.lineTo(72,28);ctx.stroke();
-ctx.fillStyle=c1;ctx.globalAlpha=1;
-ctx.beginPath();ctx.arc(50,50,6,0,Math.PI*2);ctx.fill();
-}else if(v===4){
-ctx.strokeStyle=c1;ctx.lineWidth=1;
-ctx.beginPath();ctx.moveTo(15,50);
-for(let x=15;x<=95;x+=10)ctx.quadraticCurveTo(x+5,30+h2%20,x+10,50);
-ctx.stroke();
-}else{
-ctx.strokeStyle=c1;ctx.lineWidth=0.8;
-ctx.save();ctx.translate(50,50);ctx.rotate((h2%45)*Math.PI/180);
-ctx.strokeRect(-25,-25,50,50);ctx.restore();
-ctx.fillStyle=c1;ctx.beginPath();ctx.arc(50,50,6,0,Math.PI*2);ctx.fill();
-}
+ctx.fillStyle='#666';ctx.font='300 16px sans-serif';ctx.textAlign='center';
+ctx.fillText('— 33 1/3 RPM · SIDE B —',W/2,70);
+ctx.fillStyle='#fff';ctx.font='400 72px "Bebas Neue", Impact, sans-serif';
+ctx.fillText('O F F B E A T',W/2,150);
+ctx.fillStyle='#666';ctx.font='300 14px sans-serif';
+ctx.fillText('日 常 出 逃  ·  REST & RESET',W/2,180);
+const px=W/2,py=320;
+ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.shadowBlur=8;ctx.shadowColor='#fff';
+ctx.beginPath();ctx.moveTo(px-200,py);ctx.lineTo(px-45,py);ctx.stroke();ctx.shadowBlur=0;
+const rg=ctx.createLinearGradient(0,py-55,0,py+55);
+rg.addColorStop(0,'#ff3344');rg.addColorStop(0.18,'#ff8822');rg.addColorStop(0.36,'#ffdd33');rg.addColorStop(0.56,'#22dd66');rg.addColorStop(0.76,'#33aaff');rg.addColorStop(1,'#aa44ff');
+ctx.fillStyle=rg;
+ctx.beginPath();ctx.moveTo(px+30,py);ctx.lineTo(W,py-55);ctx.lineTo(W,py+55);ctx.closePath();ctx.fill();
+ctx.fillStyle='#0f0f0f';ctx.strokeStyle='#fff';ctx.lineWidth=2.5;
+ctx.beginPath();ctx.moveTo(px,py-50);ctx.lineTo(px+30,py+30);ctx.lineTo(px-30,py+30);ctx.closePath();
+ctx.fill();ctx.stroke();
+const cs=200,cx=W/2-cs/2,cy=460;
+ctx.fillStyle='#000';ctx.fillRect(cx,cy,cs,cs);
+ctx.strokeStyle='rgba(255,255,255,0.2)';ctx.lineWidth=1;ctx.strokeRect(cx,cy,cs,cs);
+const h1=hash(cur[1]),h2=hash(cur[0]),c1=COL[h1%6],c2=COL[(h1+3)%6],v=(h1+h2)%6;
+ctx.save();ctx.translate(cx,cy);ctx.scale(cs/100,cs/100);
+if(v===0){ctx.strokeStyle=c1;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(50,20);ctx.lineTo(76,72);ctx.lineTo(24,72);ctx.closePath();ctx.stroke();ctx.strokeStyle='#fff';ctx.beginPath();ctx.moveTo(12,50);ctx.lineTo(50,50);ctx.stroke();ctx.strokeStyle=c1;ctx.beginPath();ctx.moveTo(60,50);ctx.lineTo(90,38);ctx.stroke();ctx.strokeStyle=c2;ctx.beginPath();ctx.moveTo(60,50);ctx.lineTo(92,50);ctx.stroke();}
+else if(v===1){for(let k=0;k<5;k++){ctx.strokeStyle=c1;ctx.globalAlpha=0.9-k*0.12;ctx.lineWidth=0.5;ctx.beginPath();ctx.arc(50,50,38-k*7,0,Math.PI*2);ctx.stroke();}ctx.globalAlpha=1;ctx.fillStyle=c2;ctx.beginPath();ctx.arc(50,50,3,0,Math.PI*2);ctx.fill();}
+else if(v===2){ctx.strokeStyle='#fff';ctx.globalAlpha=0.4;ctx.lineWidth=0.6;ctx.beginPath();ctx.arc(50,50,32,0,Math.PI*2);ctx.stroke();ctx.globalAlpha=0.7;ctx.fillStyle=c1;ctx.beginPath();ctx.arc(50,50,30,-Math.PI/2,Math.PI/2);ctx.fill();ctx.globalAlpha=1;}
+else if(v===3){ctx.strokeStyle=c1;ctx.lineWidth=0.5;ctx.globalAlpha=0.6;ctx.beginPath();ctx.moveTo(18,50);ctx.lineTo(82,50);ctx.stroke();ctx.beginPath();ctx.moveTo(50,18);ctx.lineTo(50,82);ctx.stroke();ctx.strokeStyle=c2;ctx.globalAlpha=0.4;ctx.beginPath();ctx.moveTo(28,28);ctx.lineTo(72,72);ctx.stroke();ctx.beginPath();ctx.moveTo(28,72);ctx.lineTo(72,28);ctx.stroke();ctx.fillStyle=c1;ctx.globalAlpha=1;ctx.beginPath();ctx.arc(50,50,5,0,Math.PI*2);ctx.fill();}
+else if(v===4){ctx.strokeStyle=c1;ctx.lineWidth=0.8;ctx.beginPath();ctx.moveTo(15,50);for(let x=15;x<=95;x+=5)ctx.lineTo(x,50+8*Math.sin((x+h2%20)/6));ctx.stroke();}
+else{ctx.strokeStyle=c1;ctx.lineWidth=0.8;ctx.save();ctx.translate(50,50);ctx.rotate((h2%45)*Math.PI/180);ctx.strokeRect(-22,-22,44,44);ctx.restore();ctx.fillStyle=c1;ctx.beginPath();ctx.arc(50,50,5,0,Math.PI*2);ctx.fill();}
 ctx.restore();
-ctx.fillStyle='#fff';ctx.font='500 42px -apple-system,sans-serif';ctx.textAlign='center';
-let titleText=cur[0];if(titleText.length>16)titleText=titleText.slice(0,15)+'…';
-ctx.fillText(titleText,W/2,910);
-ctx.fillStyle='#bbb';ctx.font='300 22px -apple-system,sans-serif';
-ctx.fillText('— '+cur[1]+' · '+cur[2]+' —',W/2,950);
-ctx.fillStyle='#444';ctx.font='300 16px -apple-system,sans-serif';
-ctx.fillText('OFFBEAT · 日常出逃公众号',W/2,1020);
-ctx.fillStyle='#333';ctx.font='300 12px -apple-system,sans-serif';
-ctx.fillText('SIDE B · 跳出日常看日常',W/2,1050);
+ctx.fillStyle='#fff';ctx.font='500 40px sans-serif';ctx.textAlign='center';
+let tt=cur[0];if(tt.length>16)tt=tt.slice(0,15)+'…';
+ctx.fillText(tt,W/2,730);
+ctx.fillStyle='#bbb';ctx.font='400 20px "Bebas Neue", Impact, sans-serif';
+ctx.fillText(cur[1].toUpperCase()+'  ·  '+cur[2],W/2,770);
+ctx.fillStyle='#888';ctx.font='300 16px sans-serif';
+ctx.fillText(cur[1],W/2,800);
+ctx.fillStyle='#444';ctx.font='300 14px sans-serif';
+ctx.fillText('OFFBEAT  ·  日 常 出 逃',W/2,1010);
+ctx.fillStyle='#333';ctx.font='300 11px sans-serif';
+ctx.fillText('SIDE B  ·  跳 出 日 常 看 日 常',W/2,1040);
 sm.classList.add('s');
 });
 smClose.addEventListener('click',()=>sm.classList.remove('s'));
