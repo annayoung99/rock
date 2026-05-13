@@ -2,59 +2,69 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>OFFBEAT</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+SC:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400;500;600&family=Noto+Sans+SC:wght@200;300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{min-height:100%}
 body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans-serif;user-select:none;position:relative;overflow-x:hidden;font-weight:300}
 
-.c{position:relative;z-index:2;min-height:100vh;padding:24px 18px 30px;display:flex;flex-direction:column;max-width:480px;margin:0 auto}
+/* ============ 基础容器 ============ */
+.c{position:relative;z-index:2;min-height:100vh;padding:24px 18px 30px;display:flex;flex-direction:column;max-width:480px;margin:0 auto;width:100%}
 
+/* ============ Header ============ */
 .h{text-align:center;margin-bottom:6px;padding-top:6px}
 .tag{display:inline-block;font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:6px;color:#666;margin-bottom:18px}
-.t{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,13vw,72px);line-height:.95;letter-spacing:7px;color:#fff;margin-right:-7px;font-weight:400}
+.t{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,12vw,68px);line-height:.95;letter-spacing:7px;color:#fff;margin-right:-7px;font-weight:400}
 .sb{font-family:'Noto Sans SC',sans-serif;font-size:10px;letter-spacing:5px;color:#666;margin-top:12px;font-weight:300}
 .sb .em{color:#888;font-family:'Bebas Neue',sans-serif;letter-spacing:4px;font-size:11px}
 
+/* ============ Modes ============ */
 .modes{display:flex;justify-content:center;margin:18px 0 0;border-top:1px solid #222;border-bottom:1px solid #222}
 .mb{flex:1;padding:13px 4px;background:transparent;color:#666;border:none;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:5px;border-right:1px solid #222;cursor:pointer}
 .mb:last-child{border-right:none}
 .mb.active{color:#fff;background:rgba(255,255,255,.04)}
 
+/* ============ Filters ============ */
 .filters{display:flex;gap:7px;overflow-x:auto;padding:14px 0 4px;-webkit-overflow-scrolling:touch}
 .filters::-webkit-scrollbar{display:none}
 .fp{flex:0 0 auto;padding:6px 14px;background:transparent;color:#888;border:1px solid #333;font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:1px;white-space:nowrap;font-weight:300;cursor:pointer}
 .fp.active{color:#000;background:#fff;border-color:#fff;font-weight:400}
 
+/* ============ Prism Brand ============ */
 .prism-wrap{display:flex;justify-content:center;margin:24px 0 6px;position:relative}
 .prism-svg{width:100%;max-width:340px;height:110px}
 
+/* ============ Stage ============ */
 .stage-wrap{flex:1;display:flex;align-items:center;justify-content:center;position:relative;margin:6px 0;min-height:340px}
+
 .song-card{width:100%;border:1px solid #2a2a2a;padding:24px 18px 22px;text-align:center;background:rgba(0,0,0,.5)}
 .cover{width:148px;height:148px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center}
 .cover svg{width:100%;height:100%}
-.song-title{font-family:'Noto Sans SC',sans-serif;font-weight:500;font-size:clamp(20px,5.5vw,26px);color:#fff;letter-spacing:1.5px;margin-bottom:8px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 4px}
+.song-title{font-family:'Noto Sans SC',sans-serif;font-weight:500;font-size:clamp(18px,5vw,24px);color:#fff;letter-spacing:1.5px;margin-bottom:8px;line-height:1.25;padding:0 4px;word-break:break-word}
 .song-artist{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:#bbb;text-transform:uppercase}
 .song-cn-artist{font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:2px;color:#888;font-weight:300;margin-top:3px}
 .song-year{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:3px;color:#666;margin-top:6px}
 .idle .song-title{color:#888;font-weight:300}
 .idle .cover{opacity:.5}
 
-.cal-view{display:none;width:100%;border:1px solid #2a2a2a;padding:28px 18px 24px;text-align:center;background:rgba(0,0,0,.5)}
+/* ============ Calendar ============ */
+.cal-view{display:none;width:100%;border:1px solid #2a2a2a;padding:28px 22px 26px;background:rgba(0,0,0,.5);position:relative}
 .cal-view.show{display:block}
-.cal-date{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:6px;color:#888;margin-bottom:14px}
-.cal-day{font-family:'Bebas Neue',sans-serif;font-size:96px;color:#fff;line-height:.9;letter-spacing:-2px}
-.cal-month{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:6px;color:#888;margin:8px 0 28px}
-.cal-quote{font-family:'Noto Sans SC',sans-serif;font-size:17px;line-height:1.8;color:#fff;font-weight:400;letter-spacing:1px;padding:0 6px;margin-bottom:24px;min-height:60px;position:relative}
-.cal-quote::before{content:'"';color:#dc2626;font-size:36px;font-family:Georgia,serif;position:absolute;left:-8px;top:-12px;line-height:1}
-.cal-quote::after{content:'"';color:#dc2626;font-size:36px;font-family:Georgia,serif;margin-left:4px;line-height:1}
-.cal-from{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:#bbb;margin-bottom:4px}
-.cal-from-cn{font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:2px;color:#888;font-weight:300}
+.cal-date{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:6px;color:#888;margin-bottom:14px;text-align:center}
+.cal-day{font-family:'Bebas Neue',sans-serif;font-size:clamp(78px,22vw,108px);color:#fff;line-height:.85;letter-spacing:-2px;text-align:center}
+.cal-month{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:6px;color:#888;margin:10px 0 32px;text-align:center}
+.cal-quote-wrap{position:relative;padding:0 4px 0 18px;margin-bottom:24px}
+.cal-quote-wrap::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:2px;background:linear-gradient(to bottom,#ff3344,#ff8822,#ffdd33,#22dd66,#33aaff,#aa44ff);border-radius:1px}
+.cal-quote{font-family:'Caveat',cursive;font-size:clamp(20px,5.5vw,26px);line-height:1.5;color:#fff;font-weight:500;letter-spacing:0.5px;min-height:48px;text-align:left}
+.cal-quote.cn{font-family:'Noto Sans SC',sans-serif;font-style:italic;font-weight:400;font-size:clamp(15px,4.3vw,18px);line-height:1.75;letter-spacing:1px}
+.cal-from{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:#bbb;margin-bottom:4px;text-align:center;padding-top:6px}
+.cal-from-cn{font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:2px;color:#888;font-weight:300;text-align:center}
 
+/* ============ Buttons ============ */
 .cl{display:flex;flex-direction:column;gap:9px;margin-top:16px}
 .sp{width:100%;padding:20px;background:transparent;color:#fff;border:1px solid #fff;font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:14px;text-indent:14px;cursor:pointer;transition:all .15s}
 .sp:active{color:#000;background:#fff}
@@ -64,6 +74,7 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 .ab:active{background:#fff;color:#000;border-color:#fff}
 .ab:disabled{color:#333;border-color:#222}
 
+/* ============ Modal ============ */
 .lm{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px)}
 .lm.s{display:flex}
 .lc{width:100%;max-width:420px;background:#0a0a0a;border:1px solid #333;padding:36px 22px 26px;position:relative;text-align:center}
@@ -72,6 +83,7 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 .la{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:5px;color:#888;margin-bottom:22px}
 .lr{font-size:13px;line-height:2;white-space:pre-line;color:#aaa;letter-spacing:1px}
 
+/* ============ Share Card ============ */
 .sm{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:300;display:none;align-items:center;justify-content:center;padding:20px;flex-direction:column}
 .sm.s{display:flex}
 .sm canvas{max-width:100%;max-height:72vh;border:1px solid #333}
@@ -80,6 +92,7 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 
 .ft{text-align:center;margin-top:18px;font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:6px;color:#444}
 
+/* ============ Animations ============ */
 @keyframes pulse{0%,100%{opacity:.92}50%{opacity:1}}
 .spinning .ray,.spinning .beam{animation:pulse .15s infinite}
 @keyframes spin-cover{0%{transform:rotate(0) scale(.9);opacity:.3}100%{transform:rotate(360deg) scale(1);opacity:1}}
@@ -87,14 +100,59 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 @keyframes fade-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .song-card.reveal,.cal-view.reveal{animation:fade-in .5s ease-out}
 
-@media (min-width:768px){
-.c{max-width:520px;padding-top:60px}
-.prism-svg{max-width:380px;height:130px}
-.t{font-size:88px;letter-spacing:10px;margin-right:-10px}
+/* ============ 小手机适配 (<360px) ============ */
+@media (max-width:359px){
+.c{padding:18px 14px 24px}
+.t{font-size:42px;letter-spacing:5px;margin-right:-5px}
+.cover{width:128px;height:128px}
+.sp{padding:16px;font-size:22px;letter-spacing:10px;text-indent:10px}
+.ab{padding:11px 2px;font-size:11px;letter-spacing:1.5px}
+}
+
+/* ============ 平板适配 (768-1023px) ============ */
+@media (min-width:768px) and (max-width:1023px){
+.c{max-width:560px;padding-top:50px}
+.prism-svg{max-width:400px;height:130px}
+.t{font-size:82px;letter-spacing:10px;margin-right:-10px}
+.cover{width:172px;height:172px}
+}
+
+/* ============ 桌面端横向双栏 (≥1024px) ============ */
+@media (min-width:1024px){
+body{display:flex;align-items:center;justify-content:center;padding:40px 0}
+.c{max-width:1100px;flex-direction:row;gap:60px;align-items:stretch;padding:40px}
+.left-panel{flex:0 0 480px;display:flex;flex-direction:column;justify-content:center}
+.right-panel{flex:1;display:flex;flex-direction:column;justify-content:center;min-width:380px}
+.h{text-align:left;margin-bottom:0}
+.t{font-size:96px;letter-spacing:14px;margin-right:-14px}
+.sb{text-align:left}
+.tag{display:block;text-align:left}
+.modes{margin:30px 0 0;border-top:1px solid #222;border-bottom:none;border-right:none}
+.mb{flex:0 0 auto;padding:11px 28px;border:1px solid #2a2a2a;margin-right:-1px;border-radius:0}
+.filters{padding-top:18px;justify-content:flex-start}
+.prism-wrap{margin:50px 0 0;justify-content:flex-start}
+.prism-svg{max-width:420px;height:150px}
+.stage-wrap{min-height:auto;margin:0}
+.cover{width:200px;height:200px}
+.song-title{font-size:30px}
+.cal-day{font-size:140px}
+.ft{text-align:left;padding-top:24px}
+}
+
+@media (min-width:1024px){
+.desktop-only{display:block}
+.mobile-only{display:none}
+}
+@media (max-width:1023px){
+.desktop-only{display:none}
+.mobile-only{display:block}
 }
 </style></head>
 <body>
 <div class="c">
+
+<!-- 移动端: 全部线性堆叠 / 桌面端: 左右分栏 -->
+<div class="left-panel">
 
 <header class="h">
 <span class="tag">— 33 1/3 RPM · SIDE B —</span>
@@ -144,6 +202,10 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 </svg>
 </div>
 
+</div><!-- /left-panel -->
+
+<div class="right-panel">
+
 <div class="stage-wrap">
 <div id="rouletteView" style="width:100%">
 <div class="song-card idle" id="card">
@@ -160,7 +222,9 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 <div class="cal-date" id="calDate"></div>
 <div class="cal-day" id="calDay">--</div>
 <div class="cal-month" id="calMonth">---</div>
+<div class="cal-quote-wrap">
 <div class="cal-quote" id="calQuote">—</div>
+</div>
 <div class="cal-from" id="calFrom">—</div>
 <div class="cal-from-cn" id="calFromCN">—</div>
 </div>
@@ -176,7 +240,10 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 </div>
 
 <footer class="ft">SIDE B · 跳 出 日 常 看 日 常</footer>
-</div>
+
+</div><!-- /right-panel -->
+
+</div><!-- /c -->
 
 <div class="lm" id="lm"><div class="lc"><button class="lx" id="lx">×</button><div class="lt" id="mt"></div><div class="la" id="ma"></div><div class="lr" id="mr"></div></div></div>
 <div class="sm" id="sm"><button class="sm-close" id="smClose">×</button><canvas id="shareCanvas" width="720" height="1080"></canvas><div class="sm-hint">长按图片保存 / 转发<br>OFFBEAT · 日 常 出 逃</div></div>
@@ -525,6 +592,7 @@ let pool='all',curPoolSongs=S,cur=null,sp=false,mode='roulette';
 function applyPool(){curPoolSongs=pool==='all'?S:S.filter(s=>s[3]===pool);if(curPoolSongs.length===0)curPoolSongs=S;}
 function hash(s){let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return Math.abs(h);}
 const COL=['#ff3344','#ff8822','#ffdd33','#22dd66','#33aaff','#aa44ff'];
+function isLatin(s){return /^[\x00-\x7F\s'.,&!?\-]+$/.test(s);}
 
 function gen(t,a){
 const h1=hash(a),h2=hash(t),c1=COL[h1%6],c2=COL[(h1+3)%6],v=(h1+h2)%6;
@@ -539,16 +607,15 @@ return `<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#000"/>$
 }
 
 const $=id=>document.getElementById(id);
-const cn=$('cn'),sb=$('sb'),nb=$('nb'),lb=$('lb'),shb=$('shb'),lm=$('lm'),lx=$('lx'),mt=$('mt'),ma=$('ma'),mr=$('mr'),card=$('card'),cover=$('cover'),title=$('title'),artist=$('artist'),artistCN=$('artistCN'),year=$('year'),rv=$('rouletteView'),cv=$('calView'),sm=$('sm'),smClose=$('smClose'),shareCanvas=$('shareCanvas');
+const sb=$('sb'),nb=$('nb'),lb=$('lb'),shb=$('shb'),lm=$('lm'),lx=$('lx'),mt=$('mt'),ma=$('ma'),mr=$('mr'),card=$('card'),cover=$('cover'),title=$('title'),artist=$('artist'),artistCN=$('artistCN'),year=$('year'),rv=$('rouletteView'),cv=$('calView'),sm=$('sm'),smClose=$('smClose'),shareCanvas=$('shareCanvas');
 
 applyPool();
 
 function showSong(s){
 cover.innerHTML=gen(s[0],s[1]);
 title.textContent=s[0];
-const hasEN=/^[\x00-\x7F\s'.,&!?-]+$/.test(s[1]);
-artist.textContent=hasEN?s[1].toUpperCase():s[1].toUpperCase();
-artistCN.textContent=hasEN?'':s[1];
+artist.textContent=s[1].toUpperCase();
+artistCN.textContent=isLatin(s[1])?'':s[1];
 year.textContent=s[2];
 card.classList.remove('idle');card.classList.remove('reveal');cover.classList.remove('reveal');
 void card.offsetWidth;
@@ -565,7 +632,7 @@ const t1=setInterval(()=>{
 elapsed+=80;
 const ri=Math.floor(Math.random()*curPoolSongs.length),rs=curPoolSongs[ri];
 cover.innerHTML=gen(rs[0],rs[1]);
-title.textContent=rs[0];artist.textContent=rs[1].toUpperCase();artistCN.textContent=rs[1];year.textContent=rs[2];
+title.textContent=rs[0];artist.textContent=rs[1].toUpperCase();artistCN.textContent=isLatin(rs[1])?'':rs[1];year.textContent=rs[2];
 card.classList.remove('idle');
 if(elapsed>=3000){
 clearInterval(t1);
@@ -575,7 +642,7 @@ slow++;
 if(slow<=4){
 const ri2=Math.floor(Math.random()*curPoolSongs.length),rs2=curPoolSongs[ri2];
 cover.innerHTML=gen(rs2[0],rs2[1]);
-title.textContent=rs2[0];artist.textContent=rs2[1].toUpperCase();artistCN.textContent=rs2[1];year.textContent=rs2[2];
+title.textContent=rs2[0];artist.textContent=rs2[1].toUpperCase();artistCN.textContent=isLatin(rs2[1])?'':rs2[1];year.textContent=rs2[2];
 }else{
 clearInterval(t2);
 showSong(cur);
@@ -613,7 +680,10 @@ $('calMonth').textContent=months[d.getMonth()];
 const start=new Date(d.getFullYear(),0,0);
 const doy=Math.floor((d-start)/(1000*60*60*24));
 const q=Q[doy%Q.length];
-$('calQuote').textContent=q[0];
+const cq=$('calQuote');
+cq.textContent=q[0];
+// 中文歌词改用宋体斜体,英文用 Caveat 手写体
+if(isLatin(q[0])){cq.classList.remove('cn');}else{cq.classList.add('cn');}
 $('calFrom').textContent=q[2].toUpperCase();
 $('calFromCN').textContent='《'+q[1]+'》 — '+q[2];
 cur=[q[1],q[2],d.getFullYear(),'rock_cn'];
@@ -621,23 +691,62 @@ nb.disabled=false;lb.disabled=false;shb.disabled=false;
 }
 
 sb.addEventListener('click',()=>{if(mode==='roulette')spin();else loadCalendar();});
-
 nb.addEventListener('click',()=>{if(!cur)return;window.open('https://music.163.com/#/search/m/?s='+encodeURIComponent(cur[0]+' '+cur[1])+'&type=1','_blank');});
 lb.addEventListener('click',()=>{if(!cur)return;mt.textContent=cur[0];ma.textContent=cur[1]+' · '+cur[2];mr.textContent='《'+cur[0]+'》 — '+cur[1]+'\n\n点击"网易云"听完整版本';lm.classList.add('s');});
 lx.addEventListener('click',()=>lm.classList.remove('s'));
 lm.addEventListener('click',e=>{if(e.target===lm)lm.classList.remove('s');});
+
+// ============= 分享卡片(自适应歌名长度) =============
+function fitText(ctx,text,maxWidth,baseFontSize,fontFamily,minFontSize){
+let fontSize=baseFontSize;
+while(fontSize>=minFontSize){
+ctx.font=`500 ${fontSize}px ${fontFamily}`;
+if(ctx.measureText(text).width<=maxWidth)return fontSize;
+fontSize-=2;
+}
+return minFontSize;
+}
+
+function wrapText(ctx,text,maxWidth){
+// 中文按字符分,英文按空格分
+const isCN=/[\u4e00-\u9fa5]/.test(text);
+const lines=[];
+if(isCN){
+let cur='';
+for(let ch of text){
+const test=cur+ch;
+if(ctx.measureText(test).width>maxWidth&&cur){lines.push(cur);cur=ch;}
+else cur=test;
+}
+if(cur)lines.push(cur);
+}else{
+const words=text.split(' ');
+let cur='';
+for(let w of words){
+const test=cur?cur+' '+w:w;
+if(ctx.measureText(test).width>maxWidth&&cur){lines.push(cur);cur=w;}
+else cur=test;
+}
+if(cur)lines.push(cur);
+}
+return lines;
+}
 
 shb.addEventListener('click',()=>{
 if(!cur)return;
 const ctx=shareCanvas.getContext('2d');
 const W=720,H=1080;
 ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
+
+// 顶部
 ctx.fillStyle='#666';ctx.font='300 16px sans-serif';ctx.textAlign='center';
 ctx.fillText('— 33 1/3 RPM · SIDE B —',W/2,70);
 ctx.fillStyle='#fff';ctx.font='400 72px "Bebas Neue", Impact, sans-serif';
 ctx.fillText('O F F B E A T',W/2,150);
 ctx.fillStyle='#666';ctx.font='300 14px sans-serif';
 ctx.fillText('日 常 出 逃  ·  REST & RESET',W/2,180);
+
+// 棱镜
 const px=W/2,py=320;
 ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.shadowBlur=8;ctx.shadowColor='#fff';
 ctx.beginPath();ctx.moveTo(px-200,py);ctx.lineTo(px-45,py);ctx.stroke();ctx.shadowBlur=0;
@@ -648,6 +757,8 @@ ctx.beginPath();ctx.moveTo(px+30,py);ctx.lineTo(W,py-55);ctx.lineTo(W,py+55);ctx
 ctx.fillStyle='#0f0f0f';ctx.strokeStyle='#fff';ctx.lineWidth=2.5;
 ctx.beginPath();ctx.moveTo(px,py-50);ctx.lineTo(px+30,py+30);ctx.lineTo(px-30,py+30);ctx.closePath();
 ctx.fill();ctx.stroke();
+
+// 封面
 const cs=200,cx=W/2-cs/2,cy=460;
 ctx.fillStyle='#000';ctx.fillRect(cx,cy,cs,cs);
 ctx.strokeStyle='rgba(255,255,255,0.2)';ctx.lineWidth=1;ctx.strokeRect(cx,cy,cs,cs);
@@ -660,16 +771,41 @@ else if(v===3){ctx.strokeStyle=c1;ctx.lineWidth=0.5;ctx.globalAlpha=0.6;ctx.begi
 else if(v===4){ctx.strokeStyle=c1;ctx.lineWidth=0.8;ctx.beginPath();ctx.moveTo(15,50);for(let x=15;x<=95;x+=5)ctx.lineTo(x,50+8*Math.sin((x+h2%20)/6));ctx.stroke();}
 else{ctx.strokeStyle=c1;ctx.lineWidth=0.8;ctx.save();ctx.translate(50,50);ctx.rotate((h2%45)*Math.PI/180);ctx.strokeRect(-22,-22,44,44);ctx.restore();ctx.fillStyle=c1;ctx.beginPath();ctx.arc(50,50,5,0,Math.PI*2);ctx.fill();}
 ctx.restore();
-ctx.fillStyle='#fff';ctx.font='500 40px sans-serif';ctx.textAlign='center';
-let tt=cur[0];if(tt.length>16)tt=tt.slice(0,15)+'…';
-ctx.fillText(tt,W/2,730);
+
+// 歌名 - 自适应字号和换行
+const maxTitleWidth=W-80;
+ctx.fillStyle='#fff';ctx.textAlign='center';
+// 先尝试一行最大字号 44,如果超宽就缩小,如果还超就换行
+let titleFontSize=fitText(ctx,cur[0],maxTitleWidth,44,'"Noto Sans SC", sans-serif',24);
+ctx.font=`500 ${titleFontSize}px "Noto Sans SC", sans-serif`;
+let titleLines=[cur[0]];
+if(ctx.measureText(cur[0]).width>maxTitleWidth){
+// 字号已最小,需要换行
+titleFontSize=Math.max(titleFontSize,28);
+ctx.font=`500 ${titleFontSize}px "Noto Sans SC", sans-serif`;
+titleLines=wrapText(ctx,cur[0],maxTitleWidth);
+if(titleLines.length>2)titleLines=[titleLines[0],titleLines[1]+'…'];
+}
+// 绘制歌名
+const lineHeight=titleFontSize*1.2;
+const titleBlockY=730-(titleLines.length-1)*lineHeight/2;
+titleLines.forEach((line,idx)=>{
+ctx.fillText(line,W/2,titleBlockY+idx*lineHeight);
+});
+
+// 歌手 + 年份
+const afterTitleY=titleBlockY+(titleLines.length-1)*lineHeight+40;
 ctx.fillStyle='#bbb';ctx.font='400 20px "Bebas Neue", Impact, sans-serif';
-ctx.fillText(cur[1].toUpperCase()+'  ·  '+cur[2],W/2,770);
-ctx.fillStyle='#888';ctx.font='300 16px sans-serif';
-ctx.fillText(cur[1],W/2,800);
-ctx.fillStyle='#444';ctx.font='300 14px sans-serif';
+ctx.fillText(cur[1].toUpperCase()+'  ·  '+cur[2],W/2,afterTitleY);
+if(!isLatin(cur[1])){
+ctx.fillStyle='#888';ctx.font='300 16px "Noto Sans SC", sans-serif';
+ctx.fillText(cur[1],W/2,afterTitleY+30);
+}
+
+// 底部
+ctx.fillStyle='#444';ctx.font='300 14px "Noto Sans SC", sans-serif';
 ctx.fillText('OFFBEAT  ·  日 常 出 逃',W/2,1010);
-ctx.fillStyle='#333';ctx.font='300 11px sans-serif';
+ctx.fillStyle='#333';ctx.font='300 11px "Noto Sans SC", sans-serif';
 ctx.fillText('SIDE B  ·  跳 出 日 常 看 日 常',W/2,1040);
 sm.classList.add('s');
 });
