@@ -557,7 +557,7 @@ const Q=[
 ["Bittersweet symphony","Bittersweet Symphony","The Verve"]
 ];
 
-let pool='all',curPoolSongs=S,cur=null,rouletteCur=null,dailyCur=null,dailyQuote='',sp=false,mode='calendar';
+let pool='all',curPoolSongs=S,cur=null,rouletteCur=null,dailyCur=null,dailyQuote='',dailyIndex=-1,dailyDateKey='',sp=false,mode='calendar';
 const SHARE_LINES=[
 '这句歌词替我说了今天',
 '今天的情绪，被这句唱出来了',
@@ -662,7 +662,7 @@ document.querySelectorAll('.mb').forEach(x=>x.classList.remove('active'));
 b.classList.add('active');
 mode=b.dataset.mode;
 if(mode==='roulette'){rv.style.display='block';cv.classList.remove('show');cur=rouletteCur;sb.textContent=rouletteCur?'SPIN AGAIN':'SPIN';sb.disabled=false;nb.disabled=!rouletteCur;lb.disabled=!rouletteCur;shb.disabled=!dailyCur;document.querySelector('.filters').style.display='flex';}
-else{rv.style.display='none';cv.classList.add('show');cv.classList.add('reveal');sb.textContent='REFRESH';sb.disabled=false;document.querySelector('.filters').style.display='none';loadCalendar();}
+else{rv.style.display='none';cv.classList.add('show');cv.classList.add('reveal');sb.textContent='REFRESH';sb.disabled=false;document.querySelector('.filters').style.display='none';loadCalendar(false);}
 }));
 
 document.querySelectorAll('.fp').forEach(b=>b.addEventListener('click',()=>{
@@ -672,7 +672,7 @@ pool=b.dataset.pool;
 applyPool();
 }));
 
-function loadCalendar(){
+function loadCalendar(refresh=false){
 const d=new Date();
 const days=['SUN','MON','TUE','WED','THU','FRI','SAT'];
 const months=['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
@@ -681,7 +681,19 @@ $('calDay').textContent=String(d.getDate()).padStart(2,'0');
 $('calMonth').textContent=months[d.getMonth()];
 const start=new Date(d.getFullYear(),0,0);
 const doy=Math.floor((d-start)/(1000*60*60*24));
-const q=Q[doy%Q.length];
+const dateKey=d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate();
+let nextIndex;
+if(refresh){
+nextIndex=Math.floor(Math.random()*Q.length);
+if(Q.length>1&&nextIndex===dailyIndex)nextIndex=(nextIndex+1+Math.floor(Math.random()*(Q.length-1)))%Q.length;
+}else if(dailyDateKey===dateKey&&dailyIndex>=0){
+nextIndex=dailyIndex;
+}else{
+nextIndex=doy%Q.length;
+}
+dailyIndex=nextIndex;
+dailyDateKey=dateKey;
+const q=Q[dailyIndex];
 const cq=$('calQuote');
 cq.textContent=q[0];
 dailyQuote=q[0];
@@ -695,7 +707,7 @@ nb.disabled=false;lb.disabled=false;shb.disabled=false;
 
 loadCalendar();
 
-sb.addEventListener('click',()=>{if(mode==='roulette')spin();else loadCalendar();});
+sb.addEventListener('click',()=>{if(mode==='roulette')spin();else loadCalendar(true);});
 nb.addEventListener('click',()=>{if(!cur)return;window.open('https://music.163.com/#/search/m/?s='+encodeURIComponent(cur[0]+' '+cur[1])+'&type=1','_blank');});
 lb.addEventListener('click',()=>{if(!cur)return;mt.textContent=cur[0];ma.textContent=cur[1]+' · '+cur[2];mr.textContent='《'+cur[0]+'》 — '+cur[1]+'\n\n点击"网易云"听完整版本';lm.classList.add('s');});
 lx.addEventListener('click',()=>lm.classList.remove('s'));
