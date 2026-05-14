@@ -6,65 +6,72 @@
 <title>OFFBEAT</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400;500;600&family=Noto+Sans+SC:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400;500;600;700&family=Noto+Sans+SC:wght@200;300;400;500;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{min-height:100%}
-body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans-serif;user-select:none;position:relative;overflow-x:hidden;font-weight:300}
+body{background:#050505;color:#e8e2d4;font-family:'Noto Sans SC',-apple-system,sans-serif;user-select:none;position:relative;overflow-x:hidden;font-weight:300}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% -10%,rgba(255,255,255,.1),transparent 34%),linear-gradient(115deg,transparent 0 58%,rgba(255,48,72,.1) 58%,rgba(255,136,34,.08) 64%,rgba(255,221,51,.07) 70%,rgba(34,221,102,.06) 76%,rgba(51,170,255,.07) 82%,rgba(170,68,255,.08) 90%,transparent 90%);opacity:.9}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.026) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:42px 42px,42px 42px;mask-image:radial-gradient(circle at center,#000 0,transparent 82%);opacity:.55}
 
-.c{position:relative;z-index:2;min-height:100vh;padding:24px 18px 30px;display:flex;flex-direction:column;max-width:480px;margin:0 auto;width:100%}
+.c{position:relative;z-index:2;min-height:100vh;padding:22px 18px 30px;display:flex;flex-direction:column;max-width:480px;margin:0 auto;width:100%}
 
-.h{text-align:center;margin-bottom:6px;padding-top:6px}
-.tag{display:inline-block;font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:6px;color:#666;margin-bottom:18px}
-.t{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,12vw,68px);line-height:.95;letter-spacing:7px;color:#fff;margin-right:-7px;font-weight:400}
-.sb{font-family:'Noto Sans SC',sans-serif;font-size:10px;letter-spacing:5px;color:#666;margin-top:12px;font-weight:300}
-.sb .em{color:#888;font-family:'Bebas Neue',sans-serif;letter-spacing:4px;font-size:11px}
+.h{text-align:center;margin-bottom:8px;padding-top:8px}
+.tag{display:inline-block;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:4px;color:#8e887c;margin-bottom:14px}
+.t{font-family:'Bebas Neue',sans-serif;font-size:clamp(50px,13vw,72px);line-height:.9;letter-spacing:7px;color:#fff;margin-right:-7px;font-weight:400;text-shadow:0 0 28px rgba(255,255,255,.16)}
+.sb{font-family:'Noto Sans SC',sans-serif;font-size:12px;letter-spacing:.8px;color:#b7aa95;margin-top:12px;font-weight:300}
+.sb .em{display:block;color:#fff;font-family:'Bebas Neue',sans-serif;letter-spacing:3px;font-size:17px;margin-top:4px}
 
-.modes{display:flex;justify-content:center;margin:18px 0 0;border-top:1px solid #222;border-bottom:1px solid #222}
-.mb{flex:1;padding:13px 4px;background:transparent;color:#666;border:none;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:5px;border-right:1px solid #222;cursor:pointer}
+.modes{display:flex;justify-content:center;margin:20px 0 0;border:1px solid #2b2925;background:rgba(255,255,255,.03)}
+.mb{flex:1;padding:13px 4px;background:transparent;color:#8f897e;border:none;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:3px;border-right:1px solid #2b2925;cursor:pointer}
 .mb:last-child{border-right:none}
-.mb.active{color:#fff;background:rgba(255,255,255,.04)}
+.mb.active{color:#070707;background:#e8e2d4}
 
-.filters{display:flex;gap:7px;overflow-x:auto;padding:14px 0 4px;-webkit-overflow-scrolling:touch}
+.filters{display:flex;gap:7px;overflow-x:auto;padding:14px 0 4px;-webkit-overflow-scrolling:touch;display:none}
 .filters::-webkit-scrollbar{display:none}
-.fp{flex:0 0 auto;padding:6px 14px;background:transparent;color:#888;border:1px solid #333;font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:1px;white-space:nowrap;font-weight:300;cursor:pointer}
-.fp.active{color:#000;background:#fff;border-color:#fff;font-weight:400}
+.fp{flex:0 0 auto;padding:7px 14px;background:rgba(255,255,255,.02);color:#9d9688;border:1px solid #332f28;font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:.5px;white-space:nowrap;font-weight:300;cursor:pointer}
+.fp.active{color:#080808;background:#e8e2d4;border-color:#e8e2d4;font-weight:400}
 
-.prism-wrap{display:flex;justify-content:center;margin:24px 0 6px;position:relative}
+.prism-wrap{display:flex;justify-content:center;margin:22px 0 8px;position:relative}
 .prism-svg{width:100%;max-width:340px;height:110px}
 
-.stage-wrap{flex:1;display:flex;align-items:center;justify-content:center;position:relative;margin:6px 0;min-height:340px}
+.stage-wrap{flex:1;display:flex;align-items:center;justify-content:center;position:relative;margin:8px 0;min-height:370px}
 
-.song-card{width:100%;border:1px solid #2a2a2a;padding:24px 18px 22px;text-align:center;background:rgba(0,0,0,.5)}
-.cover{width:148px;height:148px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center}
+.song-card{width:100%;border:1px solid #3a352c;padding:26px 20px 24px;text-align:center;background:linear-gradient(180deg,rgba(20,20,18,.92),rgba(0,0,0,.78));box-shadow:0 22px 70px rgba(0,0,0,.42),inset 0 0 0 1px rgba(255,255,255,.03);position:relative}
+.song-card::before{content:'ROLL A SONG';position:absolute;left:18px;top:14px;font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:11px;color:#7b7469}
+.song-card::after{content:'RESET THE DAY';position:absolute;right:18px;bottom:14px;font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:11px;color:#7b7469}
+.cover{width:156px;height:156px;margin:14px auto 18px;display:flex;align-items:center;justify-content:center;border-radius:50%;box-shadow:0 0 0 10px rgba(255,255,255,.025),0 0 0 1px rgba(255,255,255,.14)}
 .cover svg{width:100%;height:100%}
-.song-title{font-family:'Noto Sans SC',sans-serif;font-weight:500;font-size:clamp(18px,5vw,24px);color:#fff;letter-spacing:1.5px;margin-bottom:8px;line-height:1.25;padding:0 4px;word-break:break-word}
-.song-artist{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:#bbb;text-transform:uppercase}
-.song-cn-artist{font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:2px;color:#888;font-weight:300;margin-top:3px}
-.song-year{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:3px;color:#666;margin-top:6px}
+.song-title{font-family:'Noto Serif SC','Noto Sans SC',sans-serif;font-weight:600;font-size:clamp(20px,5.2vw,27px);color:#fff;letter-spacing:.5px;margin-bottom:9px;line-height:1.28;padding:0 4px;word-break:break-word}
+.song-artist{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:4px;color:#d6cdbd;text-transform:uppercase}
+.song-artist.cn{font-family:'Noto Sans SC',sans-serif;font-size:13px;letter-spacing:1px;text-transform:none;font-weight:400}
+.song-cn-artist{font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:.8px;color:#9d9688;font-weight:300;margin-top:4px}
+.song-year{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:3px;color:#7b7469;margin-top:7px}
 .idle .song-title{color:#888;font-weight:300}
 .idle .cover{opacity:.5}
 
-.cal-view{display:none;width:100%;border:1px solid #2a2a2a;padding:28px 22px 26px;background:rgba(0,0,0,.5);position:relative}
+.cal-view{display:none;width:100%;border:1px solid rgba(232,226,212,.22);padding:24px 22px 26px;background:linear-gradient(180deg,rgba(18,18,16,.86),rgba(0,0,0,.66));position:relative;color:#e8e2d4;box-shadow:0 28px 90px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.035)}
+.cal-view::before{content:'OFFBEAT DAILY LYRIC';position:absolute;top:12px;left:16px;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:2px;color:rgba(232,226,212,.48)}
+.cal-view::after{content:'';position:absolute;left:0;right:0;top:42px;border-top:1px dashed rgba(232,226,212,.16)}
 .cal-view.show{display:block}
-.cal-date{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:6px;color:#888;margin-bottom:14px;text-align:center}
-.cal-day{font-family:'Bebas Neue',sans-serif;font-size:clamp(78px,22vw,108px);color:#fff;line-height:.85;letter-spacing:-2px;text-align:center}
-.cal-month{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:6px;color:#888;margin:10px 0 32px;text-align:center}
-.cal-quote-wrap{position:relative;padding:0 4px 0 18px;margin-bottom:24px}
-.cal-quote-wrap::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:2px;background:linear-gradient(to bottom,#ff3344,#ff8822,#ffdd33,#22dd66,#33aaff,#aa44ff);border-radius:1px}
-.cal-quote{font-family:'Caveat',cursive;font-size:clamp(20px,5.5vw,26px);line-height:1.5;color:#fff;font-weight:500;letter-spacing:0.5px;min-height:48px;text-align:left}
-.cal-quote.cn{font-family:'Noto Sans SC',sans-serif;font-style:italic;font-weight:400;font-size:clamp(15px,4.3vw,18px);line-height:1.75;letter-spacing:1px}
-.cal-from{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:#bbb;margin-bottom:4px;text-align:center;padding-top:6px}
-.cal-from-cn{font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:2px;color:#888;font-weight:300;text-align:center}
+.cal-date{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:rgba(232,226,212,.52);margin:34px 0 6px;text-align:center}
+.cal-day{font-family:'Bebas Neue',sans-serif;font-size:clamp(92px,25vw,124px);color:#fff;line-height:.82;letter-spacing:-1px;text-align:center;text-shadow:0 0 34px rgba(255,255,255,.12)}
+.cal-month{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:5px;color:rgba(232,226,212,.52);margin:9px 0 30px;text-align:center}
+.cal-quote-wrap{position:relative;padding:18px 16px 18px 20px;margin-bottom:22px;background:rgba(232,226,212,.075);border:1px solid rgba(232,226,212,.08);border-left:0}
+.cal-quote-wrap::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,#ff3344,#ff8822,#ffdd33,#22dd66,#33aaff,#aa44ff)}
+.cal-quote{font-family:'Caveat',cursive;font-size:clamp(26px,7vw,34px);line-height:1.18;color:#fff;font-weight:700;letter-spacing:.2px;min-height:48px;text-align:left}
+.cal-quote.cn{font-family:'Noto Serif SC','Noto Sans SC',sans-serif;font-style:normal;font-weight:600;font-size:clamp(20px,5.2vw,27px);line-height:1.68;letter-spacing:.2px}
+.cal-from{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:3px;color:rgba(232,226,212,.86);margin-bottom:5px;text-align:center;padding-top:4px}
+.cal-from-cn{font-family:'Noto Sans SC',sans-serif;font-size:12px;letter-spacing:.5px;color:rgba(232,226,212,.52);font-weight:300;text-align:center}
 
 .cl{display:flex;flex-direction:column;gap:9px;margin-top:16px}
-.sp{width:100%;padding:20px;background:transparent;color:#fff;border:1px solid #fff;font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:14px;text-indent:14px;cursor:pointer;transition:all .15s}
-.sp:active{color:#000;background:#fff}
+.sp{width:100%;padding:18px;background:#e8e2d4;color:#050505;border:1px solid #e8e2d4;font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:9px;text-indent:9px;cursor:pointer;transition:all .15s}
+.sp:active{color:#fff;background:#050505}
 .sp:disabled{color:#444;border-color:#333}
 .ar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.ab{padding:13px 4px;background:transparent;color:#aaa;border:1px solid #3a3a3a;font-family:'Noto Sans SC',sans-serif;font-size:12px;letter-spacing:2px;cursor:pointer;font-weight:300}
-.ab:active{background:#fff;color:#000;border-color:#fff}
+.ab{padding:13px 4px;background:rgba(255,255,255,.02);color:#b9ad9c;border:1px solid #3a352d;font-family:'Noto Sans SC',sans-serif;font-size:12px;letter-spacing:.8px;cursor:pointer;font-weight:300}
+.ab:active{background:#e8e2d4;color:#000;border-color:#e8e2d4}
 .ab:disabled{color:#333;border-color:#222}
 
 .lm{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(8px)}
@@ -81,7 +88,7 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 .sm-hint{margin-top:14px;color:#888;font-family:'Noto Sans SC',sans-serif;font-size:12px;letter-spacing:2px;text-align:center;line-height:1.8;font-weight:300}
 .sm-close{position:absolute;top:16px;right:16px;background:none;border:1px solid #444;color:#fff;width:36px;height:36px;font-size:22px;cursor:pointer}
 
-.ft{text-align:center;margin-top:18px;font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:6px;color:#444}
+.ft{text-align:center;margin-top:18px;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:3px;color:#625b50}
 
 @keyframes pulse{0%,100%{opacity:.92}50%{opacity:1}}
 .spinning .ray,.spinning .beam{animation:pulse .15s infinite}
@@ -107,22 +114,22 @@ body{background:#000;color:#e8e8e8;font-family:'Noto Sans SC',-apple-system,sans
 
 @media (min-width:1024px){
 body{display:flex;align-items:center;justify-content:center;padding:40px 0}
-.c{max-width:1100px;flex-direction:row;gap:60px;align-items:stretch;padding:40px}
+.c{max-width:1120px;flex-direction:row;gap:68px;align-items:stretch;padding:40px}
 .left-panel{flex:0 0 480px;display:flex;flex-direction:column;justify-content:center}
 .right-panel{flex:1;display:flex;flex-direction:column;justify-content:center;min-width:380px}
 .h{text-align:left;margin-bottom:0}
 .t{font-size:96px;letter-spacing:14px;margin-right:-14px}
 .sb{text-align:left}
 .tag{display:block;text-align:left}
-.modes{margin:30px 0 0;border-top:1px solid #222;border-bottom:none;border-right:none}
-.mb{flex:0 0 auto;padding:11px 28px;border:1px solid #2a2a2a;margin-right:-1px;border-radius:0}
+.modes{margin:30px 0 0}
+.mb{flex:0 0 auto;padding:11px 28px}
 .filters{padding-top:18px;justify-content:flex-start}
 .prism-wrap{margin:50px 0 0;justify-content:flex-start}
 .prism-svg{max-width:420px;height:150px}
 .stage-wrap{min-height:auto;margin:0}
 .cover{width:200px;height:200px}
 .song-title{font-size:30px}
-.cal-day{font-size:140px}
+.cal-day{font-size:150px}
 .ft{text-align:left;padding-top:24px}
 }
 </style></head>
@@ -134,12 +141,12 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 <header class="h">
 <span class="tag">— 33 1/3 RPM · SIDE B —</span>
 <h1 class="t">OFFBEAT</h1>
-<p class="sb">日 常 出 逃 &nbsp;·&nbsp; <span class="em">REST &amp; RESET</span></p>
+<p class="sb"><span class="em">ROLL A SONG, RESET THE DAY</span>每天一句经典摇滚歌词</p>
 </header>
 
 <div class="modes">
-<button class="mb active" data-mode="roulette">R O L L</button>
-<button class="mb" data-mode="calendar">每 日</button>
+<button class="mb" data-mode="roulette">ROLL</button>
+<button class="mb active" data-mode="calendar">每日摇滚签</button>
 </div>
 
 <div class="filters" id="filters">
@@ -155,27 +162,25 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
 <stop offset="100%" stop-color="#fff" stop-opacity="1"/>
 </linearGradient>
-<linearGradient id="rainbow" x1="0%" y1="0%" x2="0%" y2="100%">
-<stop offset="0%" stop-color="#ff3344"/>
-<stop offset="18%" stop-color="#ff8822"/>
-<stop offset="36%" stop-color="#ffdd33"/>
-<stop offset="56%" stop-color="#22dd66"/>
-<stop offset="76%" stop-color="#33aaff"/>
-<stop offset="100%" stop-color="#aa44ff"/>
-</linearGradient>
 <filter id="softblur" x="-20%" y="-20%" width="140%" height="140%">
-<feGaussianBlur stdDeviation="0.8"/>
+<feGaussianBlur stdDeviation="0.45"/>
 </filter>
 </defs>
 <g class="beam">
-<line x1="0" y1="55" x2="148" y2="55" stroke="url(#beamG)" stroke-width="2.5" filter="url(#softblur)"/>
-<line x1="0" y1="55" x2="148" y2="55" stroke="#fff" stroke-width="1.2"/>
+<line x1="0" y1="55" x2="142" y2="55" stroke="url(#beamG)" stroke-width="2.1" filter="url(#softblur)"/>
+<line x1="0" y1="55" x2="142" y2="55" stroke="#fff" stroke-width="0.9"/>
 </g>
-<g class="ray" filter="url(#softblur)">
-<path d="M 164,55 L 340,5 L 340,90 Z" fill="url(#rainbow)" opacity="0.95"/>
+<g class="ray" filter="url(#softblur)" opacity="0.96">
+<polygon points="190,51 340,15 340,25 190,54" fill="#ff3344"/>
+<polygon points="190,54 340,27 340,37 190,57" fill="#ff8822"/>
+<polygon points="190,57 340,39 340,49 190,60" fill="#ffdd33"/>
+<polygon points="190,60 340,51 340,61 190,63" fill="#22dd66"/>
+<polygon points="190,63 340,63 340,73 190,66" fill="#33aaff"/>
+<polygon points="190,66 340,75 340,85 190,69" fill="#aa44ff"/>
 </g>
-<polygon points="170,18 200,82 140,82" fill="#0f0f0f" stroke="#fff" stroke-width="1.8"/>
-<line x1="148" y1="55" x2="172" y2="55" stroke="#fff" stroke-width="0.6" opacity="0.5"/>
+<polygon points="170,18 204,84 136,84" fill="#050505" stroke="#fff" stroke-width="1.7"/>
+<line x1="142" y1="55" x2="170" y2="55" stroke="#fff" stroke-width="0.55" opacity="0.58"/>
+<line x1="170" y1="55" x2="190" y2="60" stroke="#fff" stroke-width="0.45" opacity="0.4"/>
 </svg>
 </div>
 
@@ -184,7 +189,7 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 <div class="right-panel">
 
 <div class="stage-wrap">
-<div id="rouletteView" style="width:100%">
+<div id="rouletteView" style="width:100%;display:none">
 <div class="song-card idle" id="card">
 <div class="cover" id="cover">
 <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#000"/><circle cx="50" cy="50" r="40" fill="none" stroke="#fff" stroke-width="0.5" opacity="0.4"/><circle cx="50" cy="50" r="4" fill="#fff" opacity="0.4"/></svg>
@@ -195,7 +200,7 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 <div class="song-year" id="year">&nbsp;</div>
 </div>
 </div>
-<div class="cal-view" id="calView">
+<div class="cal-view show" id="calView">
 <div class="cal-date" id="calDate"></div>
 <div class="cal-day" id="calDay">--</div>
 <div class="cal-month" id="calMonth">---</div>
@@ -208,7 +213,7 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 </div>
 
 <div class="cl">
-<button class="sp" id="sb">SPIN</button>
+<button class="sp" id="sb">REFRESH</button>
 <div class="ar">
 <button class="ab" id="nb" disabled>网易云</button>
 <button class="ab" id="lb" disabled>歌曲信息</button>
@@ -216,14 +221,14 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 </div>
 </div>
 
-<footer class="ft">SIDE B · 跳 出 日 常 看 日 常</footer>
+<footer class="ft">SIDE B · A LYRIC FOR TODAY</footer>
 
 </div>
 
 </div>
 
 <div class="lm" id="lm"><div class="lc"><button class="lx" id="lx">×</button><div class="lt" id="mt"></div><div class="la" id="ma"></div><div class="lr" id="mr"></div></div></div>
-<div class="sm" id="sm"><button class="sm-close" id="smClose">×</button><canvas id="shareCanvas" width="720" height="1080"></canvas><div class="sm-hint">长按图片保存 / 转发 · 扫码进入 OFFBEAT</div></div>
+<div class="sm" id="sm"><button class="sm-close" id="smClose">×</button><canvas id="shareCanvas" width="720" height="1080"></canvas><div class="sm-hint">长按图片保存 / 转发 · 扫码抽你的今日摇滚签</div></div>
 <div id="qrHolder" style="display:none"></div>
 
 <script>
@@ -552,7 +557,15 @@ const Q=[
 ["Bittersweet symphony","Bittersweet Symphony","The Verve"]
 ];
 
-let pool='all',curPoolSongs=S,cur=null,sp=false,mode='roulette';
+let pool='all',curPoolSongs=S,cur=null,rouletteCur=null,dailyCur=null,dailyQuote='',sp=false,mode='calendar';
+const SHARE_LINES=[
+'这句歌词替我说了今天',
+'今天的情绪，被这句唱出来了',
+'把今天交给一首摇滚歌',
+'有些话不必解释，唱出来就够了',
+'给今天换一个节拍',
+'我的今日摇滚签'
+];
 function applyPool(){curPoolSongs=pool==='all'?S:S.filter(s=>s[3]===pool);if(curPoolSongs.length===0)curPoolSongs=S;}
 function hash(s){let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return Math.abs(h);}
 const COL=['#ff3344','#ff8822','#ffdd33','#22dd66','#33aaff','#aa44ff'];
@@ -598,10 +611,13 @@ realImg.src=img.src;
 initQR();
 
 function showSong(s){
+rouletteCur=s;
+cur=s;
 cover.innerHTML=gen(s[0],s[1]);
 title.textContent=s[0];
-artist.textContent=s[1].toUpperCase();
-artistCN.textContent=isLatin(s[1])?'':s[1];
+if(isLatin(s[1])){artist.textContent=s[1].toUpperCase();artist.classList.remove('cn');}
+else{artist.textContent=s[1];artist.classList.add('cn');}
+artistCN.textContent='';
 year.textContent=s[2];
 card.classList.remove('idle');card.classList.remove('reveal');cover.classList.remove('reveal');
 void card.offsetWidth;
@@ -618,7 +634,7 @@ const t1=setInterval(()=>{
 elapsed+=80;
 const ri=Math.floor(Math.random()*curPoolSongs.length),rs=curPoolSongs[ri];
 cover.innerHTML=gen(rs[0],rs[1]);
-title.textContent=rs[0];artist.textContent=rs[1].toUpperCase();artistCN.textContent=isLatin(rs[1])?'':rs[1];year.textContent=rs[2];
+title.textContent=rs[0];if(isLatin(rs[1])){artist.textContent=rs[1].toUpperCase();artist.classList.remove('cn');}else{artist.textContent=rs[1];artist.classList.add('cn');}artistCN.textContent='';year.textContent=rs[2];
 card.classList.remove('idle');
 if(elapsed>=3000){
 clearInterval(t1);
@@ -628,7 +644,7 @@ slow++;
 if(slow<=4){
 const ri2=Math.floor(Math.random()*curPoolSongs.length),rs2=curPoolSongs[ri2];
 cover.innerHTML=gen(rs2[0],rs2[1]);
-title.textContent=rs2[0];artist.textContent=rs2[1].toUpperCase();artistCN.textContent=isLatin(rs2[1])?'':rs2[1];year.textContent=rs2[2];
+title.textContent=rs2[0];if(isLatin(rs2[1])){artist.textContent=rs2[1].toUpperCase();artist.classList.remove('cn');}else{artist.textContent=rs2[1];artist.classList.add('cn');}artistCN.textContent='';year.textContent=rs2[2];
 }else{
 clearInterval(t2);
 showSong(cur);
@@ -645,7 +661,7 @@ document.querySelectorAll('.mb').forEach(b=>b.addEventListener('click',()=>{
 document.querySelectorAll('.mb').forEach(x=>x.classList.remove('active'));
 b.classList.add('active');
 mode=b.dataset.mode;
-if(mode==='roulette'){rv.style.display='block';cv.classList.remove('show');sb.textContent=cur?'SPIN AGAIN':'SPIN';sb.disabled=false;document.querySelector('.filters').style.display='flex';}
+if(mode==='roulette'){rv.style.display='block';cv.classList.remove('show');cur=rouletteCur;sb.textContent=rouletteCur?'SPIN AGAIN':'SPIN';sb.disabled=false;nb.disabled=!rouletteCur;lb.disabled=!rouletteCur;shb.disabled=!dailyCur;document.querySelector('.filters').style.display='flex';}
 else{rv.style.display='none';cv.classList.add('show');cv.classList.add('reveal');sb.textContent='REFRESH';sb.disabled=false;document.querySelector('.filters').style.display='none';loadCalendar();}
 }));
 
@@ -668,12 +684,16 @@ const doy=Math.floor((d-start)/(1000*60*60*24));
 const q=Q[doy%Q.length];
 const cq=$('calQuote');
 cq.textContent=q[0];
+dailyQuote=q[0];
 if(isLatin(q[0])){cq.classList.remove('cn');}else{cq.classList.add('cn');}
 $('calFrom').textContent=q[2].toUpperCase();
 $('calFromCN').textContent='《'+q[1]+'》 — '+q[2];
-cur=[q[1],q[2],d.getFullYear(),'rock_cn'];
+dailyCur=[q[1],q[2],d.getFullYear(),'rock_cn'];
+cur=dailyCur;
 nb.disabled=false;lb.disabled=false;shb.disabled=false;
 }
+
+loadCalendar();
 
 sb.addEventListener('click',()=>{if(mode==='roulette')spin();else loadCalendar();});
 nb.addEventListener('click',()=>{if(!cur)return;window.open('https://music.163.com/#/search/m/?s='+encodeURIComponent(cur[0]+' '+cur[1])+'&type=1','_blank');});
@@ -716,33 +736,67 @@ return lines;
 }
 
 shb.addEventListener('click',()=>{
-if(!cur)return;
+const shareCur=dailyCur||cur;
+const shareQuote=dailyQuote;
+if(!shareCur)return;
 const ctx=shareCanvas.getContext('2d');
 const W=720,H=1080;
 ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
+const shareLine=SHARE_LINES[(hash((shareQuote||shareCur[0])+new Date().getDate())%SHARE_LINES.length)];
 
-ctx.fillStyle='#666';ctx.font='300 16px sans-serif';ctx.textAlign='center';
-ctx.fillText('— 33 1/3 RPM · SIDE B —',W/2,70);
+ctx.fillStyle='#777064';ctx.font='300 16px sans-serif';ctx.textAlign='center';
+ctx.fillText('— 33 1/3 RPM · SIDE B —',W/2,64);
 ctx.fillStyle='#fff';ctx.font='400 72px "Bebas Neue", Impact, sans-serif';
-ctx.fillText('O F F B E A T',W/2,150);
-ctx.fillStyle='#666';ctx.font='300 14px sans-serif';
-ctx.fillText('日 常 出 逃  ·  REST & RESET',W/2,180);
+ctx.fillText('OFFBEAT',W/2,138);
+ctx.fillStyle='#cfc4b2';ctx.font='400 22px "Bebas Neue", Impact, sans-serif';
+ctx.fillText('ROLL A SONG, RESET THE DAY',W/2,172);
 
-const px=W/2,py=320;
-ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.shadowBlur=8;ctx.shadowColor='#fff';
-ctx.beginPath();ctx.moveTo(px-200,py);ctx.lineTo(px-45,py);ctx.stroke();ctx.shadowBlur=0;
-const rg=ctx.createLinearGradient(0,py-55,0,py+55);
-rg.addColorStop(0,'#ff3344');rg.addColorStop(0.18,'#ff8822');rg.addColorStop(0.36,'#ffdd33');rg.addColorStop(0.56,'#22dd66');rg.addColorStop(0.76,'#33aaff');rg.addColorStop(1,'#aa44ff');
-ctx.fillStyle=rg;
-ctx.beginPath();ctx.moveTo(px+30,py);ctx.lineTo(W,py-55);ctx.lineTo(W,py+55);ctx.closePath();ctx.fill();
-ctx.fillStyle='#0f0f0f';ctx.strokeStyle='#fff';ctx.lineWidth=2.5;
-ctx.beginPath();ctx.moveTo(px,py-50);ctx.lineTo(px+30,py+30);ctx.lineTo(px-30,py+30);ctx.closePath();
+const px=W/2,py=285;
+ctx.strokeStyle='#fff';ctx.lineWidth=1.7;ctx.shadowBlur=7;ctx.shadowColor='#fff';
+ctx.beginPath();ctx.moveTo(px-250,py);ctx.lineTo(px-38,py);ctx.stroke();ctx.shadowBlur=0;
+const bands=[
+['#ff3344',-70,-52],
+['#ff8822',-46,-28],
+['#ffdd33',-22,-4],
+['#22dd66',2,20],
+['#33aaff',26,44],
+['#aa44ff',50,68]
+];
+bands.forEach(([color,y1,y2])=>{
+ctx.fillStyle=color;
+ctx.beginPath();
+ctx.moveTo(px+34,py-7);
+ctx.lineTo(W,py+y1);
+ctx.lineTo(W,py+y2);
+ctx.lineTo(px+34,py-2);
+ctx.closePath();
+ctx.fill();
+});
+ctx.fillStyle='#050505';ctx.strokeStyle='#fff';ctx.lineWidth=2.4;
+ctx.beginPath();ctx.moveTo(px,py-58);ctx.lineTo(px+40,py+38);ctx.lineTo(px-40,py+38);ctx.closePath();
 ctx.fill();ctx.stroke();
+ctx.strokeStyle='rgba(255,255,255,0.52)';ctx.lineWidth=0.9;
+ctx.beginPath();ctx.moveTo(px-38,py);ctx.lineTo(px,py);ctx.stroke();
+ctx.strokeStyle='rgba(255,255,255,0.34)';ctx.lineWidth=0.7;
+ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(px+34,py-4);ctx.stroke();
 
-const cs=200,cx=W/2-cs/2,cy=460;
+ctx.fillStyle='#e8e2d4';
+ctx.fillRect(58,390,W-116,420);
+ctx.strokeStyle='rgba(0,0,0,0.26)';
+ctx.lineWidth=2;
+ctx.strokeRect(58,390,W-116,420);
+ctx.setLineDash([8,8]);
+ctx.beginPath();ctx.moveTo(86,438);ctx.lineTo(W-86,438);ctx.stroke();
+ctx.setLineDash([]);
+ctx.fillStyle='#5c5448';ctx.font='400 18px "Bebas Neue", Impact, sans-serif';ctx.textAlign='left';
+ctx.fillText('TODAY LYRIC',86,424);
+ctx.textAlign='right';
+ctx.fillText(new Date().toLocaleDateString('en-US',{month:'short',day:'2-digit',year:'numeric'}).toUpperCase(),W-86,424);
+
+const cs=140,cx=W/2-cs/2,cy=474;
 ctx.fillStyle='#000';ctx.fillRect(cx,cy,cs,cs);
 ctx.strokeStyle='rgba(255,255,255,0.2)';ctx.lineWidth=1;ctx.strokeRect(cx,cy,cs,cs);
-const h1=hash(cur[1]),h2=hash(cur[0]),c1=COL[h1%6],c2=COL[(h1+3)%6],v=(h1+h2)%6;
+const h1=hash(shareCur[1]),h2=hash(shareCur[0]),c1=COL[h1%6],c2=COL[(h1+3)%6],v=(h1+h2)%6;
 ctx.save();ctx.translate(cx,cy);ctx.scale(cs/100,cs/100);
 if(v===0){ctx.strokeStyle=c1;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(50,20);ctx.lineTo(76,72);ctx.lineTo(24,72);ctx.closePath();ctx.stroke();ctx.strokeStyle='#fff';ctx.beginPath();ctx.moveTo(12,50);ctx.lineTo(50,50);ctx.stroke();ctx.strokeStyle=c1;ctx.beginPath();ctx.moveTo(60,50);ctx.lineTo(90,38);ctx.stroke();ctx.strokeStyle=c2;ctx.beginPath();ctx.moveTo(60,50);ctx.lineTo(92,50);ctx.stroke();}
 else if(v===1){for(let k=0;k<5;k++){ctx.strokeStyle=c1;ctx.globalAlpha=0.9-k*0.12;ctx.lineWidth=0.5;ctx.beginPath();ctx.arc(50,50,38-k*7,0,Math.PI*2);ctx.stroke();}ctx.globalAlpha=1;ctx.fillStyle=c2;ctx.beginPath();ctx.arc(50,50,3,0,Math.PI*2);ctx.fill();}
@@ -752,32 +806,34 @@ else if(v===4){ctx.strokeStyle=c1;ctx.lineWidth=0.8;ctx.beginPath();ctx.moveTo(1
 else{ctx.strokeStyle=c1;ctx.lineWidth=0.8;ctx.save();ctx.translate(50,50);ctx.rotate((h2%45)*Math.PI/180);ctx.strokeRect(-22,-22,44,44);ctx.restore();ctx.fillStyle=c1;ctx.beginPath();ctx.arc(50,50,5,0,Math.PI*2);ctx.fill();}
 ctx.restore();
 
-const maxTitleWidth=W-80;
-ctx.fillStyle='#fff';ctx.textAlign='center';
-let titleFontSize=fitText(ctx,cur[0],maxTitleWidth,44,'"Noto Sans SC", sans-serif',24);
-ctx.font=`500 ${titleFontSize}px "Noto Sans SC", sans-serif`;
-let titleLines=[cur[0]];
-if(ctx.measureText(cur[0]).width>maxTitleWidth){
-titleFontSize=Math.max(titleFontSize,28);
-ctx.font=`500 ${titleFontSize}px "Noto Sans SC", sans-serif`;
-titleLines=wrapText(ctx,cur[0],maxTitleWidth);
-if(titleLines.length>2)titleLines=[titleLines[0],titleLines[1]+'…'];
+const maxTitleWidth=W-150;
+const heroText=shareQuote||shareCur[0];
+const heroFontFamily=isLatin(heroText)?'"Caveat", cursive':'"Noto Serif SC", serif';
+ctx.fillStyle='#080808';ctx.textAlign='center';
+let titleFontSize=isLatin(heroText)?46:38;
+ctx.font=`700 ${titleFontSize}px ${heroFontFamily}`;
+let titleLines=wrapText(ctx,heroText,maxTitleWidth);
+while(titleLines.length>3&&titleFontSize>26){
+titleFontSize-=2;
+ctx.font=`700 ${titleFontSize}px ${heroFontFamily}`;
+titleLines=wrapText(ctx,heroText,maxTitleWidth);
 }
-const lineHeight=titleFontSize*1.2;
-const titleBlockY=720-(titleLines.length-1)*lineHeight/2;
+if(titleLines.length>3)titleLines=[titleLines[0],titleLines[1],titleLines[2]+'...'];
+const lineHeight=titleFontSize*(isLatin(heroText)?1.05:1.34);
+const titleBlockY=685-(titleLines.length-1)*lineHeight/2;
 titleLines.forEach((line,idx)=>{
 ctx.fillText(line,W/2,titleBlockY+idx*lineHeight);
 });
 
-const afterTitleY=titleBlockY+(titleLines.length-1)*lineHeight+40;
-ctx.fillStyle='#bbb';ctx.font='400 20px "Bebas Neue", Impact, sans-serif';
-ctx.fillText(cur[1].toUpperCase()+'  ·  '+cur[2],W/2,afterTitleY);
-if(!isLatin(cur[1])){
-ctx.fillStyle='#888';ctx.font='300 16px "Noto Sans SC", sans-serif';
-ctx.fillText(cur[1],W/2,afterTitleY+30);
-}
+const afterTitleY=titleBlockY+(titleLines.length-1)*lineHeight+44;
+ctx.fillStyle='#1b1814';ctx.font='400 22px "Bebas Neue", Impact, sans-serif';
+ctx.fillText(shareCur[1].toUpperCase()+'  ·  '+shareCur[2],W/2,afterTitleY);
+ctx.fillStyle='#5c5448';ctx.font='300 17px "Noto Sans SC", sans-serif';
+ctx.fillText('《'+shareCur[0]+'》',W/2,afterTitleY+30);
 
-// 二维码 - 右下角
+ctx.fillStyle='#e8e2d4';ctx.font='400 28px "Noto Serif SC", serif';
+ctx.fillText(shareLine,W/2,880);
+
 const qrSize=120;
 const qrX=W-qrSize-40;
 const qrY=H-qrSize-50;
@@ -789,18 +845,16 @@ ctx.drawImage(qrCanvas,qrX,qrY,qrSize,qrSize);
 ctx.fillStyle='#000';ctx.font='10px sans-serif';
 ctx.fillText('QR',qrX+qrSize/2,qrY+qrSize/2);
 }
-// 二维码下方文字
 ctx.fillStyle='#666';ctx.font='300 11px "Noto Sans SC", sans-serif';ctx.textAlign='center';
-ctx.fillText('扫码 ROLL 一首',qrX+qrSize/2,qrY+qrSize+22);
+ctx.fillText('扫码抽你的今日摇滚签',qrX+qrSize/2,qrY+qrSize+22);
 
-// 左下角品牌
 ctx.textAlign='left';
-ctx.fillStyle='#888';ctx.font='400 18px "Bebas Neue", Impact, sans-serif';
+ctx.fillStyle='#cfc4b2';ctx.font='400 20px "Bebas Neue", Impact, sans-serif';
 ctx.fillText('OFFBEAT',40,H-90);
-ctx.fillStyle='#555';ctx.font='300 12px "Noto Sans SC", sans-serif';
-ctx.fillText('日 常 出 逃',40,H-68);
-ctx.fillStyle='#444';ctx.font='300 10px "Noto Sans SC", sans-serif';
-ctx.fillText('SIDE B · 跳出日常看日常',40,H-50);
+ctx.fillStyle='#7b7469';ctx.font='300 12px "Noto Sans SC", sans-serif';
+ctx.fillText('ROLL A SONG, RESET THE DAY',40,H-68);
+ctx.fillStyle='#5b544a';ctx.font='300 10px "Noto Sans SC", sans-serif';
+ctx.fillText('SIDE B · A LYRIC FOR TODAY',40,H-50);
 
 sm.classList.add('s');
 });
