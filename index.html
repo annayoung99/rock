@@ -34,7 +34,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;background-ima
 .fp.active{color:#080808;background:#e8e2d4;border-color:#e8e2d4;font-weight:400}
 
 .prism-wrap{display:flex;justify-content:center;margin:22px 0 8px;position:relative}
-.prism-svg{width:100%;max-width:340px;height:110px}
+.prism-svg{width:100%;max-width:360px;height:120px}
 
 .stage-wrap{flex:1;display:flex;align-items:center;justify-content:center;position:relative;margin:8px 0;min-height:370px}
 
@@ -107,7 +107,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;background-ima
 
 @media (min-width:768px) and (max-width:1023px){
 .c{max-width:560px;padding-top:50px}
-.prism-svg{max-width:400px;height:130px}
+.prism-svg{max-width:430px;height:140px}
 .t{font-size:82px;letter-spacing:10px;margin-right:-10px}
 .cover{width:172px;height:172px}
 }
@@ -125,7 +125,7 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 .mb{flex:0 0 auto;padding:11px 28px}
 .filters{padding-top:18px;justify-content:flex-start}
 .prism-wrap{margin:50px 0 0;justify-content:flex-start}
-.prism-svg{max-width:420px;height:150px}
+.prism-svg{max-width:460px;height:160px}
 .stage-wrap{min-height:auto;margin:0}
 .cover{width:200px;height:200px}
 .song-title{font-size:30px}
@@ -156,31 +156,47 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 </div>
 
 <div class="prism-wrap">
-<svg class="prism-svg" viewBox="0 0 340 110" preserveAspectRatio="xMidYMid meet">
+<svg class="prism-svg" viewBox="0 0 360 120" preserveAspectRatio="xMidYMid meet">
 <defs>
 <linearGradient id="beamG" x1="0%" y1="0%" x2="100%" y2="0%">
 <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
 <stop offset="100%" stop-color="#fff" stop-opacity="1"/>
 </linearGradient>
-<filter id="softblur" x="-20%" y="-20%" width="140%" height="140%">
-<feGaussianBlur stdDeviation="0.45"/>
+<linearGradient id="rainbowG" gradientUnits="userSpaceOnUse" x1="0" y1="36" x2="0" y2="90">
+<stop offset="0%" stop-color="#ff253b"/>
+<stop offset="15%" stop-color="#ff253b"/>
+<stop offset="18%" stop-color="#ff7a1a"/>
+<stop offset="31%" stop-color="#ff7a1a"/>
+<stop offset="34%" stop-color="#ffd92d"/>
+<stop offset="47%" stop-color="#ffd92d"/>
+<stop offset="50%" stop-color="#20d66b"/>
+<stop offset="63%" stop-color="#20d66b"/>
+<stop offset="66%" stop-color="#25a9ff"/>
+<stop offset="79%" stop-color="#25a9ff"/>
+<stop offset="82%" stop-color="#9c45ff"/>
+<stop offset="100%" stop-color="#9c45ff"/>
+</linearGradient>
+<filter id="softblur" x="-25%" y="-60%" width="150%" height="220%">
+<feGaussianBlur stdDeviation="0.65"/>
+</filter>
+<filter id="prismGlow" x="-45%" y="-45%" width="190%" height="190%">
+<feGaussianBlur stdDeviation="1.2"/>
 </filter>
 </defs>
 <g class="beam">
-<line x1="0" y1="55" x2="142" y2="55" stroke="url(#beamG)" stroke-width="2.1" filter="url(#softblur)"/>
-<line x1="0" y1="55" x2="142" y2="55" stroke="#fff" stroke-width="0.9"/>
+<line x1="-12" y1="85" x2="155" y2="50" stroke="url(#beamG)" stroke-width="2.6" filter="url(#softblur)" opacity=".78"/>
+<line x1="-12" y1="85" x2="155" y2="50" stroke="#fff" stroke-width="1.05" opacity=".96"/>
 </g>
-<g class="ray" filter="url(#softblur)" opacity="0.96">
-<polygon points="190,51 340,15 340,25 190,54" fill="#ff3344"/>
-<polygon points="190,54 340,27 340,37 190,57" fill="#ff8822"/>
-<polygon points="190,57 340,39 340,49 190,60" fill="#ffdd33"/>
-<polygon points="190,60 340,51 340,61 190,63" fill="#22dd66"/>
-<polygon points="190,63 340,63 340,73 190,66" fill="#33aaff"/>
-<polygon points="190,66 340,75 340,85 190,69" fill="#aa44ff"/>
+<g class="ray">
+<polygon points="198,49 366,31 366,89 198,64" fill="url(#rainbowG)" filter="url(#softblur)" opacity=".42"/>
+<polygon points="198,49 366,31 366,89 198,64" fill="url(#rainbowG)" opacity=".96"/>
+<path d="M198 49 L366 31 M198 64 L366 89" stroke="rgba(255,255,255,.22)" stroke-width=".45" opacity=".45"/>
 </g>
-<polygon points="170,18 204,84 136,84" fill="#050505" stroke="#fff" stroke-width="1.7"/>
-<line x1="142" y1="55" x2="170" y2="55" stroke="#fff" stroke-width="0.55" opacity="0.58"/>
-<line x1="170" y1="55" x2="190" y2="60" stroke="#fff" stroke-width="0.45" opacity="0.4"/>
+<polygon points="168,18 216,92 119,92" fill="#050505" stroke="#b8f6f0" stroke-width="3.6" opacity=".32" filter="url(#prismGlow)"/>
+<polygon points="168,18 216,92 119,92" fill="#050505" stroke="#e8ffff" stroke-width="1.35" opacity=".9"/>
+<path d="M168 18 L156 51 L119 92 M168 18 L190 57 L216 92" fill="none" stroke="#7ce7df" stroke-width=".65" opacity=".32"/>
+<line x1="155" y1="50" x2="168" y2="18" stroke="#e8ffff" stroke-width=".45" opacity=".36"/>
+<line x1="168" y1="18" x2="198" y2="49" stroke="#e8ffff" stroke-width=".45" opacity=".34"/>
 </svg>
 </div>
 
@@ -283,26 +299,19 @@ const S=[
 ["我还年轻 我还年轻","老王乐队",2019,"rock_cn"],
 ["Lonely God","惘闻",2008,"rock_cn"],["21天","惘闻",2012,"rock_cn"],["醉忘川","惘闻",2017,"rock_cn"],["海与你","惘闻",2017,"rock_cn"],
 
-["董小姐","宋冬野",2013,"rock_cn"],["斑马 斑马","宋冬野",2013,"rock_cn"],["鸽子","宋冬野",2013,"rock_cn"],
-["南方姑娘","赵雷",2011,"rock_cn"],["成都","赵雷",2016,"rock_cn"],["理想","赵雷",2014,"rock_cn"],
-["理想三旬","陈鸿宇",2015,"rock_cn"],
-["南山南","马頔",2014,"rock_cn"],
-["小半","陈粒",2015,"rock_cn"],["易燃易爆炸","陈粒",2015,"rock_cn"],["走马","陈粒",2015,"rock_cn"],
-["云烟成雨","房东的猫",2017,"rock_cn"],
-["罗马假日","好妹妹乐队",2014,"rock_cn"],["你曾是少年","好妹妹乐队",2015,"rock_cn"],
 ["硬汉","腰乐队",2008,"rock_cn"],["晚春","腰乐队",2003,"rock_cn"],
 ["黄河谣","野孩子",2003,"rock_cn"],
 ["兰州 兰州","低苦艾",2011,"rock_cn"],
 ["陀螺","万晓利",2006,"rock_cn"],["狐狸","万晓利",2006,"rock_cn"],
 ["九月","周云蓬",2010,"rock_cn"],
 
-["夜空中最亮的星","逃跑计划",2011,"rock_cn"],["一万次悲伤","逃跑计划",2011,"rock_cn"],
 ["你的城市","声音玩具",2008,"rock_cn"],
 ["玫瑰","贰佰",2016,"rock_cn"],
-["鹿港小镇","罗大佑",1982,"rock_cn"],["童年","罗大佑",1981,"rock_cn"],["光阴的故事","罗大佑",1981,"rock_cn"],["皇后大道东","罗大佑",1991,"rock_cn"],["你的样子","罗大佑",1988,"rock_cn"],
-["宝贝","张悬",2006,"rock_cn"],["玫瑰色的你","张悬",2012,"rock_cn"],
-["旅行的意义","陈绮贞",2004,"rock_cn"],
-["悟空","戴荃",2014,"rock_cn"],
+["挪威的森林","伍佰",1996,"rock_cn"],["突然的自我","伍佰",2004,"rock_cn"],["白鸽","伍佰",1999,"rock_cn"],
+["爱我别走","张震岳",1998,"rock_cn"],["思念是一种病","张震岳",2007,"rock_cn"],["再见","张震岳",2005,"rock_cn"],
+["梵高先生","李志",2005,"rock_cn"],["热河","李志",2010,"rock_cn"],["天空之城","李志",2009,"rock_cn"],["和你在一起","李志",2006,"rock_cn"],["山阴路的夏天","李志",2006,"rock_cn"],
+["宝贝","安溥",2006,"rock_cn"],["玫瑰色的你","安溥",2012,"rock_cn"],["关于我爱你","安溥",2012,"rock_cn"],["艳火","安溥",2012,"rock_cn"],
+["New Boy","朴树",1999,"rock_cn"],["生如夏花","朴树",2003,"rock_cn"],["No Fear In My Heart","朴树",2017,"rock_cn"],["平凡之路","朴树",2014,"rock_cn"],
 ["Bohemian Rhapsody","Queen",1975,"rock_west"],["We Will Rock You","Queen",1977,"rock_west"],["Don't Stop Me Now","Queen",1978,"rock_west"],["Under Pressure","Queen & Bowie",1981,"rock_west"],["Somebody to Love","Queen",1976,"rock_west"],["Radio Ga Ga","Queen",1984,"rock_west"],["We Are the Champions","Queen",1977,"rock_west"],
 ["Stairway to Heaven","Led Zeppelin",1971,"rock_west"],["Whole Lotta Love","Led Zeppelin",1969,"rock_west"],["Kashmir","Led Zeppelin",1975,"rock_west"],["Black Dog","Led Zeppelin",1971,"rock_west"],["Immigrant Song","Led Zeppelin",1970,"rock_west"],
 ["Hotel California","Eagles",1976,"rock_west"],["Take It Easy","Eagles",1972,"rock_west"],["Desperado","Eagles",1973,"rock_west"],
@@ -358,14 +367,9 @@ const Q=[
 ["人潮人海中 有你有我","无地自容","黑豹"],
 ["菊花古剑和酒 被咖啡泡入喧嚣的亭院","梦回唐朝","唐朝"],
 ["一直往南方开","公路之歌","痛仰乐队"],
-["夜空中最亮的星 能否听清那仰望的人心底的孤独和叹息","夜空中最亮的星","逃跑计划"],
-["和我在成都的街头走一走","成都","赵雷"],
-["生活不止眼前的苟且 还有诗和远方","生活不止眼前的苟且","许巍"],
 ["如果有一天我老无所依 请把我留在那时光里","春天里","汪峰"],
 ["梵高先生 请别割掉你的耳朵","梵高先生","李志"],
-["董小姐 你从没忘记你的微笑","董小姐","宋冬野"],
 ["阿民 阿民 你莫要走","莫欺少年穷","九连真人"],
-["把所有的眼泪 留给最爱的人","礼物","痛仰乐队"],
 ["你要跳舞吗 在这夜空里飘荡","你要跳舞吗","新裤子"],
 ["我们生活的世界 就像一个垃圾场","垃圾场","何勇"],
 ["我的家就在二环路的里边","钟鼓楼","何勇"],
@@ -373,8 +377,6 @@ const Q=[
 ["晚安 北京 晚安 所有未眠的人们","晚安北京","汪峰"],
 ["我喜欢热河路 因为有人她和我吹牛逼","热河","李志"],
 ["不管你拥有什么 我们生来就是孤独","梵高先生","李志"],
-["就老去吧 孤独别醒来","理想三旬","陈鸿宇"],
-["你渴望的离开 只是无处可待","理想三旬","陈鸿宇"],
 ["雨夜的伦敦 潮湿的街道","雨夜曼彻斯特","盘尼西林"],
 ["在那个潮湿的夜晚 我们都还年轻","雨夜曼彻斯特","盘尼西林"],
 ["允许部分艺术家先富起来","允许部分艺术家先富起来","二手玫瑰"],
@@ -387,13 +389,6 @@ const Q=[
 ["飞得更高","飞得更高","汪峰"],
 ["存在","存在","汪峰"],
 ["北京 北京","北京北京","汪峰"],
-["你曾是少年","你曾是少年","好妹妹乐队"],
-["罗马假日","罗马假日","好妹妹乐队"],
-["云烟成雨","云烟成雨","房东的猫"],
-["走马观花 醉里看人间","走马","陈粒"],
-["易燃易爆炸","易燃易爆炸","陈粒"],
-["小半","小半","陈粒"],
-
 ["挪威的森林","挪威的森林","伍佰"],
 ["突然的自我","突然的自我","伍佰"],
 ["白鸽","白鸽","伍佰"],
@@ -401,8 +396,6 @@ const Q=[
 ["爱我别走","爱我别走","张震岳"],
 ["思念是一种病","思念是一种病","张震岳"],
 ["再见","再见","张震岳"],
-["把所有的欢笑 留给最爱的人","礼物","痛仰乐队"],
-
 ["把无聊的日子 烧得滚烫","你要跳舞吗","新裤子"],
 ["燃烧一切的悲伤","你要跳舞吗","新裤子"],
 ["我多么希望我能够 看见你","玻璃之情","新裤子"],
@@ -412,17 +405,16 @@ const Q=[
 ["我们的青春就是这样盛开","盛开","夜叉乐队"],
 ["我用什么把你留住","我用什么把你留住","福禄寿"],
 ["山川湖海 厨房与爱","十万嬉皮","万能青年旅店"],
-["我是一个理想主义者","悟","重塑雕像的权利"],
 ["这是一个荒诞的时代 也是一个真实的梦","Pigs in the River","重塑雕像的权利"],
 ["Mr. Lonely 一个人喝酒","Mr. Lonely","Joyside"],
-["旅行的意义","旅行的意义","陈绮贞"],
-["宝贝","宝贝","张悬"],
-["玫瑰色的你","玫瑰色的你","张悬"],
-["童年","童年","罗大佑"],
-["光阴的故事","光阴的故事","罗大佑"],
-["鹿港小镇","鹿港小镇","罗大佑"],
-["你的样子","你的样子","罗大佑"],
-["皇后大道东","皇后大道东","罗大佑"],
+["宝贝","宝贝","安溥"],
+["玫瑰色的你","玫瑰色的你","安溥"],
+["关于我爱你","关于我爱你","安溥"],
+["艳火","艳火","安溥"],
+["New Boy","New Boy","朴树"],
+["我多想看到你 那依旧灿烂的笑容","生如夏花","朴树"],
+["跨过山和大海 也穿过人山人海","平凡之路","朴树"],
+["No fear in my heart","No Fear In My Heart","朴树"],
 ["梦想与生活的距离 是一杯酒的距离","硬汉","腰乐队"],
 ["晚春","晚春","腰乐队"],
 ["黄河谣","黄河谣","野孩子"],
@@ -431,16 +423,10 @@ const Q=[
 ["狐狸","狐狸","万晓利"],
 ["九月 在路上","九月","周云蓬"],
 ["玫瑰 玫瑰","玫瑰","贰佰"],
-["悟空","悟空","戴荃"],
 ["热河路上 我喜欢","热河","李志"],
 ["天空之城","天空之城","李志"],
 ["和你在一起","和你在一起","李志"],
 ["山阴路的夏天","山阴路的夏天","李志"],
-["斑马 斑马","斑马 斑马","宋冬野"],
-["鸽子","鸽子","宋冬野"],
-["南方姑娘","南方姑娘","赵雷"],
-["理想 一旦你拥有别的什么 你便不再纯粹","理想","赵雷"],
-["南山南","南山南","马頔"],
 ["我们一起出去玩","我们一起出去玩","木马乐队"],
 ["纯洁","纯洁","木马乐队"],
 ["Yellow Star","Yellow Star","木马乐队"],
@@ -469,7 +455,6 @@ const Q=[
 ["Yesterday all my troubles seemed so far away","Yesterday","The Beatles"],
 ["Come together right now over me","Come Together","The Beatles"],
 ["Here comes the sun, doo doo doo doo","Here Comes the Sun","The Beatles"],
-["Hello darkness, my old friend","The Sound of Silence","Simon & Garfunkel"],
 ["The times they are a-changin'","The Times They Are a-Changin'","Bob Dylan"],
 ["How does it feel to be on your own","Like a Rolling Stone","Bob Dylan"],
 ["Knock knock knockin' on heaven's door","Knockin' on Heaven's Door","Bob Dylan"],
@@ -553,7 +538,6 @@ const Q=[
 ["Nobody said it was easy","The Scientist","Coldplay"],
 ["Lights will guide you home","Fix You","Coldplay"],
 ["I used to rule the world","Viva la Vida","Coldplay"],
-["You and me are floating on a tidal wave","A Sky Full of Stars","Coldplay"],
 ["Bittersweet symphony","Bittersweet Symphony","The Verve"]
 ];
 
@@ -570,6 +554,12 @@ function applyPool(){curPoolSongs=pool==='all'?S:S.filter(s=>s[3]===pool);if(cur
 function hash(s){let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return Math.abs(h);}
 const COL=['#ff3344','#ff8822','#ffdd33','#22dd66','#33aaff','#aa44ff'];
 function isLatin(s){return /^[\x00-\x7F\s'.,&!?\-]+$/.test(s);}
+function songYear(title,artist){
+const exact=S.find(s=>s[0]===title&&s[1]===artist);
+if(exact)return exact[2];
+const sameTitle=S.filter(s=>s[0]===title);
+return sameTitle.length===1?sameTitle[0][2]:'';
+}
 
 function gen(t,a){
 const h1=hash(a),h2=hash(t),c1=COL[h1%6],c2=COL[(h1+3)%6],v=(h1+h2)%6;
@@ -700,7 +690,7 @@ dailyQuote=q[0];
 if(isLatin(q[0])){cq.classList.remove('cn');}else{cq.classList.add('cn');}
 $('calFrom').textContent=q[2].toUpperCase();
 $('calFromCN').textContent='《'+q[1]+'》 — '+q[2];
-dailyCur=[q[1],q[2],d.getFullYear(),'rock_cn'];
+dailyCur=[q[1],q[2],songYear(q[1],q[2]),'rock_cn'];
 cur=dailyCur;
 nb.disabled=false;lb.disabled=false;shb.disabled=false;
 }
@@ -709,7 +699,7 @@ loadCalendar();
 
 sb.addEventListener('click',()=>{if(mode==='roulette')spin();else loadCalendar(true);});
 nb.addEventListener('click',()=>{if(!cur)return;window.open('https://music.163.com/#/search/m/?s='+encodeURIComponent(cur[0]+' '+cur[1])+'&type=1','_blank');});
-lb.addEventListener('click',()=>{if(!cur)return;mt.textContent=cur[0];ma.textContent=cur[1]+' · '+cur[2];mr.textContent='《'+cur[0]+'》 — '+cur[1]+'\n\n点击"网易云"听完整版本';lm.classList.add('s');});
+lb.addEventListener('click',()=>{if(!cur)return;mt.textContent=cur[0];ma.textContent=[cur[1],cur[2]].filter(Boolean).join(' · ');mr.textContent='《'+cur[0]+'》 — '+cur[1]+'\n\n点击"网易云"听完整版本';lm.classList.add('s');});
 lx.addEventListener('click',()=>lm.classList.remove('s'));
 lm.addEventListener('click',e=>{if(e.target===lm)lm.classList.remove('s');});
 
@@ -839,7 +829,7 @@ ctx.fillText(line,W/2,titleBlockY+idx*lineHeight);
 
 const afterTitleY=titleBlockY+(titleLines.length-1)*lineHeight+44;
 ctx.fillStyle='#1b1814';ctx.font='400 22px "Bebas Neue", Impact, sans-serif';
-ctx.fillText(shareCur[1].toUpperCase()+'  ·  '+shareCur[2],W/2,afterTitleY);
+ctx.fillText([shareCur[1].toUpperCase(),shareCur[2]].filter(Boolean).join('  ·  '),W/2,afterTitleY);
 ctx.fillStyle='#5c5448';ctx.font='300 17px "Noto Sans SC", sans-serif';
 ctx.fillText('《'+shareCur[0]+'》',W/2,afterTitleY+30);
 
