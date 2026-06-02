@@ -65,19 +65,22 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;background-ima
 .cal-from{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:3px;color:rgba(232,226,212,.86);margin-bottom:5px;text-align:center;padding-top:4px}
 .cal-from-cn{font-family:'Noto Sans SC',sans-serif;font-size:12px;letter-spacing:.5px;color:rgba(232,226,212,.52);font-weight:300;text-align:center}
 
-.test-view{display:none;width:100%;border:1px solid rgba(232,226,212,.22);padding:22px 18px 24px;background:linear-gradient(180deg,rgba(18,18,16,.9),rgba(0,0,0,.72));position:relative;color:#e8e2d4;box-shadow:0 28px 90px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.035)}
+.test-view{display:none;width:100%;border:1px solid rgba(232,226,212,.2);padding:84px 18px 24px;background:#050505;position:relative;color:#e8e2d4;box-shadow:0 28px 90px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.035);overflow:hidden}
 .test-view.show{display:block}
-.test-kicker{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:3px;color:rgba(232,226,212,.52);margin-bottom:12px}
-.test-title{font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:clamp(26px,6.5vw,36px);line-height:1.24;color:#fff;font-weight:700;letter-spacing:.4px;margin-bottom:12px}
+.test-view::before{content:'OFFBEAT';position:absolute;left:16px;top:4px;font-family:'Bebas Neue',sans-serif;font-size:74px;letter-spacing:8px;color:rgba(255,255,255,.045);line-height:1;pointer-events:none}
+.test-view::after{content:'';position:absolute;left:0;right:-28px;top:48px;height:34px;background:linear-gradient(96deg,transparent 0 43%,rgba(255,255,255,.75) 43% 44%,transparent 44% 48%,#ff253b 48% 56%,#ff7a1a 56% 63%,#ffd92d 63% 70%,#20d66b 70% 77%,#25a9ff 77% 84%,#9c45ff 84% 94%,transparent 94%);opacity:.86;filter:blur(.35px);clip-path:polygon(0 44%,47% 18%,100% 0,100% 100%,47% 74%,0 56%);pointer-events:none}
+.test-kicker{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:#d9b95f;margin-bottom:10px;text-transform:uppercase}
+.test-title{font-family:'Bebas Neue','Noto Sans SC',sans-serif;font-size:clamp(37px,9.5vw,56px);line-height:.96;color:#fff;font-weight:400;letter-spacing:2px;margin-bottom:12px;text-transform:uppercase;text-shadow:0 0 24px rgba(255,255,255,.16)}
 .test-copy{font-size:13px;line-height:2;color:rgba(232,226,212,.7);letter-spacing:.4px}
-.test-progress{height:2px;background:rgba(232,226,212,.12);margin:18px 0}
-.test-progress span{display:block;height:100%;background:linear-gradient(90deg,#ff3344,#ffdd33,#33aaff,#aa44ff);width:0;transition:width .25s ease}
+.test-progress{height:3px;background:rgba(232,226,212,.1);margin:18px 0;border:1px solid rgba(232,226,212,.08)}
+.test-progress span{display:block;height:100%;background:linear-gradient(90deg,#ff253b,#ff7a1a,#ffd92d,#20d66b,#25a9ff,#9c45ff);width:0;transition:width .25s ease;box-shadow:0 0 20px rgba(51,170,255,.35)}
 .test-options{display:flex;flex-direction:column;gap:9px;margin-top:18px}
-.test-option{width:100%;text-align:left;padding:13px 14px;background:rgba(232,226,212,.045);border:1px solid rgba(232,226,212,.16);color:#eee6d8;font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.55;letter-spacing:.3px;cursor:pointer}
+.test-option{width:100%;text-align:left;padding:13px 14px;background:rgba(255,255,255,.025);border:1px solid rgba(232,226,212,.16);color:#eee6d8;font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.55;letter-spacing:.3px;cursor:pointer;position:relative}
+.test-option::before{content:'';position:absolute;left:-1px;top:-1px;bottom:-1px;width:3px;background:linear-gradient(to bottom,#ff253b,#ffd92d,#25a9ff,#9c45ff);opacity:.7}
 .test-option:active{background:#e8e2d4;color:#050505}
 .test-result-label{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:#d9b95f;margin-bottom:12px}
-.test-result-title{font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:clamp(31px,7.6vw,45px);line-height:1.18;color:#fff;font-weight:700;margin-bottom:12px}
-.test-result-line{font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;line-height:1.7;color:#d9b95f;margin-bottom:18px}
+.test-result-title{font-family:'Bebas Neue','Noto Sans SC',sans-serif;font-size:clamp(42px,10vw,62px);line-height:.98;color:#fff;font-weight:400;letter-spacing:1px;margin-bottom:12px;text-shadow:0 0 24px rgba(255,255,255,.14)}
+.test-result-line{font-family:'Noto Sans SC',sans-serif;font-size:19px;line-height:1.7;color:#d9b95f;margin-bottom:18px;font-weight:500}
 .test-tags{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0 18px}
 .test-tag{border:1px solid rgba(232,226,212,.24);padding:6px 9px;font-size:12px;color:#eee6d8;background:rgba(255,255,255,.03)}
 .test-near{font-size:12px;line-height:1.8;color:rgba(232,226,212,.62);border-top:1px solid rgba(232,226,212,.14);border-bottom:1px solid rgba(232,226,212,.14);padding:13px 0;margin:14px 0}
@@ -924,69 +927,83 @@ function drawTestShare(r){
 const ctx=shareCanvas.getContext('2d');
 const W=720,H=1180;
 shareCanvas.width=W;shareCanvas.height=H;
-ctx.fillStyle='#050505';ctx.fillRect(0,0,W,H);
-const bg=ctx.createLinearGradient(0,0,W,H);
-bg.addColorStop(0,'rgba(255,255,255,.04)');
-bg.addColorStop(.52,'rgba(255,48,72,.08)');
-bg.addColorStop(1,'rgba(51,170,255,.08)');
-ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
-ctx.strokeStyle='rgba(232,226,212,.18)';ctx.lineWidth=2;ctx.strokeRect(44,44,W-88,H-88);
-ctx.setLineDash([5,7]);ctx.strokeStyle='rgba(232,226,212,.14)';ctx.strokeRect(62,62,W-124,H-124);ctx.setLineDash([]);
+ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
+const vignette=ctx.createRadialGradient(W/2,420,80,W/2,520,720);
+vignette.addColorStop(0,'rgba(255,255,255,.07)');
+vignette.addColorStop(.42,'rgba(0,0,0,.18)');
+vignette.addColorStop(1,'rgba(0,0,0,.92)');
+ctx.fillStyle=vignette;ctx.fillRect(0,0,W,H);
+ctx.fillStyle='rgba(255,255,255,.035)';ctx.font='400 142px "Bebas Neue", Impact, sans-serif';ctx.textAlign='left';
+ctx.fillText('OFFBEAT',54,158);
+ctx.strokeStyle='rgba(232,226,212,.24)';ctx.lineWidth=2;ctx.strokeRect(38,38,W-76,H-76);
+ctx.strokeStyle='rgba(232,226,212,.12)';ctx.strokeRect(58,58,W-116,H-116);
 
-ctx.fillStyle='#777064';ctx.font='300 16px sans-serif';ctx.textAlign='center';
-ctx.fillText('— OFFBEAT · CHINESE ROCK PERSONALITY —',W/2,92);
-ctx.fillStyle='#d9b95f';ctx.font='400 24px "Bebas Neue", Impact, sans-serif';
-ctx.fillText(scoreLabel(testScores).toUpperCase(),W/2,134);
+const px=268,py=252;
+ctx.strokeStyle='#fff';ctx.lineWidth=1.9;ctx.shadowBlur=10;ctx.shadowColor='#fff';
+ctx.beginPath();ctx.moveTo(-20,py+42);ctx.lineTo(px-48,py);ctx.stroke();ctx.shadowBlur=0;
+const bands=[
+['#ff253b',-48,-32],['#ff7a1a',-29,-15],['#ffd92d',-12,2],
+['#20d66b',5,19],['#25a9ff',22,36],['#9c45ff',39,55]
+];
+bands.forEach(([color,y1,y2])=>{
+ctx.fillStyle=color;ctx.beginPath();
+ctx.moveTo(px+48,py-8);ctx.lineTo(W+12,py+y1);ctx.lineTo(W+12,py+y2);ctx.lineTo(px+48,py+2);ctx.closePath();ctx.fill();
+});
+ctx.fillStyle='#000';ctx.strokeStyle='rgba(232,255,255,.92)';ctx.lineWidth=2.2;
+ctx.beginPath();ctx.moveTo(px,py-74);ctx.lineTo(px+58,py+56);ctx.lineTo(px-60,py+56);ctx.closePath();ctx.fill();ctx.stroke();
+ctx.strokeStyle='rgba(124,231,223,.42)';ctx.lineWidth=.9;
+ctx.beginPath();ctx.moveTo(px,py-74);ctx.lineTo(px-18,py+3);ctx.lineTo(px-60,py+56);ctx.stroke();
 
-ctx.fillStyle='#fff';ctx.textAlign='left';ctx.font='700 58px "Noto Serif SC", serif';
-let titleLines=wrapText(ctx,r.title,W-160);
-titleLines.forEach((line,i)=>ctx.fillText(line,86,230+i*68));
-const titleEnd=230+(titleLines.length-1)*68;
-ctx.fillStyle='#d9b95f';ctx.font='500 30px "Noto Serif SC", serif';
-wrapText(ctx,r.line,W-160).slice(0,2).forEach((line,i)=>ctx.fillText(line,86,titleEnd+72+i*46));
+ctx.fillStyle='#777064';ctx.font='300 15px sans-serif';ctx.textAlign='left';
+ctx.fillText('— OFFBEAT · CHINESE ROCK PERSONALITY —',54,360);
+ctx.fillStyle='#d9b95f';ctx.font='400 28px "Bebas Neue", Impact, sans-serif';
+ctx.fillText(scoreLabel(testScores).toUpperCase(),54,398);
 
-ctx.strokeStyle='rgba(232,226,212,.18)';ctx.beginPath();ctx.moveTo(86,430);ctx.lineTo(W-86,430);ctx.stroke();
-ctx.fillStyle='rgba(232,226,212,.62)';ctx.font='700 22px "Noto Sans SC", sans-serif';
-ctx.fillText('气质接近',86,474);
-ctx.fillStyle='#fff';ctx.font='400 28px "Noto Sans SC", sans-serif';
-ctx.fillText(r.near.replace(/ \/ /g,' / '),86,520);
+ctx.fillStyle='#fff';ctx.font='700 64px "Noto Sans SC", sans-serif';
+let titleLines=wrapText(ctx,r.title,W-120).slice(0,2);
+titleLines.forEach((line,i)=>ctx.fillText(line,54,490+i*72));
+const titleEnd=490+(titleLines.length-1)*72;
+ctx.fillStyle='#d9b95f';ctx.font='500 30px "Noto Sans SC", sans-serif';
+wrapText(ctx,r.line,W-110).slice(0,2).forEach((line,i)=>ctx.fillText(line,54,titleEnd+58+i*42));
 
-let tagX=86,tagY=568;
-ctx.font='400 22px "Noto Sans SC", sans-serif';
+ctx.strokeStyle='rgba(232,226,212,.22)';ctx.beginPath();ctx.moveTo(54,660);ctx.lineTo(W-54,660);ctx.stroke();
+ctx.fillStyle='rgba(232,226,212,.62)';ctx.font='700 20px "Noto Sans SC", sans-serif';
+ctx.fillText('气质接近',54,704);
+ctx.fillStyle='#fff';ctx.font='400 25px "Noto Sans SC", sans-serif';
+ctx.fillText(r.near.replace(/ \/ /g,' / '),54,744);
+
+let tagX=54,tagY=796;
+ctx.font='400 20px "Noto Sans SC", sans-serif';
 r.tags.forEach(tag=>{
-const tw=ctx.measureText(tag).width+34;
-ctx.strokeStyle='rgba(232,226,212,.28)';ctx.strokeRect(tagX,tagY-28,tw,42);
-ctx.fillStyle='#f0eadf';ctx.fillText(tag,tagX+17,tagY);
-tagX+=tw+12;
+const tw=ctx.measureText(tag).width+30;
+ctx.strokeStyle='rgba(232,226,212,.32)';ctx.strokeRect(tagX,tagY-27,tw,40);
+ctx.fillStyle='#f0eadf';ctx.fillText(tag,tagX+15,tagY);
+tagX+=tw+10;
 });
 
-ctx.fillStyle='rgba(232,226,212,.62)';ctx.font='700 22px "Noto Sans SC", sans-serif';
-ctx.fillText('人格声道',86,620);
-let y=656;
-TEST_DIMS.slice(0,5).forEach((d,i)=>{
-const right=TEST_DIMS[i+5];
-ctx.fillStyle='rgba(232,226,212,.68)';ctx.font='300 20px "Noto Sans SC", sans-serif';
-ctx.fillText(d,86,y);ctx.fillText(right,W-190,y);
-ctx.strokeStyle='rgba(232,226,212,.24)';ctx.strokeRect(178,y-16,250,16);
-ctx.fillStyle=COL[i%COL.length];ctx.fillRect(179,y-15,Math.min(248,(r.bars[d]||0)*15),14);
-ctx.strokeStyle='rgba(232,226,212,.24)';ctx.strokeRect(W-250,y-16,82,16);
-ctx.fillStyle=COL[(i+3)%COL.length];ctx.fillRect(W-249,y-15,Math.min(80,(r.bars[right]||0)*5),14);
-y+=34;
+ctx.fillStyle='rgba(232,226,212,.62)';ctx.font='700 20px "Noto Sans SC", sans-serif';
+ctx.fillText('人格声道',54,846);
+let y=880;
+[['地下','爆裂'],['诗性','主舞台'],['冷静','荒原']].forEach(([d,right],i)=>{
+ctx.fillStyle='rgba(232,226,212,.68)';ctx.font='300 18px "Noto Sans SC", sans-serif';
+ctx.fillText(d,54,y);ctx.fillText(right,W-178,y);
+ctx.strokeStyle='rgba(232,226,212,.22)';ctx.strokeRect(136,y-15,210,15);
+ctx.fillStyle=COL[i%COL.length];ctx.fillRect(137,y-14,Math.min(208,(r.bars[d]||0)*12),13);
+ctx.strokeStyle='rgba(232,226,212,.22)';ctx.strokeRect(W-250,y-15,76,15);
+ctx.fillStyle=COL[(i+3)%COL.length];ctx.fillRect(W-249,y-14,Math.min(74,(r.bars[right]||0)*4.6),13);
+y+=32;
 });
 
-const noteTop=y+28;
-ctx.strokeStyle='rgba(232,226,212,.18)';ctx.beginPath();ctx.moveTo(86,noteTop);ctx.lineTo(W-86,noteTop);ctx.stroke();
-ctx.fillStyle='#f0eadf';ctx.font='400 28px "Noto Serif SC", serif';
-const noteLines=wrapText(ctx,r.text,W-300).slice(0,3);
-noteLines.forEach((line,i)=>ctx.fillText(line,86,noteTop+58+i*42));
+ctx.strokeStyle='rgba(232,226,212,.18)';ctx.beginPath();ctx.moveTo(54,996);ctx.lineTo(W-230,996);ctx.stroke();
+ctx.fillStyle='#f0eadf';ctx.font='400 25px "Noto Sans SC", sans-serif';
+const noteLines=wrapText(ctx,r.text,W-330).slice(0,2);
+noteLines.forEach((line,i)=>ctx.fillText(line,54,1030+i*34));
 
-const qrSize=104,qrX=W-qrSize-54,qrY=H-qrSize-58;
+const qrSize=104,qrX=W-qrSize-54,qrY=H-qrSize-62;
 ctx.fillStyle='#fff';ctx.fillRect(qrX-6,qrY-6,qrSize+12,qrSize+12);
 if(qrCanvas)ctx.drawImage(qrCanvas,qrX,qrY,qrSize,qrSize);
-ctx.fillStyle='#cfc4b2';ctx.font='400 30px "Bebas Neue", Impact, sans-serif';ctx.textAlign='left';
-ctx.fillText('OFFBEAT',54,H-94);
-ctx.fillStyle='#7b7469';ctx.font='300 13px "Noto Sans SC", sans-serif';
-ctx.fillText('ROLL A SONG, RESET THE DAY',54,H-68);
+ctx.fillStyle='#7b7469';ctx.font='300 13px "Noto Sans SC", sans-serif';ctx.textAlign='left';
+ctx.fillText('ROLL A SONG, RESET THE DAY',54,H-44);
 ctx.textAlign='center';ctx.fillText('扫码测试你的摇滚人格',qrX+qrSize/2,qrY+qrSize+24);
 sm.classList.add('s');
 }
