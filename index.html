@@ -24,7 +24,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;background-ima
 .sb .em{display:block;color:#fff;font-family:'Bebas Neue',sans-serif;letter-spacing:3px;font-size:17px;margin-top:4px}
 
 .modes{display:flex;justify-content:center;margin:20px 0 0;border:1px solid #2b2925;background:rgba(255,255,255,.03)}
-.mb{flex:1;padding:13px 4px;background:transparent;color:#8f897e;border:none;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:3px;border-right:1px solid #2b2925;cursor:pointer}
+.mb{flex:1;padding:13px 4px;background:transparent;color:#8f897e;border:none;font-family:'Bebas Neue','Noto Sans SC',sans-serif;font-size:14px;letter-spacing:2px;border-right:1px solid #2b2925;cursor:pointer}
 .mb:last-child{border-right:none}
 .mb.active{color:#070707;background:#e8e2d4}
 
@@ -65,11 +65,34 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;background-ima
 .cal-from{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:3px;color:rgba(232,226,212,.86);margin-bottom:5px;text-align:center;padding-top:4px}
 .cal-from-cn{font-family:'Noto Sans SC',sans-serif;font-size:12px;letter-spacing:.5px;color:rgba(232,226,212,.52);font-weight:300;text-align:center}
 
+.test-view{display:none;width:100%;border:1px solid rgba(232,226,212,.22);padding:22px 18px 24px;background:linear-gradient(180deg,rgba(18,18,16,.9),rgba(0,0,0,.72));position:relative;color:#e8e2d4;box-shadow:0 28px 90px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.035)}
+.test-view.show{display:block}
+.test-kicker{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:3px;color:rgba(232,226,212,.52);margin-bottom:12px}
+.test-title{font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:clamp(26px,6.5vw,36px);line-height:1.24;color:#fff;font-weight:700;letter-spacing:.4px;margin-bottom:12px}
+.test-copy{font-size:13px;line-height:2;color:rgba(232,226,212,.7);letter-spacing:.4px}
+.test-progress{height:2px;background:rgba(232,226,212,.12);margin:18px 0}
+.test-progress span{display:block;height:100%;background:linear-gradient(90deg,#ff3344,#ffdd33,#33aaff,#aa44ff);width:0;transition:width .25s ease}
+.test-options{display:flex;flex-direction:column;gap:9px;margin-top:18px}
+.test-option{width:100%;text-align:left;padding:13px 14px;background:rgba(232,226,212,.045);border:1px solid rgba(232,226,212,.16);color:#eee6d8;font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.55;letter-spacing:.3px;cursor:pointer}
+.test-option:active{background:#e8e2d4;color:#050505}
+.test-result-label{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:#d9b95f;margin-bottom:12px}
+.test-result-title{font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:clamp(31px,7.6vw,45px);line-height:1.18;color:#fff;font-weight:700;margin-bottom:12px}
+.test-result-line{font-family:'Noto Serif SC','Noto Sans SC',serif;font-size:20px;line-height:1.7;color:#d9b95f;margin-bottom:18px}
+.test-tags{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0 18px}
+.test-tag{border:1px solid rgba(232,226,212,.24);padding:6px 9px;font-size:12px;color:#eee6d8;background:rgba(255,255,255,.03)}
+.test-near{font-size:12px;line-height:1.8;color:rgba(232,226,212,.62);border-top:1px solid rgba(232,226,212,.14);border-bottom:1px solid rgba(232,226,212,.14);padding:13px 0;margin:14px 0}
+.test-bars{display:grid;grid-template-columns:auto 1fr auto;gap:8px 10px;align-items:center;margin:18px 0}
+.test-bars span{font-size:12px;color:rgba(232,226,212,.62)}
+.test-bar{height:11px;border:1px solid rgba(232,226,212,.18);background:#050505;overflow:hidden}
+.test-bar i{display:block;height:100%;background:repeating-linear-gradient(90deg,#35a9c8 0 16px,#e7c44a 16px 24px,#f04535 24px 39px,#35a9c8 39px 54px);width:50%}
+.test-note{font-size:14px;line-height:2.05;color:#f0eadf;letter-spacing:.4px;border-top:1px solid rgba(232,226,212,.14);padding-top:18px}
+
 .cl{display:flex;flex-direction:column;gap:9px;margin-top:16px}
 .sp{width:100%;padding:18px;background:#e8e2d4;color:#050505;border:1px solid #e8e2d4;font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:9px;text-indent:9px;cursor:pointer;transition:all .15s}
 .sp:active{color:#fff;background:#050505}
 .sp:disabled{color:#444;border-color:#333}
 .ar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.ar.hidden{display:none}
 .ab{padding:13px 4px;background:rgba(255,255,255,.02);color:#b9ad9c;border:1px solid #3a352d;font-family:'Noto Sans SC',sans-serif;font-size:12px;letter-spacing:.8px;cursor:pointer;font-weight:300}
 .ab:active{background:#e8e2d4;color:#000;border-color:#e8e2d4}
 .ab:disabled{color:#333;border-color:#222}
@@ -147,6 +170,7 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 <div class="modes">
 <button class="mb" data-mode="roulette">ROLL</button>
 <button class="mb active" data-mode="calendar">每日摇滚签</button>
+<button class="mb" data-mode="test">人格测试</button>
 </div>
 
 <div class="filters" id="filters">
@@ -226,6 +250,9 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 <div class="cal-from" id="calFrom">—</div>
 <div class="cal-from-cn" id="calFromCN">—</div>
 </div>
+<div class="test-view" id="testView">
+<div id="testInner"></div>
+</div>
 </div>
 
 <div class="cl">
@@ -298,6 +325,12 @@ const S=[
 ["勇敢的人","草东没有派对",2016,"rock_cn"],["山海","草东没有派对",2016,"rock_cn"],["大风吹","草东没有派对",2016,"rock_cn"],["情歌","草东没有派对",2016,"rock_cn"],["鬼","草东没有派对",2016,"rock_cn"],
 ["我还年轻 我还年轻","老王乐队",2019,"rock_cn"],
 ["Lonely God","惘闻",2008,"rock_cn"],["21天","惘闻",2012,"rock_cn"],["醉忘川","惘闻",2017,"rock_cn"],["海与你","惘闻",2017,"rock_cn"],
+["黑心","九宝乐队",2013,"rock_cn"],["特斯河之赞","九宝乐队",2013,"rock_cn"],["娜名达莱","九宝乐队",2013,"rock_cn"],["Wisdom Eyes","九宝乐队",2017,"rock_cn"],
+["野狼","安达乐队","","rock_cn"],["杭盖故乡","安达乐队","","rock_cn"],["江格尔","安达乐队","","rock_cn"],
+["鲸歌","萨满乐队","","rock_cn"],["Eternal","萨满乐队","","rock_cn"],["Whalesong","萨满乐队","","rock_cn"],
+["五脏六腑","椿","","rock_cn"],["审美疲劳","椿","","rock_cn"],["白夜","椿","","rock_cn"],
+["小咸偶记","水仙斗活佛",2016,"rock_cn"],["深埋地下八万里","水仙斗活佛","","rock_cn"],
+["X人景山的风调","周二下午谁没来","","rock_cn"],["X人作者免责调","周二下午谁没来","","rock_cn"],["第六章 乐","周二下午谁没来","","rock_cn"],
 
 ["硬汉","腰乐队",2008,"rock_cn"],["晚春","腰乐队",2003,"rock_cn"],
 ["黄河谣","野孩子",2003,"rock_cn"],
@@ -449,6 +482,12 @@ const Q=[
 ["勐巴拉娜西","勐巴拉娜西","刺猬"],
 ["光阴 飞逝","光阴","刺猬"],
 ["生之响往","生之响往","刺猬"],
+["黑心","黑心","九宝乐队"],
+["草原不是远方 是另一种失真","特斯河之赞","九宝乐队"],
+["鲸在暗处唱歌","鲸歌","萨满乐队"],
+["深埋地下八万里","深埋地下八万里","水仙斗活佛"],
+["周二下午谁没来","X人景山的风调","周二下午谁没来"],
+["江格尔还在路上","江格尔","安达乐队"],
 ["Imagine all the people living life in peace","Imagine","John Lennon"],
 ["Hey Jude, don't make it bad","Hey Jude","The Beatles"],
 ["Let it be, let it be","Let It Be","The Beatles"],
@@ -541,14 +580,15 @@ const Q=[
 ["Bittersweet symphony","Bittersweet Symphony","The Verve"]
 ];
 
-let pool='all',curPoolSongs=S,cur=null,rouletteCur=null,dailyCur=null,dailyQuote='',dailyIndex=-1,dailyDateKey='',sp=false,mode='calendar';
+let pool='all',curPoolSongs=S,cur=null,rouletteCur=null,dailyCur=null,dailyQuote='',dailyIndex=-1,dailyDateKey='',sp=false,mode='calendar',testStep=-1,testScores=null,testResult=null;
 const SHARE_LINES=[
 '这句歌词替我说了今天',
 '今天的情绪，被这句唱出来了',
 '把今天交给一首摇滚歌',
 '有些话不必解释，唱出来就够了',
 '给今天换一个节拍',
-'我的今日摇滚签'
+'我的今日摇滚签',
+'Keep Ithaka always in your mind.'
 ];
 function applyPool(){curPoolSongs=pool==='all'?S:S.filter(s=>s[3]===pool);if(curPoolSongs.length===0)curPoolSongs=S;}
 function hash(s){let h=0;for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return Math.abs(h);}
@@ -560,6 +600,60 @@ if(exact)return exact[2];
 const sameTitle=S.filter(s=>s[0]===title);
 return sameTitle.length===1?sameTitle[0][2]:'';
 }
+
+const TEST_DIMS=['地下','诗性','复古','冷静','老炮','爆裂','主舞台','新声','上头','荒原'];
+const TESTS=[
+{q:'进场前，你最像在等什么？',choices:[
+{t:'第一声鼓点，把人群从日常里拽出来',s:{爆裂:3,上头:2,主舞台:1}},
+{t:'一段失真的吉他，像旧仓库里亮起的灯',s:{地下:3,复古:2,冷静:1}},
+{t:'主唱还没开口，空气已经有诗了',s:{诗性:3,冷静:2,新声:1}},
+{t:'远处有马头琴和低频，像风压过草场',s:{荒原:3,老炮:1,上头:1}}
+]},
+{q:'如果今天只准带一件东西去音乐节，你带？',choices:[
+{t:'一件洗到发白的黑 T，见过很多夜场',s:{老炮:3,地下:2,复古:1}},
+{t:'一本空白本子，写下某一句突然击中的词',s:{诗性:3,冷静:2}},
+{t:'一双能站到最后的鞋',s:{主舞台:2,上头:2,爆裂:1}},
+{t:'一只很旧的耳机，路上先把自己调成静音',s:{冷静:3,新声:2,荒原:1}}
+]},
+{q:'你更愿意被哪种歌救一下？',choices:[
+{t:'唱得像宣言，听完想重新做人',s:{主舞台:3,上头:2,新声:1}},
+{t:'唱得像废墟，听完承认自己也碎过',s:{地下:2,诗性:3,冷静:1}},
+{t:'唱得像火，最好把无聊和怯懦都烧掉',s:{爆裂:3,上头:2}},
+{t:'唱得像远行，不解释，只把路铺开',s:{荒原:3,复古:1,冷静:1}}
+]},
+{q:'看到人群开始 pogo，你会？',choices:[
+{t:'进去，身体比脑子先同意',s:{爆裂:3,上头:3}},
+{t:'站在边缘看，记住每个人突然变亮的脸',s:{诗性:2,冷静:3}},
+{t:'护住朋友，也护住自己的节奏',s:{老炮:3,冷静:1}},
+{t:'去另一个小舞台，找更怪的声音',s:{地下:3,新声:2}}
+]},
+{q:'你最信哪一种摇滚精神？',choices:[
+{t:'不跪，不解释，哪怕声音粗糙',s:{地下:3,老炮:2,爆裂:1}},
+{t:'把苦难唱准，把自由唱得不廉价',s:{诗性:3,复古:2,荒原:1}},
+{t:'好玩也是一种反抗，舞池也是广场',s:{新声:3,主舞台:2,上头:2}},
+{t:'世界很吵，我要保留自己的低频',s:{冷静:3,荒原:2}}
+]},
+{q:'凌晨散场后，你最可能去哪？',choices:[
+{t:'去便利店门口继续聊三小时',s:{主舞台:2,上头:2,新声:1}},
+{t:'一个人走很久，让耳鸣慢慢退潮',s:{冷静:3,诗性:2}},
+{t:'找下一场，今晚不能这么结束',s:{爆裂:2,地下:2,上头:2}},
+{t:'坐上夜车，像回到一条没有名字的公路',s:{荒原:3,复古:1}}
+]},
+{q:'如果给你一句判词，你更愿意它怎么说？',choices:[
+{t:'你不是合群，你是能把现场变成同谋',s:{主舞台:3,上头:2}},
+{t:'你不是孤独，你是在替沉默的人调音',s:{诗性:3,冷静:2}},
+{t:'你不是愤怒，你只是还没有被生活磨钝',s:{爆裂:3,地下:2}},
+{t:'你不是逃离，你是把远方带回身体里',s:{荒原:3,复古:1}}
+]}
+];
+const TEST_RESULTS=[
+{id:'underground',title:'废墟低频保管员',school:'地下 12 / 诗性 10',line:'你听见的不是噪音，是城市夜里没说完的话。',near:'万能青年旅店 / 沉舟 / 水仙斗活佛',tags:['地下','冷静','废墟感','后工业'],bars:{地下:15,诗性:12,复古:7,冷静:13,老炮:8,爆裂:6,主舞台:4,新声:9,上头:5,荒原:8},text:'你不急着站到灯下。你更像一段被埋在混凝土里的贝斯线，表面安静，里面有回声。你擅长替废墟保留体温，也擅长在最暗的地方分辨谁还没有熄灭。',songs:['杀死那个石家庄人','丑奴儿','深埋地下八万里'],w:{地下:3,诗性:2,冷静:2}},
+{id:'ritual',title:'草原失真萨满',school:'荒原 14 / 上头 11',line:'风穿过你时，会自动带一点马头琴和双踩。',near:'九宝乐队 / 安达乐队 / 萨满乐队',tags:['荒原','金属','仪式感','远行'],bars:{地下:8,诗性:7,复古:6,冷静:5,老炮:9,爆裂:13,主舞台:8,新声:7,上头:12,荒原:16},text:'你身上有一种很古老的速度：不是逃跑，是召唤。别人听见轰鸣，你听见风、马、铁和祖先的影子。你适合把日子过成一次长调，慢处辽阔，重处见骨。',songs:['特斯河之赞','江格尔','鲸歌'],w:{荒原:3,爆裂:2,上头:2}},
+{id:'hardcore',title:'硬核清醒病人',school:'爆裂 15 / 地下 13',line:'你不负责温柔，你负责把麻木撞出裂缝。',near:'痛仰 / 夜叉 / 扭曲机器',tags:['硬核','爆裂','直给','拒绝驯化'],bars:{地下:13,诗性:5,复古:7,冷静:4,老炮:10,爆裂:16,主舞台:7,新声:6,上头:13,荒原:5},text:'你的情绪不是失控，是还保持导电。你知道生活会把人训练成好脾气，所以你保留一点锋利，像音箱啸叫前的那秒白光。你不是要赢，你只是拒绝太早投降。',songs:['哪里有压迫哪里就有反抗','怒','黑心'],w:{爆裂:3,地下:2,上头:2}},
+{id:'poet',title:'黑胶孤岛诗人',school:'诗性 16 / 冷静 12',line:'你把孤独放到唱针下，它就开始发光。',near:'安溥 / 朴树 / 惘闻',tags:['诗性','独处','黑胶','长镜头'],bars:{地下:8,诗性:16,复古:10,冷静:13,老炮:6,爆裂:3,主舞台:4,新声:8,上头:4,荒原:9},text:'你不是不热闹，只是需要先确认一句话有没有灵魂。你相信旅程比抵达更长，像一直把 Ithaka 放在心里。你的判词不适合喊出来，适合在凌晨两点忽然懂。',songs:['关于我爱你','No Fear In My Heart','海与你'],w:{诗性:3,冷静:2,荒原:1}},
+{id:'festival',title:'新声主舞台游牧民',school:'主舞台 15 / 新声 12',line:'你一出现，人群会自动多一个副歌。',near:'新裤子 / 刺猬 / 旅行团',tags:['新声','主舞台','舞池','出圈体质'],bars:{地下:6,诗性:7,复古:8,冷静:5,老炮:5,爆裂:8,主舞台:16,新声:13,上头:14,荒原:6},text:'你擅长把气氛搅活，也擅长把自己变成别人记忆里的画面。你不怕明亮，因为你知道真正的热闹不是讨好，是一群人短暂地站到同一束光里。',songs:['你要跳舞吗','白日梦蓝','黄色海岸线'],w:{主舞台:3,新声:2,上头:2}},
+{id:'veteran',title:'老炮唱片店掌柜',school:'老炮 15 / 复古 12',line:'你不追流行，你等声音自己留下来。',near:'崔健 / 木马 / 伍佰',tags:['老炮','复古','黑 T','旧唱片'],bars:{地下:10,诗性:8,复古:14,冷静:9,老炮:16,爆裂:7,主舞台:5,新声:4,上头:6,荒原:7},text:'你有一种旧磁带式的判断力：不迷信新，也不怀念到发霉。你知道一首歌能不能活下来，要看多年以后它还能不能让人抬头。你像唱片店深处那盏灯，暗，但一直在。',songs:['假行僧','我们一起出去玩','白鸽'],w:{老炮:3,复古:3,地下:1}}
+];
 
 function gen(t,a){
 const h1=hash(a),h2=hash(t),c1=COL[h1%6],c2=COL[(h1+3)%6],v=(h1+h2)%6;
@@ -574,7 +668,7 @@ return `<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#000"/>$
 }
 
 const $=id=>document.getElementById(id);
-const sb=$('sb'),nb=$('nb'),lb=$('lb'),shb=$('shb'),lm=$('lm'),lx=$('lx'),mt=$('mt'),ma=$('ma'),mr=$('mr'),card=$('card'),cover=$('cover'),title=$('title'),artist=$('artist'),artistCN=$('artistCN'),year=$('year'),rv=$('rouletteView'),cv=$('calView'),sm=$('sm'),smClose=$('smClose'),shareCanvas=$('shareCanvas');
+const sb=$('sb'),nb=$('nb'),lb=$('lb'),shb=$('shb'),lm=$('lm'),lx=$('lx'),mt=$('mt'),ma=$('ma'),mr=$('mr'),card=$('card'),cover=$('cover'),title=$('title'),artist=$('artist'),artistCN=$('artistCN'),year=$('year'),rv=$('rouletteView'),cv=$('calView'),tv=$('testView'),ti=$('testInner'),sm=$('sm'),smClose=$('smClose'),shareCanvas=$('shareCanvas');
 
 applyPool();
 
@@ -647,12 +741,101 @@ if(navigator.vibrate)navigator.vibrate([20,40,80]);
 },80);
 }
 
+function scoreLabel(scores){
+return TEST_DIMS.map(d=>[d,scores[d]||0]).sort((a,b)=>b[1]-a[1]).slice(0,2).map(x=>x[0]+' '+x[1]).join(' / ');
+}
+
+function pickTestResult(){
+let best=TEST_RESULTS[0],bestScore=-1;
+TEST_RESULTS.forEach(r=>{
+let total=0;
+Object.keys(r.w).forEach(k=>{total+=(testScores[k]||0)*r.w[k];});
+if(total>bestScore){bestScore=total;best=r;}
+});
+return best;
+}
+
+function renderTestIntro(){
+ti.innerHTML=`<div class="test-kicker">OFFBEAT PERSONALITY TEST</div>
+<div class="test-title">中国摇滚人格测试</div>
+<div class="test-copy">不用做一个标准答案。选你身体先同意的那一项，让噪音、诗、草原、夜场和旧唱片一起给你写一段判词。</div>
+<div class="test-progress"><span style="width:0%"></span></div>
+<div class="test-options"><button class="test-option" id="testStart">开始测试</button></div>`;
+$('testStart').addEventListener('click',startTest);
+}
+
+function startTest(){
+testStep=0;
+testScores={};
+TEST_DIMS.forEach(d=>testScores[d]=0);
+testResult=null;
+renderQuestion();
+updateControls();
+}
+
+function renderQuestion(){
+const q=TESTS[testStep];
+const progress=Math.round((testStep/TESTS.length)*100);
+ti.innerHTML=`<div class="test-kicker">TRACK ${String(testStep+1).padStart(2,'0')} / ${TESTS.length}</div>
+<div class="test-title">${q.q}</div>
+<div class="test-progress"><span style="width:${progress}%"></span></div>
+<div class="test-options">${q.choices.map((c,i)=>`<button class="test-option" data-choice="${i}">${c.t}</button>`).join('')}</div>`;
+ti.querySelectorAll('.test-option').forEach(b=>b.addEventListener('click',()=>selectChoice(Number(b.dataset.choice))));
+}
+
+function selectChoice(index){
+const choice=TESTS[testStep].choices[index];
+Object.keys(choice.s).forEach(k=>{testScores[k]=(testScores[k]||0)+choice.s[k];});
+testStep++;
+if(testStep>=TESTS.length){
+testResult=pickTestResult();
+renderTestResult();
+}else{
+renderQuestion();
+}
+updateControls();
+}
+
+function renderBars(bars){
+return TEST_DIMS.map(d=>`<span>${d}</span><div class="test-bar"><i style="width:${Math.min(100,(bars[d]||0)*6)}%"></i></div><span>${bars[d]||0}</span>`).join('');
+}
+
+function renderTestResult(){
+const r=testResult;
+ti.innerHTML=`<div class="test-result-label">${scoreLabel(testScores)}</div>
+<div class="test-result-title">${r.title}</div>
+<div class="test-result-line">${r.line}</div>
+<div class="test-near">气质接近<br>${r.near}</div>
+<div class="test-tags">${r.tags.map(t=>`<span class="test-tag">${t}</span>`).join('')}</div>
+<div class="test-bars">${renderBars(r.bars)}</div>
+<div class="test-note">${r.text}</div>`;
+}
+
+function showTest(){
+if(testStep<0)renderTestIntro();
+else if(testResult)renderTestResult();
+else renderQuestion();
+}
+
+function updateControls(){
+const actions=document.querySelector('.ar');
+if(mode==='roulette'){
+sb.textContent=rouletteCur?'SPIN AGAIN':'SPIN';sb.disabled=false;nb.disabled=!rouletteCur;lb.disabled=!rouletteCur;shb.disabled=!dailyCur;actions.classList.remove('hidden');
+}else if(mode==='calendar'){
+sb.textContent='REFRESH';sb.disabled=false;nb.disabled=false;lb.disabled=false;shb.disabled=false;actions.classList.remove('hidden');
+}else{
+sb.textContent=testResult?'RETAKE':'START';sb.disabled=false;nb.disabled=true;lb.disabled=true;shb.disabled=!testResult;actions.classList.remove('hidden');
+}
+}
+
 document.querySelectorAll('.mb').forEach(b=>b.addEventListener('click',()=>{
 document.querySelectorAll('.mb').forEach(x=>x.classList.remove('active'));
 b.classList.add('active');
 mode=b.dataset.mode;
-if(mode==='roulette'){rv.style.display='block';cv.classList.remove('show');cur=rouletteCur;sb.textContent=rouletteCur?'SPIN AGAIN':'SPIN';sb.disabled=false;nb.disabled=!rouletteCur;lb.disabled=!rouletteCur;shb.disabled=!dailyCur;document.querySelector('.filters').style.display='flex';}
-else{rv.style.display='none';cv.classList.add('show');cv.classList.add('reveal');sb.textContent='REFRESH';sb.disabled=false;document.querySelector('.filters').style.display='none';loadCalendar(false);}
+if(mode==='roulette'){rv.style.display='block';cv.classList.remove('show');tv.classList.remove('show');cur=rouletteCur;document.querySelector('.filters').style.display='flex';}
+else if(mode==='calendar'){rv.style.display='none';tv.classList.remove('show');cv.classList.add('show');cv.classList.add('reveal');document.querySelector('.filters').style.display='none';loadCalendar(false);}
+else{rv.style.display='none';cv.classList.remove('show');tv.classList.add('show');tv.classList.add('reveal');document.querySelector('.filters').style.display='none';showTest();}
+updateControls();
 }));
 
 document.querySelectorAll('.fp').forEach(b=>b.addEventListener('click',()=>{
@@ -697,7 +880,7 @@ nb.disabled=false;lb.disabled=false;shb.disabled=false;
 
 loadCalendar();
 
-sb.addEventListener('click',()=>{if(mode==='roulette')spin();else loadCalendar(true);});
+sb.addEventListener('click',()=>{if(mode==='roulette')spin();else if(mode==='calendar')loadCalendar(true);else startTest();});
 nb.addEventListener('click',()=>{if(!cur)return;window.open('https://music.163.com/#/search/m/?s='+encodeURIComponent(cur[0]+' '+cur[1])+'&type=1','_blank');});
 lb.addEventListener('click',()=>{if(!cur)return;mt.textContent=cur[0];ma.textContent=[cur[1],cur[2]].filter(Boolean).join(' · ');mr.textContent='《'+cur[0]+'》 — '+cur[1]+'\n\n点击"网易云"听完整版本';lm.classList.add('s');});
 lx.addEventListener('click',()=>lm.classList.remove('s'));
@@ -737,12 +920,85 @@ if(cur)lines.push(cur);
 return lines;
 }
 
+function drawTestShare(r){
+const ctx=shareCanvas.getContext('2d');
+const W=720,H=1180;
+shareCanvas.width=W;shareCanvas.height=H;
+ctx.fillStyle='#050505';ctx.fillRect(0,0,W,H);
+const bg=ctx.createLinearGradient(0,0,W,H);
+bg.addColorStop(0,'rgba(255,255,255,.04)');
+bg.addColorStop(.52,'rgba(255,48,72,.08)');
+bg.addColorStop(1,'rgba(51,170,255,.08)');
+ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+ctx.strokeStyle='rgba(232,226,212,.18)';ctx.lineWidth=2;ctx.strokeRect(44,44,W-88,H-88);
+ctx.setLineDash([5,7]);ctx.strokeStyle='rgba(232,226,212,.14)';ctx.strokeRect(62,62,W-124,H-124);ctx.setLineDash([]);
+
+ctx.fillStyle='#777064';ctx.font='300 16px sans-serif';ctx.textAlign='center';
+ctx.fillText('— OFFBEAT · CHINESE ROCK PERSONALITY —',W/2,92);
+ctx.fillStyle='#d9b95f';ctx.font='400 24px "Bebas Neue", Impact, sans-serif';
+ctx.fillText(scoreLabel(testScores).toUpperCase(),W/2,134);
+
+ctx.fillStyle='#fff';ctx.textAlign='left';ctx.font='700 58px "Noto Serif SC", serif';
+let titleLines=wrapText(ctx,r.title,W-160);
+titleLines.forEach((line,i)=>ctx.fillText(line,86,230+i*68));
+const titleEnd=230+(titleLines.length-1)*68;
+ctx.fillStyle='#d9b95f';ctx.font='500 30px "Noto Serif SC", serif';
+wrapText(ctx,r.line,W-160).slice(0,2).forEach((line,i)=>ctx.fillText(line,86,titleEnd+72+i*46));
+
+ctx.strokeStyle='rgba(232,226,212,.18)';ctx.beginPath();ctx.moveTo(86,430);ctx.lineTo(W-86,430);ctx.stroke();
+ctx.fillStyle='rgba(232,226,212,.62)';ctx.font='700 22px "Noto Sans SC", sans-serif';
+ctx.fillText('气质接近',86,474);
+ctx.fillStyle='#fff';ctx.font='400 28px "Noto Sans SC", sans-serif';
+ctx.fillText(r.near.replace(/ \/ /g,' / '),86,520);
+
+let tagX=86,tagY=568;
+ctx.font='400 22px "Noto Sans SC", sans-serif';
+r.tags.forEach(tag=>{
+const tw=ctx.measureText(tag).width+34;
+ctx.strokeStyle='rgba(232,226,212,.28)';ctx.strokeRect(tagX,tagY-28,tw,42);
+ctx.fillStyle='#f0eadf';ctx.fillText(tag,tagX+17,tagY);
+tagX+=tw+12;
+});
+
+ctx.fillStyle='rgba(232,226,212,.62)';ctx.font='700 22px "Noto Sans SC", sans-serif';
+ctx.fillText('人格声道',86,620);
+let y=656;
+TEST_DIMS.slice(0,5).forEach((d,i)=>{
+const right=TEST_DIMS[i+5];
+ctx.fillStyle='rgba(232,226,212,.68)';ctx.font='300 20px "Noto Sans SC", sans-serif';
+ctx.fillText(d,86,y);ctx.fillText(right,W-190,y);
+ctx.strokeStyle='rgba(232,226,212,.24)';ctx.strokeRect(178,y-16,250,16);
+ctx.fillStyle=COL[i%COL.length];ctx.fillRect(179,y-15,Math.min(248,(r.bars[d]||0)*15),14);
+ctx.strokeStyle='rgba(232,226,212,.24)';ctx.strokeRect(W-250,y-16,82,16);
+ctx.fillStyle=COL[(i+3)%COL.length];ctx.fillRect(W-249,y-15,Math.min(80,(r.bars[right]||0)*5),14);
+y+=34;
+});
+
+const noteTop=y+28;
+ctx.strokeStyle='rgba(232,226,212,.18)';ctx.beginPath();ctx.moveTo(86,noteTop);ctx.lineTo(W-86,noteTop);ctx.stroke();
+ctx.fillStyle='#f0eadf';ctx.font='400 28px "Noto Serif SC", serif';
+const noteLines=wrapText(ctx,r.text,W-300).slice(0,3);
+noteLines.forEach((line,i)=>ctx.fillText(line,86,noteTop+58+i*42));
+
+const qrSize=104,qrX=W-qrSize-54,qrY=H-qrSize-58;
+ctx.fillStyle='#fff';ctx.fillRect(qrX-6,qrY-6,qrSize+12,qrSize+12);
+if(qrCanvas)ctx.drawImage(qrCanvas,qrX,qrY,qrSize,qrSize);
+ctx.fillStyle='#cfc4b2';ctx.font='400 30px "Bebas Neue", Impact, sans-serif';ctx.textAlign='left';
+ctx.fillText('OFFBEAT',54,H-94);
+ctx.fillStyle='#7b7469';ctx.font='300 13px "Noto Sans SC", sans-serif';
+ctx.fillText('ROLL A SONG, RESET THE DAY',54,H-68);
+ctx.textAlign='center';ctx.fillText('扫码测试你的摇滚人格',qrX+qrSize/2,qrY+qrSize+24);
+sm.classList.add('s');
+}
+
 shb.addEventListener('click',()=>{
+if(mode==='test'&&testResult){drawTestShare(testResult);return;}
 const shareCur=dailyCur||cur;
 const shareQuote=dailyQuote;
 if(!shareCur)return;
 const ctx=shareCanvas.getContext('2d');
 const W=720,H=1080;
+shareCanvas.width=W;shareCanvas.height=H;
 ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
 const shareLine=SHARE_LINES[(hash((shareQuote||shareCur[0])+new Date().getDate())%SHARE_LINES.length)];
 
