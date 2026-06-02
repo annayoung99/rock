@@ -11,8 +11,8 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{min-height:100%}
-body{background:#050505;color:#e8e2d4;font-family:'Noto Sans SC',-apple-system,sans-serif;user-select:none;position:relative;overflow-x:hidden;font-weight:300}
-body::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% -10%,rgba(255,255,255,.1),transparent 34%),linear-gradient(115deg,transparent 0 58%,rgba(255,48,72,.1) 58%,rgba(255,136,34,.08) 64%,rgba(255,221,51,.07) 70%,rgba(34,221,102,.06) 76%,rgba(51,170,255,.07) 82%,rgba(170,68,255,.08) 90%,transparent 90%);opacity:.9}
+body{background:#000;color:#e8e2d4;font-family:'Noto Sans SC',-apple-system,sans-serif;user-select:none;position:relative;overflow-x:hidden;font-weight:300}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% -12%,rgba(255,255,255,.08),transparent 30%),linear-gradient(115deg,transparent 0 61%,rgba(255,48,72,.09) 61%,rgba(255,136,34,.07) 66%,rgba(255,221,51,.06) 71%,rgba(34,221,102,.055) 76%,rgba(51,170,255,.065) 82%,rgba(170,68,255,.075) 88%,transparent 88%);opacity:.72}
 body::after{content:'';position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.026) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:42px 42px,42px 42px;mask-image:radial-gradient(circle at center,#000 0,transparent 82%);opacity:.55}
 
 .c{position:relative;z-index:2;min-height:100vh;padding:22px 18px 30px;display:flex;flex-direction:column;max-width:480px;margin:0 auto;width:100%}
@@ -65,10 +65,11 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;background-ima
 .cal-from{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:3px;color:rgba(232,226,212,.86);margin-bottom:5px;text-align:center;padding-top:4px}
 .cal-from-cn{font-family:'Noto Sans SC',sans-serif;font-size:12px;letter-spacing:.5px;color:rgba(232,226,212,.52);font-weight:300;text-align:center}
 
-.test-view{display:none;width:100%;border:1px solid rgba(232,226,212,.2);padding:84px 18px 24px;background:#050505;position:relative;color:#e8e2d4;box-shadow:0 28px 90px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.035);overflow:hidden}
+.test-view{display:none;width:100%;border:1px solid rgba(232,226,212,.22);padding:84px 18px 24px;background:#000;position:relative;color:#e8e2d4;box-shadow:0 28px 90px rgba(0,0,0,.74),inset 0 0 0 1px rgba(255,255,255,.035);overflow:hidden}
 .test-view.show{display:block}
-.test-view::before{content:'OFFBEAT';position:absolute;left:16px;top:4px;font-family:'Bebas Neue',sans-serif;font-size:74px;letter-spacing:8px;color:rgba(255,255,255,.045);line-height:1;pointer-events:none}
-.test-view::after{content:'';position:absolute;left:0;right:-28px;top:48px;height:34px;background:linear-gradient(96deg,transparent 0 43%,rgba(255,255,255,.75) 43% 44%,transparent 44% 48%,#ff253b 48% 56%,#ff7a1a 56% 63%,#ffd92d 63% 70%,#20d66b 70% 77%,#25a9ff 77% 84%,#9c45ff 84% 94%,transparent 94%);opacity:.86;filter:blur(.35px);clip-path:polygon(0 44%,47% 18%,100% 0,100% 100%,47% 74%,0 56%);pointer-events:none}
+.test-view::before{content:'OFFBEAT';position:absolute;left:16px;top:4px;font-family:'Bebas Neue',sans-serif;font-size:74px;letter-spacing:8px;color:rgba(255,255,255,.052);line-height:1;pointer-events:none;z-index:0}
+.test-view::after{content:'';position:absolute;left:0;right:-28px;top:48px;height:34px;background:linear-gradient(96deg,transparent 0 43%,rgba(255,255,255,.75) 43% 44%,transparent 44% 48%,#ff253b 48% 56%,#ff7a1a 56% 63%,#ffd92d 63% 70%,#20d66b 70% 77%,#25a9ff 77% 84%,#9c45ff 84% 94%,transparent 94%);opacity:.78;filter:blur(.25px);clip-path:polygon(0 44%,47% 18%,100% 0,100% 100%,47% 74%,0 56%);pointer-events:none;z-index:0}
+.test-view>*{position:relative;z-index:1}
 .test-kicker{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:#d9b95f;margin-bottom:10px;text-transform:uppercase}
 .test-title{font-family:'Bebas Neue','Noto Sans SC',sans-serif;font-size:clamp(37px,9.5vw,56px);line-height:.96;color:#fff;font-weight:400;letter-spacing:2px;margin-bottom:12px;text-transform:uppercase;text-shadow:0 0 24px rgba(255,255,255,.16)}
 .test-copy{font-size:13px;line-height:2;color:rgba(232,226,212,.7);letter-spacing:.4px}
@@ -923,27 +924,52 @@ if(cur)lines.push(cur);
 return lines;
 }
 
+function wrapTextClean(ctx,text,maxWidth){
+const lines=wrapText(ctx,text,maxWidth);
+const bad=/^[，。！？、：；）》”’]$/;
+for(let i=1;i<lines.length;i++){
+if(bad.test(lines[i])&&lines[i-1]){
+lines[i-1]+=lines[i];
+lines.splice(i,1);
+i--;
+}
+}
+return lines;
+}
+
+function fitWrappedLines(ctx,text,maxWidth,maxLines,baseFontSize,fontFamily,minFontSize,weight='400'){
+let fontSize=baseFontSize;
+let lines=[];
+while(fontSize>=minFontSize){
+ctx.font=`${weight} ${fontSize}px ${fontFamily}`;
+lines=wrapTextClean(ctx,text,maxWidth);
+if(lines.length<=maxLines)return {fontSize,lines};
+fontSize-=2;
+}
+return {fontSize:minFontSize,lines:lines.slice(0,maxLines)};
+}
+
 function drawTestShare(r){
 const ctx=shareCanvas.getContext('2d');
-const W=720,H=1180;
+const W=720,H=1400;
 shareCanvas.width=W;shareCanvas.height=H;
 ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
-const vignette=ctx.createRadialGradient(W/2,420,80,W/2,520,720);
-vignette.addColorStop(0,'rgba(255,255,255,.07)');
-vignette.addColorStop(.42,'rgba(0,0,0,.18)');
-vignette.addColorStop(1,'rgba(0,0,0,.92)');
+const vignette=ctx.createRadialGradient(W/2,560,120,W/2,600,760);
+vignette.addColorStop(0,'rgba(255,255,255,.045)');
+vignette.addColorStop(.5,'rgba(0,0,0,.2)');
+vignette.addColorStop(1,'rgba(0,0,0,.96)');
 ctx.fillStyle=vignette;ctx.fillRect(0,0,W,H);
-ctx.fillStyle='rgba(255,255,255,.035)';ctx.font='400 142px "Bebas Neue", Impact, sans-serif';ctx.textAlign='left';
-ctx.fillText('OFFBEAT',54,158);
-ctx.strokeStyle='rgba(232,226,212,.24)';ctx.lineWidth=2;ctx.strokeRect(38,38,W-76,H-76);
-ctx.strokeStyle='rgba(232,226,212,.12)';ctx.strokeRect(58,58,W-116,H-116);
+ctx.fillStyle='rgba(255,255,255,.038)';ctx.font='400 156px "Bebas Neue", Impact, sans-serif';ctx.textAlign='left';
+ctx.fillText('OFFBEAT',42,162);
+ctx.strokeStyle='rgba(232,226,212,.24)';ctx.lineWidth=2;ctx.strokeRect(34,34,W-68,H-68);
+ctx.strokeStyle='rgba(232,226,212,.11)';ctx.setLineDash([6,9]);ctx.strokeRect(58,58,W-116,H-116);ctx.setLineDash([]);
 
-const px=268,py=252;
-ctx.strokeStyle='#fff';ctx.lineWidth=1.9;ctx.shadowBlur=10;ctx.shadowColor='#fff';
-ctx.beginPath();ctx.moveTo(-20,py+42);ctx.lineTo(px-48,py);ctx.stroke();ctx.shadowBlur=0;
+const px=292,py=218;
+ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.shadowBlur=12;ctx.shadowColor='#fff';
+ctx.beginPath();ctx.moveTo(-24,py+42);ctx.lineTo(px-52,py);ctx.stroke();ctx.shadowBlur=0;
 const bands=[
-['#ff253b',-48,-32],['#ff7a1a',-29,-15],['#ffd92d',-12,2],
-['#20d66b',5,19],['#25a9ff',22,36],['#9c45ff',39,55]
+['#ff253b',-50,-35],['#ff7a1a',-31,-18],['#ffd92d',-14,-1],
+['#20d66b',4,17],['#25a9ff',21,34],['#9c45ff',38,52]
 ];
 bands.forEach(([color,y1,y2])=>{
 ctx.fillStyle=color;ctx.beginPath();
@@ -954,26 +980,29 @@ ctx.beginPath();ctx.moveTo(px,py-74);ctx.lineTo(px+58,py+56);ctx.lineTo(px-60,py
 ctx.strokeStyle='rgba(124,231,223,.42)';ctx.lineWidth=.9;
 ctx.beginPath();ctx.moveTo(px,py-74);ctx.lineTo(px-18,py+3);ctx.lineTo(px-60,py+56);ctx.stroke();
 
-ctx.fillStyle='#777064';ctx.font='300 15px sans-serif';ctx.textAlign='left';
-ctx.fillText('— OFFBEAT · CHINESE ROCK PERSONALITY —',54,360);
+ctx.fillStyle='#777064';ctx.font='300 15px sans-serif';ctx.textAlign='center';
+ctx.fillText('— OFFBEAT · CHINESE ROCK PERSONALITY —',W/2,328);
 ctx.fillStyle='#d9b95f';ctx.font='400 28px "Bebas Neue", Impact, sans-serif';
-ctx.fillText(scoreLabel(testScores).toUpperCase(),54,398);
+ctx.fillText(scoreLabel(testScores).toUpperCase(),W/2,366);
 
-ctx.fillStyle='#fff';ctx.font='700 64px "Noto Sans SC", sans-serif';
-let titleLines=wrapText(ctx,r.title,W-120).slice(0,2);
-titleLines.forEach((line,i)=>ctx.fillText(line,54,490+i*72));
-const titleEnd=490+(titleLines.length-1)*72;
-ctx.fillStyle='#d9b95f';ctx.font='500 30px "Noto Sans SC", sans-serif';
-wrapText(ctx,r.line,W-110).slice(0,2).forEach((line,i)=>ctx.fillText(line,54,titleEnd+58+i*42));
+ctx.textAlign='left';
+ctx.fillStyle='#fff';ctx.font='700 58px "Noto Serif SC", "Noto Sans SC", serif';
+const titleLines=wrapTextClean(ctx,r.title,W-108).slice(0,2);
+titleLines.forEach((line,i)=>ctx.fillText(line,54,452+i*66));
+const titleEnd=452+(titleLines.length-1)*66;
+const lineFit=fitWrappedLines(ctx,r.line,W-108,2,29,'"Noto Sans SC", sans-serif',24,'500');
+ctx.fillStyle='#d9b95f';ctx.font=`500 ${lineFit.fontSize}px "Noto Sans SC", sans-serif`;
+lineFit.lines.forEach((line,i)=>ctx.fillText(line,54,titleEnd+58+i*(lineFit.fontSize+13)));
 
-ctx.strokeStyle='rgba(232,226,212,.22)';ctx.beginPath();ctx.moveTo(54,660);ctx.lineTo(W-54,660);ctx.stroke();
+ctx.strokeStyle='rgba(232,226,212,.24)';ctx.beginPath();ctx.moveTo(54,618);ctx.lineTo(W-54,618);ctx.stroke();
 ctx.fillStyle='rgba(232,226,212,.62)';ctx.font='700 20px "Noto Sans SC", sans-serif';
-ctx.fillText('气质接近',54,704);
+ctx.fillText('气质接近',54,662);
 ctx.fillStyle='#fff';ctx.font='400 25px "Noto Sans SC", sans-serif';
-ctx.fillText(r.near.replace(/ \/ /g,' / '),54,744);
+const nearLines=wrapTextClean(ctx,r.near.replace(/ \/ /g,' / '),W-108).slice(0,2);
+nearLines.forEach((line,i)=>ctx.fillText(line,54,704+i*34));
 
-let tagX=54,tagY=796;
-ctx.font='400 20px "Noto Sans SC", sans-serif';
+let tagX=54,tagY=770;
+ctx.font='400 19px "Noto Sans SC", sans-serif';
 r.tags.forEach(tag=>{
 const tw=ctx.measureText(tag).width+30;
 ctx.strokeStyle='rgba(232,226,212,.32)';ctx.strokeRect(tagX,tagY-27,tw,40);
@@ -982,28 +1011,28 @@ tagX+=tw+10;
 });
 
 ctx.fillStyle='rgba(232,226,212,.62)';ctx.font='700 20px "Noto Sans SC", sans-serif';
-ctx.fillText('人格声道',54,846);
-let y=880;
+ctx.fillText('人格声道',54,838);
+let y=876;
 [['地下','爆裂'],['诗性','主舞台'],['冷静','荒原']].forEach(([d,right],i)=>{
 ctx.fillStyle='rgba(232,226,212,.68)';ctx.font='300 18px "Noto Sans SC", sans-serif';
-ctx.fillText(d,54,y);ctx.fillText(right,W-178,y);
-ctx.strokeStyle='rgba(232,226,212,.22)';ctx.strokeRect(136,y-15,210,15);
-ctx.fillStyle=COL[i%COL.length];ctx.fillRect(137,y-14,Math.min(208,(r.bars[d]||0)*12),13);
-ctx.strokeStyle='rgba(232,226,212,.22)';ctx.strokeRect(W-250,y-15,76,15);
-ctx.fillStyle=COL[(i+3)%COL.length];ctx.fillRect(W-249,y-14,Math.min(74,(r.bars[right]||0)*4.6),13);
-y+=32;
+ctx.fillText(d,54,y);ctx.fillText(right,378,y);
+ctx.strokeStyle='rgba(232,226,212,.22)';ctx.strokeRect(116,y-15,220,15);
+ctx.fillStyle=COL[i%COL.length];ctx.fillRect(117,y-14,Math.min(218,(r.bars[d]||0)*13),13);
+ctx.strokeStyle='rgba(232,226,212,.22)';ctx.strokeRect(464,y-15,130,15);
+ctx.fillStyle=COL[(i+3)%COL.length];ctx.fillRect(465,y-14,Math.min(128,(r.bars[right]||0)*7.5),13);
+y+=34;
 });
 
-ctx.strokeStyle='rgba(232,226,212,.18)';ctx.beginPath();ctx.moveTo(54,996);ctx.lineTo(W-230,996);ctx.stroke();
-ctx.fillStyle='#f0eadf';ctx.font='400 25px "Noto Sans SC", sans-serif';
-const noteLines=wrapText(ctx,r.text,W-330).slice(0,2);
-noteLines.forEach((line,i)=>ctx.fillText(line,54,1030+i*34));
+ctx.strokeStyle='rgba(232,226,212,.2)';ctx.beginPath();ctx.moveTo(54,1000);ctx.lineTo(W-54,1000);ctx.stroke();
+const noteFit=fitWrappedLines(ctx,r.text,W-108,5,28,'"Noto Serif SC", "Noto Sans SC", serif',22,'500');
+ctx.fillStyle='#f0eadf';ctx.font=`500 ${noteFit.fontSize}px "Noto Serif SC", "Noto Sans SC", serif`;
+noteFit.lines.forEach((line,i)=>ctx.fillText(line,54,1040+i*(noteFit.fontSize+16)));
 
-const qrSize=104,qrX=W-qrSize-54,qrY=H-qrSize-62;
+const qrSize=104,qrX=W-qrSize-54,qrY=H-qrSize-78;
 ctx.fillStyle='#fff';ctx.fillRect(qrX-6,qrY-6,qrSize+12,qrSize+12);
 if(qrCanvas)ctx.drawImage(qrCanvas,qrX,qrY,qrSize,qrSize);
 ctx.fillStyle='#7b7469';ctx.font='300 13px "Noto Sans SC", sans-serif';ctx.textAlign='left';
-ctx.fillText('ROLL A SONG, RESET THE DAY',54,H-44);
+ctx.fillText('ROLL A SONG, RESET THE DAY',54,H-56);
 ctx.textAlign='center';ctx.fillText('扫码测试你的摇滚人格',qrX+qrSize/2,qrY+qrSize+24);
 sm.classList.add('s');
 }
