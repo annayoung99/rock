@@ -174,7 +174,7 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 <div class="modes">
 <button class="mb" data-mode="roulette">ROLL</button>
 <button class="mb active" data-mode="calendar">每日摇滚签</button>
-<button class="mb" data-mode="test">滚格测试</button>
+<button class="mb" data-mode="test">人格测试</button>
 </div>
 
 <div class="filters" id="filters">
@@ -275,7 +275,7 @@ body{display:flex;align-items:center;justify-content:center;padding:40px 0}
 </div>
 
 <div class="lm" id="lm"><div class="lc"><button class="lx" id="lx">×</button><div class="lt" id="mt"></div><div class="la" id="ma"></div><div class="lr" id="mr"></div></div></div>
-<div class="sm" id="sm"><button class="sm-close" id="smClose">×</button><canvas id="shareCanvas" width="720" height="1080"></canvas><div class="sm-hint">长按图片保存 / 转发 · 扫码抽你的今日摇滚签</div></div>
+<div class="sm" id="sm"><button class="sm-close" id="smClose">×</button><canvas id="shareCanvas" width="720" height="1080"></canvas><div class="sm-hint" id="smHint">长按图片保存 / 转发 · 扫码抽你的今日摇滚签</div></div>
 <div id="qrHolder" style="display:none"></div>
 
 <script>
@@ -655,8 +655,16 @@ const TEST_RESULTS=[
 {id:'ritual',title:'草原失真萨满',school:'荒原 14 / 上头 11',line:'风穿过你时，会自动带一点马头琴和双踩。',near:'九宝乐队 / 安达乐队 / 萨满乐队',tags:['荒原','金属','仪式感','远行'],bars:{地下:8,诗性:7,复古:6,冷静:5,老炮:9,爆裂:13,主舞台:8,新声:7,上头:12,荒原:16},text:'你身上有一种很古老的速度：不是逃跑，是召唤。别人听见轰鸣，你听见风、马、铁和祖先的影子。你适合把日子过成一次长调，慢处辽阔，重处见骨。',songs:['特斯河之赞','江格尔','鲸歌'],w:{荒原:3,爆裂:2,上头:2}},
 {id:'hardcore',title:'硬核清醒病人',school:'爆裂 15 / 地下 13',line:'你不负责温柔，你负责把麻木撞出裂缝。',near:'痛仰 / 夜叉 / 扭曲机器',tags:['硬核','爆裂','直给','拒绝驯化'],bars:{地下:13,诗性:5,复古:7,冷静:4,老炮:10,爆裂:16,主舞台:7,新声:6,上头:13,荒原:5},text:'你的情绪不是失控，是还保持导电。你知道生活会把人训练成好脾气，所以你保留一点锋利，像音箱啸叫前的那秒白光。你不是要赢，你只是拒绝太早投降。',songs:['哪里有压迫哪里就有反抗','怒','黑心'],w:{爆裂:3,地下:2,上头:2}},
 {id:'poet',title:'黑胶孤岛诗人',school:'诗性 16 / 冷静 12',line:'你把孤独放到唱针下，它就开始发光。',near:'安溥 / 朴树 / 惘闻',tags:['诗性','独处','黑胶','长镜头'],bars:{地下:8,诗性:16,复古:10,冷静:13,老炮:6,爆裂:3,主舞台:4,新声:8,上头:4,荒原:9},text:'你不是不热闹，只是需要先确认一句话有没有灵魂。你相信旅程比抵达更长，像一直把 Ithaka 放在心里。你的判词不适合喊出来，适合在凌晨两点忽然懂。',songs:['关于我爱你','No Fear In My Heart','海与你'],w:{诗性:3,冷静:2,荒原:1}},
-{id:'festival',title:'新声主舞台游牧民',school:'主舞台 15 / 新声 12',line:'你一出现，人群会自动多一个副歌。',near:'新裤子 / 刺猬 / 旅行团',tags:['新声','主舞台','舞池','出圈体质'],bars:{地下:6,诗性:7,复古:8,冷静:5,老炮:5,爆裂:8,主舞台:16,新声:13,上头:14,荒原:6},text:'你擅长把气氛搅活，也擅长把自己变成别人记忆里的画面。你不怕明亮，因为你知道真正的热闹不是讨好，是一群人短暂地站到同一束光里。',songs:['你要跳舞吗','白日梦蓝','黄色海岸线'],w:{主舞台:3,新声:2,上头:2}},
-{id:'veteran',title:'老炮唱片店掌柜',school:'老炮 15 / 复古 12',line:'你不追流行，你等声音自己留下来。',near:'崔健 / 木马 / 伍佰',tags:['老炮','复古','黑 T','旧唱片'],bars:{地下:10,诗性:8,复古:14,冷静:9,老炮:16,爆裂:7,主舞台:5,新声:4,上头:6,荒原:7},text:'你有一种旧磁带式的判断力：不迷信新，也不怀念到发霉。你知道一首歌能不能活下来，要看多年以后它还能不能让人抬头。你像唱片店深处那盏灯，暗，但一直在。',songs:['假行僧','我们一起出去玩','白鸽'],w:{老炮:3,复古:3,地下:1}}
+{id:'festival',title:'新声主舞台游牧民',school:'主舞台 15 / 新声 12',line:'你一出现，人群会自动多一个副歌。',near:'新裤子 / 刺猬 / 旅行团',tags:['新声','主舞台','舞池','出圈体质'],bars:{地下:6,诗性:7,复古:8,冷静:5,老炮:5,爆裂:8,主舞台:16,新声:13,上头:14,荒原:6},text:'你擅长把气氛搅活，也擅长把自己变成别人记忆里的画面。你不怕明亮，因为你知道真正的热闹不是讨好，是一群人短暂地站到同一束光里。',songs:['你要跳舞吗','白日梦蓝','黄色海岸线'],w:{主舞台:5,上头:3,新声:2}},
+{id:'veteran',title:'老炮唱片店掌柜',school:'老炮 15 / 复古 12',line:'你不追流行，你等声音自己留下来。',near:'崔健 / 木马 / 伍佰',tags:['老炮','复古','黑 T','旧唱片'],bars:{地下:10,诗性:8,复古:14,冷静:9,老炮:16,爆裂:7,主舞台:5,新声:4,上头:6,荒原:7},text:'你有一种旧磁带式的判断力：不迷信新，也不怀念到发霉。你知道一首歌能不能活下来，要看多年以后它还能不能让人抬头。你像唱片店深处那盏灯，暗，但一直在。',songs:['假行僧','我们一起出去玩','白鸽'],w:{老炮:3,复古:3,地下:1}},
+{id:'archivist',title:'噪声考古学家',school:'地下 14 / 复古 13',line:'你从旧噪声里打捞未来，灰尘也是一种鼓点。',near:'周二下午谁没来 / 木马 / PK14',tags:['考古','地下','锐利','旧厂房'],bars:{地下:16,诗性:9,复古:15,冷静:10,老炮:12,爆裂:8,主舞台:4,新声:7,上头:6,荒原:6},text:'你对“过时”两个字没有敬畏。旧海报、坏音箱、被忽略的现场录音，到了你手里都会重新带电。你不是怀旧，你是在证明有些声音只是被埋住了，还没死。',songs:['星期二下午谁没来','我们一起出去玩','陌生人'],w:{地下:3,复古:3,老炮:1}},
+{id:'noir',title:'铁皮月亮守夜人',school:'冷静 15 / 地下 11',line:'你把夜色调低一点，让真正的回声自己浮上来。',near:'沉舟 / 水仙斗活佛 / 犬儒',tags:['冷静','阴影','低频','守夜'],bars:{地下:13,诗性:10,复古:8,冷静:16,老炮:8,爆裂:5,主舞台:3,新声:8,上头:4,荒原:10},text:'你不是冷淡，是不愿意把情绪浪费在表面。你像一盏被雨水淋过的路灯，亮得不高调，但足够让人看见脚下的裂缝。你擅长和黑暗相处，也擅长从黑暗里带回一句准话。',songs:['深埋地下八万里','三千里','贝贝'],w:{冷静:3,地下:2,荒原:1}},
+{id:'synth',title:'合成器叛逃少年',school:'新声 15 / 冷静 10',line:'你把规矩插进效果器，出来就是另一种自由。',near:'重塑雕像的权利 / Carsick Cars / Duck Fight Goose',tags:['新声','电子感','反叛','冷感'],bars:{地下:9,诗性:7,复古:6,冷静:10,老炮:4,爆裂:8,主舞台:9,新声:16,上头:10,荒原:5},text:'你不满足于“摇滚应该长什么样”。你喜欢让节拍失焦，让吉他变形，让一切熟悉的东西突然露出陌生面孔。你不是不尊重传统，你只是听见了传统还没来得及说出的下一句。',songs:['中南海','Pigs In The River','Hailing Drums'],w:{新声:4,冷静:2,地下:1}},
+{id:'romantic',title:'硬地浪漫亡命徒',school:'主舞台 14 / 老炮 10',line:'你能把万人合唱唱成一封写给自己的信。',near:'痛仰 / 刺猬 / 椿',tags:['浪漫','主舞台','公路','热血'],bars:{地下:8,诗性:11,复古:9,冷静:6,老炮:11,爆裂:9,主舞台:16,新声:10,上头:13,荒原:8},text:'你愿意承认自己需要热烈，也愿意承认热烈并不廉价。你知道副歌可以很大声，但真正击中的往往是唱完之后那一秒空白。你不是逃往远方，你是把远方临时搭在现场中央。',songs:['公路之歌','白日梦蓝','不喜欢下雨天'],w:{主舞台:4,老炮:3,诗性:2}},
+{id:'river',title:'长江支流吉他手',school:'荒原 12 / 诗性 12',line:'你身上有水路，也有旷野；一开口，风就拐弯。',near:'惘闻 / 沉舟 / 安达乐队',tags:['荒原','诗性','水路','长镜头'],bars:{地下:9,诗性:15,复古:8,冷静:11,老炮:7,爆裂:5,主舞台:5,新声:8,上头:6,荒原:15},text:'你的自由不是冲出去，而是慢慢流开。你相信路会自己长出来，像河流绕过石头，也像一段吉他在很远的地方还没有结束。别人急着抵达，你更在意途中有没有星光。',songs:['鲸歌','海与夕阳','Silver Mountain'],w:{荒原:3,诗性:3,冷静:1}},
+{id:'mosh',title:'前排破音发动机',school:'爆裂 16 / 上头 14',line:'你一靠近前排，空气就开始准备失控。',near:'夜叉 / 扭曲机器 / 生命之饼',tags:['前排','爆裂','硬核','热机'],bars:{地下:11,诗性:4,复古:6,冷静:3,老炮:8,爆裂:16,主舞台:10,新声:7,上头:16,荒原:5},text:'你不是鲁莽，你只是讨厌生命被调成静音。你知道有些答案必须靠身体撞出来，有些委屈必须先被吼破。你像一台老发动机，响得粗糙，但一旦启动，谁都知道路还没完。',songs:['怒','哪里有压迫哪里就有反抗','向前进'],w:{爆裂:3,上头:3,地下:1}},
+{id:'sideStage',title:'小舞台灵魂走私犯',school:'新声 13 / 地下 12',line:'你总能在人群背面，找到下一场时代的预演。',near:'Snapline / Carsick Cars / 犬儒',tags:['小舞台','新声','怪趣味','敏锐'],bars:{地下:14,诗性:8,复古:5,冷静:9,老炮:4,爆裂:7,主舞台:6,新声:16,上头:10,荒原:5},text:'别人追主舞台，你追那些还没被命名的声音。你相信真正的新鲜感不是噱头，而是一个人忽然不再按旧方式呼吸。你像现场角落里最早亮起的灯，照见后来会被很多人记住的方向。',songs:['中南海','Party Is Over, Pornostar','别让孩子活得太惨'],w:{新声:3,地下:3,冷静:1}},
+{id:'prism',title:'迷幻棱镜潜水员',school:'诗性 13 / 新声 11',line:'你看见的不是彩虹，是黑暗被声音折射后的伤口。',near:'重塑雕像的权利 / 惘闻 / 沉舟',tags:['迷幻','棱镜','冷感','深潜'],bars:{地下:10,诗性:15,复古:7,冷静:14,老炮:5,爆裂:4,主舞台:6,新声:13,上头:5,荒原:8},text:'你不急着给情绪命名。你更愿意潜到一首歌的暗处，看它怎样把光拆成很多种颜色。你身上有一种安静的离心力，能把普通一天拧成一段很深的回声。',songs:['Pigs In The River','海与夕阳','三千里'],w:{诗性:3,新声:3,冷静:2}}
 ];
 
 function gen(t,a){
@@ -672,7 +680,7 @@ return `<svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#000"/>$
 }
 
 const $=id=>document.getElementById(id);
-const sb=$('sb'),nb=$('nb'),lb=$('lb'),shb=$('shb'),lm=$('lm'),lx=$('lx'),mt=$('mt'),ma=$('ma'),mr=$('mr'),card=$('card'),cover=$('cover'),title=$('title'),artist=$('artist'),artistCN=$('artistCN'),year=$('year'),rv=$('rouletteView'),cv=$('calView'),tv=$('testView'),ti=$('testInner'),sm=$('sm'),smClose=$('smClose'),shareCanvas=$('shareCanvas');
+const sb=$('sb'),nb=$('nb'),lb=$('lb'),shb=$('shb'),lm=$('lm'),lx=$('lx'),mt=$('mt'),ma=$('ma'),mr=$('mr'),card=$('card'),cover=$('cover'),title=$('title'),artist=$('artist'),artistCN=$('artistCN'),year=$('year'),rv=$('rouletteView'),cv=$('calView'),tv=$('testView'),ti=$('testInner'),sm=$('sm'),smClose=$('smClose'),smHint=$('smHint'),shareCanvas=$('shareCanvas');
 
 applyPool();
 
@@ -1011,7 +1019,7 @@ tagX+=tw+10;
 });
 
 ctx.fillStyle='rgba(232,226,212,.62)';ctx.font='700 20px "Noto Sans SC", sans-serif';
-ctx.fillText('滚格声道',54,838);
+ctx.fillText('人格声道',54,838);
 let y=876;
 [['地下','爆裂'],['诗性','主舞台'],['冷静','荒原']].forEach(([d,right],i)=>{
 ctx.fillStyle='rgba(232,226,212,.68)';ctx.font='300 18px "Noto Sans SC", sans-serif';
@@ -1034,6 +1042,7 @@ if(qrCanvas)ctx.drawImage(qrCanvas,qrX,qrY,qrSize,qrSize);
 ctx.fillStyle='#7b7469';ctx.font='300 13px "Noto Sans SC", sans-serif';ctx.textAlign='left';
 ctx.fillText('ROLL A SONG, RESET THE DAY',54,H-56);
 ctx.textAlign='center';ctx.fillText('扫码测试你的摇滚人格',qrX+qrSize/2,qrY+qrSize+24);
+smHint.textContent='长按图片保存 / 转发 · 扫码测试你的摇滚人格';
 sm.classList.add('s');
 }
 
@@ -1151,6 +1160,7 @@ ctx.fillText('QR',qrX+qrSize/2,qrY+qrSize/2);
 }
 ctx.fillStyle='#666';ctx.font='300 11px "Noto Sans SC", sans-serif';ctx.textAlign='center';
 ctx.fillText('扫码抽你的今日摇滚签',qrX+qrSize/2,qrY+qrSize+22);
+smHint.textContent='长按图片保存 / 转发 · 扫码抽你的今日摇滚签';
 
 ctx.textAlign='left';
 ctx.fillStyle='#cfc4b2';ctx.font='400 20px "Bebas Neue", Impact, sans-serif';
